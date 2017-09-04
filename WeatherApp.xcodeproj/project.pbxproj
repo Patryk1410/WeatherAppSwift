@@ -15,6 +15,10 @@
 		5EE908471F5D46C900FD56ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EE908451F5D46C900FD56ED /* LaunchScreen.storyboard */; };
 		5EE908521F5D46CA00FD56ED /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908511F5D46CA00FD56ED /* WeatherAppTests.swift */; };
 		5EE9085D1F5D46CA00FD56ED /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9085C1F5D46CA00FD56ED /* WeatherAppUITests.swift */; };
+		5EE9086C1F5D47C500FD56ED /* CompletionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9086B1F5D47C500FD56ED /* CompletionStatus.swift */; };
+		5EE9086E1F5D480100FD56ED /* HttpHandlerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9086D1F5D480100FD56ED /* HttpHandlerRequest.swift */; };
+		5EE908701F5D48A700FD56ED /* HttpHandlerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9086F1F5D48A700FD56ED /* HttpHandlerError.swift */; };
+		5EE908721F5D4A9E00FD56ED /* HttpHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908711F5D4A9E00FD56ED /* HttpHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		5EE908581F5D46CA00FD56ED /* WeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE9085C1F5D46CA00FD56ED /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		5EE9085E1F5D46CA00FD56ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EE9086B1F5D47C500FD56ED /* CompletionStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionStatus.swift; sourceTree = "<group>"; };
+		5EE9086D1F5D480100FD56ED /* HttpHandlerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHandlerRequest.swift; sourceTree = "<group>"; };
+		5EE9086F1F5D48A700FD56ED /* HttpHandlerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHandlerError.swift; sourceTree = "<group>"; };
+		5EE908711F5D4A9E00FD56ED /* HttpHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 		5EE908381F5D46C900FD56ED /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				5EE9086A1F5D475500FD56ED /* Http */,
 				5EE908391F5D46C900FD56ED /* AppDelegate.swift */,
 				5EE9083B1F5D46C900FD56ED /* ViewController.swift */,
 				5EE9083D1F5D46C900FD56ED /* Main.storyboard */,
@@ -126,6 +135,17 @@
 				5EE9085E1F5D46CA00FD56ED /* Info.plist */,
 			);
 			path = WeatherAppUITests;
+			sourceTree = "<group>";
+		};
+		5EE9086A1F5D475500FD56ED /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				5EE9086B1F5D47C500FD56ED /* CompletionStatus.swift */,
+				5EE9086D1F5D480100FD56ED /* HttpHandlerRequest.swift */,
+				5EE9086F1F5D48A700FD56ED /* HttpHandlerError.swift */,
+				5EE908711F5D4A9E00FD56ED /* HttpHandler.swift */,
+			);
+			name = Http;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,8 +283,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EE908421F5D46C900FD56ED /* WeatherApp.xcdatamodeld in Sources */,
+				5EE908721F5D4A9E00FD56ED /* HttpHandler.swift in Sources */,
+				5EE908701F5D48A700FD56ED /* HttpHandlerError.swift in Sources */,
 				5EE9083C1F5D46C900FD56ED /* ViewController.swift in Sources */,
 				5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */,
+				5EE9086E1F5D480100FD56ED /* HttpHandlerRequest.swift in Sources */,
+				5EE9086C1F5D47C500FD56ED /* CompletionStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
