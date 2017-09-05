@@ -17,6 +17,8 @@ class WeatherByIdRequest: WeatherRequest {
     }
     
     override func endPoint() -> String {
-        return super.endPoint().appending("2.5/forecast?id=").appending(locationId).appending("&APPID=").appending(apiKey)
+        return super.endPoint().appending("2.5/forecast?id=").appending(locationId)
+            .appending("&units=").appending(celcius)
+            .appending("&APPID=").appending(apiKey)
     }
 }

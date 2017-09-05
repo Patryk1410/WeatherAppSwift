@@ -59,7 +59,9 @@ class HttpClient: HttpHandler {
                 completion(nil, HttpHandlerError.NoDataFromServer)
                 return
             }
-        
+            let stringData = String(data: data, encoding: .utf8)
+            print(stringData!)
+            
             guard let dict = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String : Any] else {
                 completion(nil, HttpHandlerError.ServerResponseNotParseable)
                 return
