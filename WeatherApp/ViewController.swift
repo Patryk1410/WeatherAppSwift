@@ -8,9 +8,12 @@
 
 import UIKit
 import Unbox
+import CoreData
 
 class ViewController: UIViewController {
 
+    var appDelegate: AppDelegate?
+    
     let lodzLocationId : String = "3093133"
     
     var handler: HttpHandler?
@@ -18,6 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.appDelegate = UIApplication.shared.delegate as? AppDelegate
         self.handler = HttpClient(baseURL: "http://api.openweathermap.org/data/")
         let requestById = WeatherByIdRequest(locationId: lodzLocationId)
         let requestByLatAndLon = WeatherByLatitudeAndLongitudeRequest(latitude: "35", longitude: "139")
@@ -40,20 +44,25 @@ class ViewController: UIViewController {
 
     func unboxData(result: Dictionary<String, Any>) throws {
         self.forecast = try unbox(dictionary: result)
+        
+        let managedContext = appDelegate!.persistentContainer.viewContext
+        let weatherRecordMO = WeatherRecordMO(context: managedContext)
+        
         print(self.forecast ?? "error")
+        
         self.saveData(forecast: forecast)
     }
     
     func saveData(forecast: Forecast?) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
+//        guard self.appDelegate = UIApplication.shared.delegate as! AppDelegate else {
+//            return
+//        }
         
         guard let forecast = forecast else {
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = appDelegate!.persistentContainer.viewContext
         
         let weatherRecordMO = WeatherRecordMO(context: managedContext)
         weatherRecordMO.temperature = forecast.weatherRecords[0].temperature
@@ -77,6 +86,25 @@ class ViewController: UIViewController {
         forecastMO.addToWeatherRecords(weatherRecordMO)
         forecastMO.location = locationMO
         
+        do {
+            try managedContext.save()
+        } catch {
+            print("could not save \(error)")
+        }
+        
+    }
+    
+    @IBAction func fetch(_ sender: Any) {
+        let managedContext = appDelegate!.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Forecast")
+        
+        do {
+            let forecasts: [ForecastMO] = try managedContext.fetch(fetchRequest) as! [ForecastMO]
+            print(forecasts)
+        } catch {
+            print("could not fetch \(error)")
+        }
     }
     
     override func didReceiveMemoryWarning() {
