@@ -17,9 +17,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.handler = HttpClient(baseURL: "http://api.openweathermap.org/data/")
-        let request = WeatherByIdRequest(locationId: lodzLocationId)
+        let requestById = WeatherByIdRequest(locationId: lodzLocationId)
+        let requestByLatAndLon = WeatherByLatitudeAndLongitudeRequest(latitude: "35", longitude: "139")
         
-        self.handler?.make(request: request, completion: { (result, error) in
+        self.handler?.make(request: requestByLatAndLon, completion: { (result, error) in
             print(result ?? "error")
         })
         

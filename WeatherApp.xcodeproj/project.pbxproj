@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E4A81AF1F5E7C3F00C9F14E /* WeatherByLatitudeAndLongitudeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A81AE1F5E7C3F00C9F14E /* WeatherByLatitudeAndLongitudeRequest.swift */; };
 		5E4FC5FB1F5D80150095A124 /* WeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4FC5FA1F5D80150095A124 /* WeatherRequest.swift */; };
 		5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908391F5D46C900FD56ED /* AppDelegate.swift */; };
 		5EE9083C1F5D46C900FD56ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9083B1F5D46C900FD56ED /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E4A81AE1F5E7C3F00C9F14E /* WeatherByLatitudeAndLongitudeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherByLatitudeAndLongitudeRequest.swift; sourceTree = "<group>"; };
 		5E4FC5FA1F5D80150095A124 /* WeatherRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherRequest.swift; sourceTree = "<group>"; };
 		5EE908361F5D46C900FD56ED /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE908391F5D46C900FD56ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				5EE908781F5D55C000FD56ED /* WeatherHandler.swift */,
 				5EE9087A1F5D74AF00FD56ED /* HttpClient.swift */,
 				5E4FC5FA1F5D80150095A124 /* WeatherRequest.swift */,
+				5E4A81AE1F5E7C3F00C9F14E /* WeatherByLatitudeAndLongitudeRequest.swift */,
 			);
 			name = Http;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				5EE908701F5D48A700FD56ED /* HttpHandlerError.swift in Sources */,
 				5E4FC5FB1F5D80150095A124 /* WeatherRequest.swift in Sources */,
 				5EE9083C1F5D46C900FD56ED /* ViewController.swift in Sources */,
+				5E4A81AF1F5E7C3F00C9F14E /* WeatherByLatitudeAndLongitudeRequest.swift in Sources */,
 				5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */,
 				5EE908791F5D55C000FD56ED /* WeatherHandler.swift in Sources */,
 				5EE9086E1F5D480100FD56ED /* HttpHandlerRequest.swift in Sources */,
