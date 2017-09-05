@@ -10,6 +10,8 @@ import Foundation
 
 protocol HttpHandlerRequest {
     
+    var apiKey : String { get }
+    
     func endPoint() -> String
     
     func method() -> String

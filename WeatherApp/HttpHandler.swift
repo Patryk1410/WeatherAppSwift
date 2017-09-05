@@ -10,9 +10,9 @@ import Foundation
 
 protocol HttpHandler {
     
-    var baseUrl: String { get }
+    var baseURL: String { get }
     
     var urlSession: URLSession { get }
     
-    func make(request: HttpHandlerRequest, completion: @escaping (_ dictionaryData: [String: Any]?, _ errorError: Error?) -> Void)
+    func make(request: HttpHandlerRequest, completion: @escaping (_ dictionaryData: [String: Any]?, _ errorError: HttpHandlerError?) -> Void)
 }

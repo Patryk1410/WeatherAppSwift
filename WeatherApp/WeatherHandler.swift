@@ -8,20 +8,25 @@
 
 import Foundation
 
-class WeatherHandler: HttpHandler {
+class WeatherHandler {
     
-    var baseUrl: String = "http://api.openweathermap.org/data/2.5/forecast"
+    var baseURL: String = "http://api.openweathermap.org/data/"
+    
+    let apiKey = "38dfeb5e38512ca3433ae28e0391b066"
+    
+    let cityId = "524901"
     
     var urlSession: URLSession = URLSession(configuration: URLSessionConfiguration.default)
     
-    func make(request: HttpHandlerRequest, completion: @escaping ([String : Any]?, Error?) -> Void) {
-        return
+    func make(request: HttpHandlerRequest, completion: @escaping ([String : Any]?, HttpHandlerError?) -> Void) {
+//        if let url = URL(string: baseUrl.appending("id=").appending(cityId).appending("&APPID").appending(apiKey)) {
+////            (urlSession.dataTask(with: url, completionHandler: completion))
+//        }
     }
     
-    func make(/*request: HttpHandlerRequest, completion: @escaping ([String : Any]?, Error?) -> Void*/) {
+    func make() {
         if let url = URL(string: "http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=38dfeb5e38512ca3433ae28e0391b066") {
-            (urlSession.dataTask(with: url) {
-                (data, response, error) in
+            (urlSession.dataTask(with: url) { (data, response, error) in
                 if let error = error {
                     print("error \(error)")
                 } else if let response = response,
@@ -29,9 +34,10 @@ class WeatherHandler: HttpHandler {
                     let string = String(data: data, encoding: .utf8) {
                         print("response \(response)")
                         print("data \(string)")
+                        let dict = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers)
+                    print(dict ?? "error")
                 }
             }).resume()
         }
-        
     }
 }

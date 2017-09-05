@@ -8,21 +8,24 @@
 
 import Foundation
 
-//class WeatherRequest: HttpHandlerRequest {
-//    
-//    func endPoint() -> String {
-//        return "don't know yet"
-//    }
-//    
-//    func method() -> String {
-//        return "GET"
-//    }
-//
-//    func parameters() -> Dictionary<String, Any>? {
-//        do {
-//            let dictionary: WrappedDictionary = try wrap
-//        } catch <#pattern#> {
-//            <#statements#>
-//        }
-//    }
-//}
+class WeatherRequest: HttpHandlerRequest {
+    
+    let apiKey = "38dfeb5e38512ca3433ae28e0391b066"
+    
+    func endPoint() -> String {
+        return ""
+    }
+    
+    func headers() -> Dictionary<String, String> {
+        return ["Content-Type": "application/json; charset=utf-8"]
+    }
+    
+    func method() -> String {
+        return "GET"
+    }
+    
+    func parameters() -> Dictionary<String, Any>? {
+        return nil
+    }
+    
+}
