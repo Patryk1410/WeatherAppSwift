@@ -32,7 +32,7 @@ class WeatherManagerImpl: WeatherManager {
         self.forecastUnboxer = ForecastUnboxer()
     }
     
-    func fetchWeather(location: CLLocationCoordinate2D, completion: @escaping (ForecastMO?, Error?) -> ()) {
+    func fetchWeather(location: CLLocationCoordinate2D, completion: @escaping ([ForecastMO]?, Error?) -> ()) {
         let request = WeatherByLatitudeAndLongitudeRequest(latitude: location.latitude.description, longitude: location.longitude.description)
         
         guard let handler = self.httpHandler else {
@@ -59,8 +59,9 @@ class WeatherManagerImpl: WeatherManager {
                         return
                     }
                     
-                    let forecast = ForecastMO.first(with: "from", value: from)
-                    completion(forecast,nil)
+//                    let forecast = ForecastMO.first(with: "from", value: from)
+                    let forecasts = ForecastMO.all()
+                    completion(forecasts as? [ForecastMO], nil)
                 }
                 
             } catch {

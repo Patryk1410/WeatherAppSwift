@@ -66,12 +66,12 @@ class ForecastUnboxer: NSObject {
                 weatherRecordMO.maxTemperature = try unboxer.unbox(keyPath: maxTemperatureKeyPath)
                 weatherRecordMO.pressure = try unboxer.unbox(keyPath: pressureKeyPath)
                 weatherRecordMO.humidity = try unboxer.unbox(keyPath: humidityKeyPath)
-                weatherRecordMO.conditions = unboxer.unbox(keyPath: conditionsKeyPath)
-                weatherRecordMO.conditionsDescription = unboxer.unbox(keyPath: conditionsDescriptionKeyPath)
-                weatherRecordMO.iconId = unboxer.unbox(keyPath: iconIdKeyPath)
+                weatherRecordMO.conditions = unboxer.unbox(keyPath: conditionsKeyPath) ?? "invalid conditions"
+                weatherRecordMO.conditionsDescription = unboxer.unbox(keyPath: conditionsDescriptionKeyPath) ?? "invalid description"
+                weatherRecordMO.iconId = unboxer.unbox(keyPath: iconIdKeyPath) ?? "invalid icon id"
                 weatherRecordMO.cloudiness = try unboxer.unbox(keyPath: cloudinessKeyPath)
                 weatherRecordMO.windSpeed = try unboxer.unbox(keyPath: windSpeedKeyPath)
-                weatherRecordMO.date = unboxer.unbox(key: dateKey)
+                weatherRecordMO.date = unboxer.unbox(key: dateKey) ?? "invalid date"
                 
                 return weatherRecordMO
             })
@@ -84,9 +84,9 @@ class ForecastUnboxer: NSObject {
         let locationMO: LocationMO = try Unboxer.performCustomUnboxing(dictionary: dictionary["city"] as! UnboxableDictionary, closure: {unboxer in
             
             let locationMO: LocationMO = LocationMO(context: managedContext)
-            locationMO.country = unboxer.unbox(key: countryKey)
-            locationMO.city = unboxer.unbox(key: cityKey)
-            locationMO.cityId = unboxer.unbox(key: cityIdKey)
+            locationMO.country = unboxer.unbox(key: countryKey) ?? "invalid country"
+            locationMO.city = unboxer.unbox(key: cityKey) ?? "invalid city"
+            locationMO.cityId = unboxer.unbox(key: cityIdKey) ?? "invalid city id"
             
             return locationMO
         })
