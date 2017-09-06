@@ -9,6 +9,7 @@
 import UIKit
 import Unbox
 import CoreData
+import CoreLocation
 
 class ViewController: UIViewController {
 
@@ -18,16 +19,28 @@ class ViewController: UIViewController {
     let lodzLocationId : String = "3093133"
     
     var handler: HttpHandler?
-//    var forecast: Forecast?
-    var forecastMO: ForecastMO?
+    var weatherManager: WeatherManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.weatherManager = WeatherManagerImpl()
+        let location = CLLocationCoordinate2D(latitude: 19.4123, longitude: 52.2321)
+        
+        self.weatherManager?.fetchWeather(location:location, completion: { (forecast) in
+            
+        })
+        
+        
+        
         self.appDelegate = UIApplication.shared.delegate as? AppDelegate
         self.managedContext = appDelegate!.persistentContainer.viewContext
+        self.managedContext?.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         self.handler = HttpClient(baseURL: "http://api.openweathermap.org/data/")
         let requestById = WeatherByIdRequest(locationId: lodzLocationId)
         let requestByLatAndLon = WeatherByLatitudeAndLongitudeRequest(latitude: "35", longitude: "139")
+        
+//        self.clearDatabase()
         
         self.handler?.make(request: requestByLatAndLon, completion: { (result, error) in
             guard let result = result else {
@@ -86,6 +99,18 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func clearDatabase() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Forecast")
+        
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try self.managedContext?.execute(batchDeleteRequest)
+        } catch {
+            
+        }
     }
 
 

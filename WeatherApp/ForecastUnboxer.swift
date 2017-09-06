@@ -40,6 +40,7 @@ class ForecastUnboxer: NSObject {
         let forecastMO: ForecastMO = try Unboxer.performCustomUnboxing(dictionary: dictionary, closure: {unboxer in
             
             let forecastMO: ForecastMO = ForecastMO(context: managedContext)
+            forecastMO.from = unboxer.unbox(keyPath: "list.0.dt_txt")
             
             return forecastMO
         })
