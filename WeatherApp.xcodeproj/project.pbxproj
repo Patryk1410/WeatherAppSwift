@@ -115,12 +115,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5E4A81B01F5E7F4300C9F14E /* Model */ = {
+		5E4A81B01F5E7F4300C9F14E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				5EF0DB2F1F5FDF7300946681 /* ForecastUnboxer.swift */,
 			);
-			name = Model;
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		5EE9082D1F5D46C900FD56ED = {
@@ -149,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				5EF0DB311F5FEF5A00946681 /* WeatherManager */,
-				5E4A81B01F5E7F4300C9F14E /* Model */,
+				5E4A81B01F5E7F4300C9F14E /* Utility */,
 				5EE9086A1F5D475500FD56ED /* Http */,
 				5EE908391F5D46C900FD56ED /* AppDelegate.swift */,
 				5EE9083B1F5D46C900FD56ED /* ViewController.swift */,
@@ -410,10 +410,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AERecord/AERecord.framework",
 				"${BUILT_PRODUCTS_DIR}/Unbox/Unbox.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AERecord.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Unbox.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
