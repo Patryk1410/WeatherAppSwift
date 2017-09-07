@@ -12,65 +12,91 @@ import CoreData
 import CoreLocation
 import AERecord
 
-class ForecastsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+class ForecastsProvider: ListProviderProtocol {
+    var delegate: ListProviderDelegate?
+    var weatherManager: WeatherManager
+
+    init() {
+        self.weatherManager = WeatherManagerImpl()
+    }
     
-    let numberOfSections = 1
-    let cellIdentifier = "ForecastsTableViewCell"
+    func requestData() {
+        let locationWarsaw = CLLocationCoordinate2D(latitude: 52.21, longitude: 21.01)
+        
+        self.weatherManager.fetchWeather(location:locationWarsaw, completion: { [unowned self] (forecasts, error) in
+            
+            guard let forecasts = forecasts else {
+                self.delegate?.didFinishFetchingWithError(nil)
+                return
+            }
+            let data = forecasts.map({ (forecast) -> ForecastData in
+                return ForecastData(forecastMo: forecast)
+            })
+            
+            self.delegate?.didFinishFetching(data)
+        })
+    }
+}
+
+class ForecastsTableViewController: UIViewController {
+  
     
     @IBOutlet weak var forecastsTableView: UITableView!
     
-    var weatherManager: WeatherManager?
+    var tableViewManager: TableViewManager?
+    var dataProvider: ListProviderProtocol?
     
     var forecasts: [ForecastMO] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dataProvider = ForecastsProvider()
+        self.dataProvider?.delegate = self
+        self.tableViewManager = TableViewManager(tableView: self.forecastsTableView)
+        self.dataProvider?.requestData()
+    }
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         
-        self.forecastsTableView.dataSource = self
-        self.forecastsTableView.delegate = self
-//        self.forecastsTableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-      
-        self.weatherManager = WeatherManagerImpl()
-        let location = CLLocationCoordinate2D(latitude: 52.21, longitude: 21.01)
-        
-        self.weatherManager?.fetchWeather(location:location, completion: { (forecasts, error) in
-            guard let forecasts = forecasts else {
-                return
-            }
-            self.forecasts = forecasts
-            self.forecastsTableView.reloadData()
-        })
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK Table view data source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return numberOfSections
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return forecasts.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ForecastsTableViewCell
-        let forecast = forecasts[indexPath.row]
-        self.setCellLabels(cell: cell, forecast: forecast)
-        
-        
-        return cell
-    }
-    
-    func setCellLabels(cell: ForecastsTableViewCell, forecast: ForecastMO) {
-        cell.locationLabel.text = (forecast.location?.city)! + ", " +
-         (forecast.location?.country)!
-        cell.dateLabel.text = (forecast.weatherRecords?.firstObject as! WeatherRecordMO).date! + " - " + (forecast.weatherRecords?.lastObject as! WeatherRecordMO).date!
+        guard let forecastViewController = segue.destination as? ForecastTableViewController else {
+            return
+        }
+        guard let selectedForecastCell = sender as? ForecastsTableViewCell else {
+            return
+        }
+        guard let indexPath = self.forecastsTableView.indexPath(for: selectedForecastCell) else {
+            return
+        }
+        let selectedForecast = self.forecasts[indexPath.row]
+        forecastViewController.forecast = selectedForecast
     }
 
 }
 
+extension ForecastsTableViewController: ListProviderDelegate{
+    func didFinishFetching(_ data: [TableViewData]?) {
+        self.tableViewManager?.addData(data)
+    }
+    
+    func didStartFetching(_ data: [TableViewData]?) {
+        
+    }
+    
+    func didFinishFetchingWithError(_ error: NSError?) {
+        
+    }
+}
+
+extension ForecastsTableViewController: TableViewManagerDelegate{
+
+    func didSelect(_ item: TableViewData) {
+        print("selected")
+    }
+    
+    func pinDelegate(_ item: TableViewData) {
+        
+    }
+}

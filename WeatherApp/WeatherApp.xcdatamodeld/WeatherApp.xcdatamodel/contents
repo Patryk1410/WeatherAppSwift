@@ -3,7 +3,12 @@
     <entity name="ForecastMO" representedClassName="ForecastMO" syncable="YES" codeGenerationType="class">
         <attribute name="from" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="LocationMO" inverseName="forecast" inverseEntity="LocationMO" syncable="YES"/>
-        <relationship name="weatherRecords" toMany="YES" minCount="1" maxCount="50" deletionRule="Nullify" ordered="YES" destinationEntity="WeatherRecordMO" inverseName="forecast" inverseEntity="WeatherRecordMO" syncable="YES"/>
+        <relationship name="weatherRecords" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="WeatherRecordMO" inverseName="forecast" inverseEntity="WeatherRecordMO" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="from"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="LocationMO" representedClassName="LocationMO" syncable="YES" codeGenerationType="class">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>

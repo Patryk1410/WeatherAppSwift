@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherApp.ForecastsTableViewCell" id="6u3-Lg-olP" customClass="ForecastsTableViewCell" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6u3-Lg-olP" id="36A-S6-tgD">
+                <rect key="frame" x="0.0" y="0.0" width="343" height="90"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAa-c6-yKw">
+                        <rect key="frame" x="8" y="8" width="327" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="1Xc-RG-3AD"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKy-O4-4KO">
+                        <rect key="frame" x="8" y="49" width="327" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="VKy-O4-4KO" firstAttribute="leading" secondItem="36A-S6-tgD" secondAttribute="leading" constant="8" id="23W-ar-p8z"/>
+                    <constraint firstItem="lAa-c6-yKw" firstAttribute="top" secondItem="36A-S6-tgD" secondAttribute="top" constant="8" id="3F5-mV-zvi"/>
+                    <constraint firstAttribute="trailing" secondItem="lAa-c6-yKw" secondAttribute="trailing" constant="8" id="Oa4-1R-jyz"/>
+                    <constraint firstAttribute="bottom" secondItem="VKy-O4-4KO" secondAttribute="bottom" constant="20" id="dVO-JW-tfC"/>
+                    <constraint firstItem="VKy-O4-4KO" firstAttribute="top" secondItem="lAa-c6-yKw" secondAttribute="bottom" constant="8" id="e4q-v6-xrh"/>
+                    <constraint firstItem="lAa-c6-yKw" firstAttribute="leading" secondItem="36A-S6-tgD" secondAttribute="leading" constant="8" id="nf2-k1-Bq7"/>
+                    <constraint firstAttribute="trailing" secondItem="VKy-O4-4KO" secondAttribute="trailing" constant="8" id="rDh-4f-mkT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="VKy-O4-4KO" id="3Xo-tu-9BY"/>
+                <outlet property="locationLabel" destination="lAa-c6-yKw" id="JBB-Na-Cxm"/>
+            </connections>
+            <point key="canvasLocation" x="35.5" y="54"/>
+        </tableViewCell>
+    </objects>
+</document>

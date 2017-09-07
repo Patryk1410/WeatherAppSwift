@@ -30,17 +30,15 @@ let fromKey = "list.0.dt_txt"
 
 class ForecastUnboxer: NSObject {
     
-    func unbox(dictionary: Dictionary<String, Any>, managedContext: NSManagedObjectContext) throws -> ForecastMO {
+    func unbox(dictionary: Dictionary<String, Any>, managedContext: NSManagedObjectContext) throws -> ForecastMO{
         
         let weatherRecordsMO = try self.unboxWeatherRecords(dictionary: dictionary, managedContext: managedContext)
         
         let locationMO: LocationMO = try self.unboxLocation(dictionary: dictionary, managedContext: managedContext)
         
         let forecastMO: ForecastMO = try Unboxer.performCustomUnboxing(dictionary: dictionary, closure: {unboxer in
-            
-            let fromString: String? = try? unboxer.unbox(key: fromKey)
-            let forecastMO: ForecastMO = ForecastMO.firstOrCreate(with: "from", value: fromString ?? "", in: managedContext)
-            
+            let forecastMO: ForecastMO = ForecastMO(context: managedContext)
+            forecastMO.from = try? unboxer.unbox(keyPath: fromKey)
             return forecastMO
         })
         
