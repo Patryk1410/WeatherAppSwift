@@ -31,7 +31,7 @@ class ForecastsProvider: ListProviderProtocol {
                 return
             }
             let data = forecasts.map({ (forecast) -> ForecastData in
-                return ForecastData(forecastMo: forecast)
+                return ForecastData(forecast: forecast)
             })
             
             self.delegate?.didFinishFetching(data)
@@ -41,7 +41,6 @@ class ForecastsProvider: ListProviderProtocol {
 
 class ForecastsTableViewController: UIViewController {
   
-    
     @IBOutlet weak var forecastsTableView: UITableView!
     
     var tableViewManager: TableViewManager?
@@ -55,28 +54,11 @@ class ForecastsTableViewController: UIViewController {
         self.dataProvider?.delegate = self
         self.tableViewManager = TableViewManager(tableView: self.forecastsTableView)
         self.dataProvider?.requestData()
+        self.tableViewManager?.delegate = self
     }
-
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        guard let forecastViewController = segue.destination as? ForecastTableViewController else {
-            return
-        }
-        guard let selectedForecastCell = sender as? ForecastsTableViewCell else {
-            return
-        }
-        guard let indexPath = self.forecastsTableView.indexPath(for: selectedForecastCell) else {
-            return
-        }
-        let selectedForecast = self.forecasts[indexPath.row]
-        forecastViewController.forecast = selectedForecast
-    }
-
 }
 
-extension ForecastsTableViewController: ListProviderDelegate{
+extension ForecastsTableViewController: ListProviderDelegate {
     func didFinishFetching(_ data: [TableViewData]?) {
         self.tableViewManager?.addData(data)
     }
@@ -93,10 +75,15 @@ extension ForecastsTableViewController: ListProviderDelegate{
 extension ForecastsTableViewController: TableViewManagerDelegate{
 
     func didSelect(_ item: TableViewData) {
-        print("selected")
+        showForecast(item as! ForecastData)
     }
     
-    func pinDelegate(_ item: TableViewData) {
-        
+    func pinDelegate(_ item: TableViewData) { }
+    
+    func showForecast(_ forecast: ForecastData) {
+        let storyboard: UIStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let forecastTableViewController = storyboard.instantiateViewController(withIdentifier: "ForecastVC") as! ForecastTableViewController
+        forecastTableViewController.forecastData = forecast
+        self.navigationController?.pushViewController(forecastTableViewController, animated: true)
     }
 }

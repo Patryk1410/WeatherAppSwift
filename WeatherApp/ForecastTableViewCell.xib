@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherApp.ForecastTableViewCell" rowHeight="134" id="hLU-q0-Eqz" customClass="ForecastTableViewCell" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="134"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hLU-q0-Eqz" id="hTq-JT-PRz">
+                <rect key="frame" x="0.0" y="0.0" width="343" height="134"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="260" verticalCompressionResistancePriority="751" text="temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxX-9U-NAo" userLabel="temperature">
+                        <rect key="frame" x="8" y="8" width="216" height="33.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" text="minTemperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nK-Sg-41w">
+                        <rect key="frame" x="8" y="42.5" width="277" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="259" text="date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDO-mf-IAq">
+                        <rect key="frame" x="8" y="80.5" width="327" height="45"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9l-qi-nkH">
+                        <rect key="frame" x="223.5" y="10" width="111.5" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRX-ae-jM3">
+                        <rect key="frame" x="223.5" y="39" width="111.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" verticalCompressionResistancePriority="734" text="maxTemperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8k-xv-Tk6">
+                        <rect key="frame" x="8" y="59.5" width="102" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="YRX-ae-jM3" firstAttribute="top" secondItem="X9l-qi-nkH" secondAttribute="bottom" id="56B-lT-o65"/>
+                    <constraint firstItem="lDO-mf-IAq" firstAttribute="leading" secondItem="hTq-JT-PRz" secondAttribute="leadingMargin" id="6Gj-bv-Jpc"/>
+                    <constraint firstItem="m8k-xv-Tk6" firstAttribute="leading" secondItem="hTq-JT-PRz" secondAttribute="leadingMargin" id="7Um-vi-Apc"/>
+                    <constraint firstItem="m8k-xv-Tk6" firstAttribute="top" secondItem="7nK-Sg-41w" secondAttribute="bottom" constant="1" id="GaM-qq-2O2"/>
+                    <constraint firstItem="X9l-qi-nkH" firstAttribute="leading" secondItem="SxX-9U-NAo" secondAttribute="trailing" id="IMe-Gl-PFf"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="X9l-qi-nkH" secondAttribute="trailing" id="J5j-mR-uv1"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7nK-Sg-41w" secondAttribute="trailing" constant="50" id="LPh-qn-Z62"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="YRX-ae-jM3" secondAttribute="trailing" id="SKy-qp-i7l"/>
+                    <constraint firstItem="SxX-9U-NAo" firstAttribute="top" secondItem="hTq-JT-PRz" secondAttribute="topMargin" id="YJ0-cO-COM"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="lDO-mf-IAq" secondAttribute="bottom" id="mUK-se-Qmb"/>
+                    <constraint firstItem="X9l-qi-nkH" firstAttribute="top" secondItem="hTq-JT-PRz" secondAttribute="topMargin" constant="2" id="qDg-8W-8HP"/>
+                    <constraint firstItem="YRX-ae-jM3" firstAttribute="leading" secondItem="SxX-9U-NAo" secondAttribute="trailing" id="tFs-0m-t4n"/>
+                    <constraint firstItem="7nK-Sg-41w" firstAttribute="leading" secondItem="hTq-JT-PRz" secondAttribute="leadingMargin" id="u8b-Jf-VsP"/>
+                    <constraint firstItem="7nK-Sg-41w" firstAttribute="top" secondItem="SxX-9U-NAo" secondAttribute="bottom" constant="1" id="uDg-xj-39D"/>
+                    <constraint firstItem="lDO-mf-IAq" firstAttribute="top" secondItem="m8k-xv-Tk6" secondAttribute="bottom" constant="5" id="wVN-g6-GdS"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="lDO-mf-IAq" secondAttribute="trailing" id="whX-gR-0QE"/>
+                    <constraint firstItem="SxX-9U-NAo" firstAttribute="leading" secondItem="hTq-JT-PRz" secondAttribute="leadingMargin" id="z9J-0P-sHv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="conditionsLabel" destination="X9l-qi-nkH" id="Jd7-ic-tvh"/>
+                <outlet property="dateLabel" destination="lDO-mf-IAq" id="NL9-E1-HsZ"/>
+                <outlet property="descriptionLabel" destination="YRX-ae-jM3" id="by7-OJ-tkl"/>
+                <outlet property="maxTemperatureLabel" destination="m8k-xv-Tk6" id="S1d-RV-7om"/>
+                <outlet property="minTemperatureLabel" destination="7nK-Sg-41w" id="VBD-qa-t5e"/>
+                <outlet property="temperatureLabel" destination="SxX-9U-NAo" id="7gN-50-b4n"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

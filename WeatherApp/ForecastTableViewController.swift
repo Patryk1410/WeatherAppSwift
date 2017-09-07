@@ -8,27 +8,37 @@
 
 import UIKit
 
-class ForecastTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ForecastProvider: ListProviderProtocol {
+    var delegate: ListProviderDelegate?
     
-    let cellIdentifier = "ForecastTableViewCell"
+    var forecastData: ForecastData?
+    
+    func requestData() {
+        let weatherRecords = self.forecastData?.weatherRecords
+        let data = weatherRecords?.map({ (weatherRecord) in
+            return WeatherRecordData(weatherRecord: weatherRecord)
+        })
+        self.delegate?.didFinishFetching(data)
+    }
+}
 
-    @IBOutlet weak var navigation: UINavigationItem!
+class ForecastTableViewController: UIViewController {
+
     @IBOutlet weak var forecastTableView: UITableView!
     
-    var forecast: ForecastMO?
+    var forecastData: ForecastData?
     var weatherRecords: [WeatherRecordMO]?
+    var tableViewManager: TableViewManager?
+    var dataProvider: ForecastProvider?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.weatherRecords = self.forecast?.weatherRecords?.array as? [WeatherRecordMO]
-        self.forecastTableView.delegate = self
-        self.forecastTableView.dataSource = self
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.dataProvider = ForecastProvider()
+        self.dataProvider?.delegate = self
+        self.dataProvider?.forecastData = forecastData
+        self.tableViewManager = TableViewManager(tableView: self.forecastTableView)
+        self.tableViewManager?.delegate = self
+        self.dataProvider?.requestData()
     }
     
     func setCellLabels(cell: ForecastTableViewCell, weatherRecord: WeatherRecordMO) {
@@ -39,40 +49,29 @@ class ForecastTableViewController: UIViewController, UITableViewDelegate, UITabl
         cell.conditionsLabel.text = weatherRecord.conditions
         cell.descriptionLabel.text = weatherRecord.conditionsDescription
     }
-    
-    // MARK: - Table view data source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (forecast?.weatherRecords?.count)!
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ForecastTableViewCell
-        
-        guard let weatherRecords = self.weatherRecords else {
-            print("Failed to get weather records while creating cell")
-            return cell
-        }
-        let weatherRecord: WeatherRecordMO = weatherRecords[indexPath.row]
-        
-        self.setCellLabels(cell: cell, weatherRecord: weatherRecord)
-        
-        return cell
-    }
-    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension ForecastTableViewController: TableViewManagerDelegate {
+    func didSelect(_ item: TableViewData) {
+        
     }
-    */
+    
+    func pinDelegate(_ item: TableViewData) {
+        
+    }
+}
 
+extension ForecastTableViewController: ListProviderDelegate {
+    
+    func didFinishFetching(_ data: [TableViewData]?) {
+        self.tableViewManager?.addData(data)
+    }
+    
+    func didStartFetching(_ data: [TableViewData]?) {
+        
+    }
+    
+    func didFinishFetchingWithError(_ error: NSError?) {
+        
+    }
 }
