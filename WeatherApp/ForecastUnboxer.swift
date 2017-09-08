@@ -28,9 +28,14 @@ let cityKey = "name"
 let cityIdKey = "id"
 let fromKey = "list.0.dt_txt"
 
-class ForecastUnboxer: NSObject {
+
+public protocol ForecastUnboxerProtocol{
+    func unbox(dictionary: [String: Any], managedContext: NSManagedObjectContext) throws -> ForecastMO
+}
+
+public class ForecastUnboxer: ForecastUnboxerProtocol {
     
-    func unbox(dictionary: Dictionary<String, Any>, managedContext: NSManagedObjectContext) throws -> ForecastMO{
+    public func unbox(dictionary: [String: Any], managedContext: NSManagedObjectContext) throws -> ForecastMO{
         
         let weatherRecordsMO = try self.unboxWeatherRecords(dictionary: dictionary, managedContext: managedContext)
         
@@ -38,7 +43,8 @@ class ForecastUnboxer: NSObject {
         
         let forecastMO: ForecastMO = try Unboxer.performCustomUnboxing(dictionary: dictionary, closure: {unboxer in
             let forecastMO: ForecastMO = ForecastMO(context: managedContext)
-            forecastMO.from = try? unboxer.unbox(keyPath: fromKey)
+//            let list: String? = try unboxer.unbox(keyPath: "list.0.dt_txt")
+            forecastMO.from = unboxer.unbox(keyPath: fromKey) ?? "date unavailable"
             return forecastMO
         })
         
@@ -53,7 +59,7 @@ class ForecastUnboxer: NSObject {
         return forecastMO
     }
     
-    private func unboxWeatherRecords(dictionary: Dictionary<String, Any>, managedContext: NSManagedObjectContext) throws -> [WeatherRecordMO] {
+    private func unboxWeatherRecords(dictionary: [String: Any], managedContext: NSManagedObjectContext) throws -> [WeatherRecordMO] {
         var weatherRecordsMO = [WeatherRecordMO]()
         for weatherRecord in (dictionary["list"] as! Array<Any>) {
             let weatherRecordMO: WeatherRecordMO = try Unboxer.performCustomUnboxing(dictionary: weatherRecord as! UnboxableDictionary, closure: {unboxer in
@@ -78,7 +84,7 @@ class ForecastUnboxer: NSObject {
         return weatherRecordsMO
     }
     
-    private func unboxLocation(dictionary: Dictionary<String, Any>, managedContext: NSManagedObjectContext) throws -> LocationMO {
+    private func unboxLocation(dictionary: [String: Any], managedContext: NSManagedObjectContext) throws -> LocationMO {
         let locationMO: LocationMO = try Unboxer.performCustomUnboxing(dictionary: dictionary["city"] as! UnboxableDictionary, closure: {unboxer in
             
             let locationMO: LocationMO = LocationMO(context: managedContext)

@@ -13,6 +13,7 @@ import AERecord
 
 enum WeatherManagerError: Error {
     case noData
+    
     case unboxingFailed
     case somethingWentWrong
 }
@@ -24,7 +25,7 @@ class WeatherManagerImpl: WeatherManager {
 
     let lodzLocationId: String = "3093133"
 
-    let httpHandler: HttpHandler?
+    var httpHandler: HttpHandler?
     let forecastUnboxer: ForecastUnboxer
 
     init() {
@@ -56,19 +57,8 @@ class WeatherManagerImpl: WeatherManager {
                     ForecastMO.deleteAll(with: pred)
                 }
                 
-//                var forecastsInDb = ForecastMO.all(with: pred)
-                let forecast = try self.forecastUnboxer.unbox(dictionary: result, managedContext: ctx)
-//                forecastsInDb = ForecastMO.all(with: pred)
-                
-//                let fetchRequest = NSFetchRequest<ForecastMO>(entityName: "ForecastMO")
-//                fetchRequest.predicate = NSPredicate(format: "from == %@", forecast.from!)
-//                let fetchedForecast = try ctx.execute(fetchRequest)
-                
-                
-//                if ForecastMO.first(with: pred) != nil {
-//                    ForecastMO.deleteAll(with: pred)
-//                }
-                
+                _ = try self.forecastUnboxer.unbox(dictionary: result, managedContext: ctx)
+
                 AERecord.saveAndWait(context: ctx)
                 DispatchQueue.main.async {
         

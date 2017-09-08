@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HttpHandler {
+public protocol HttpHandler {
     
     var baseURL: String { get }
     

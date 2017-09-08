@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum HttpHandlerError {
+public enum HttpHandlerError {
     case WrongStatusCode
     case ServerResponseNotParseable
     case NoDataFromServer

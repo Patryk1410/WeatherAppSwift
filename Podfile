@@ -8,6 +8,9 @@ target 'WeatherApp' do
   # Pods for WeatherApp
 	pod "Unbox"
     pod 'AERecord'
+    pod 'Quick'
+    pod 'Nimble'
+    pod 'SDWebImage', '~> 3.8'
 
   target 'WeatherAppTests' do
     inherit! :search_paths

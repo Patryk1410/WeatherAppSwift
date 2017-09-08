@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HttpHandlerRequest {
+public protocol HttpHandlerRequest {
     
     var apiKey : String { get }
     

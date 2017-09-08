@@ -1,15 +1,26 @@
 PODS:
   - AERecord (4.0.0)
+  - Nimble (7.0.1)
+  - Quick (1.1.0)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - Unbox (2.5.0)
 
 DEPENDENCIES:
   - AERecord
+  - Nimble
+  - Quick
+  - SDWebImage (~> 3.8)
   - Unbox
 
 SPEC CHECKSUMS:
   AERecord: 3a14a25972dc60ed7c7b3fd62f62a5fc32ef6edd
+  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
+  Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
 
-PODFILE CHECKSUM: 758baeb0e0f65b81e48798192a55f77674e93dfe
+PODFILE CHECKSUM: 3637a732e7f4ad6a92612afafd15f3f131296ab3
 
 COCOAPODS: 1.3.1
