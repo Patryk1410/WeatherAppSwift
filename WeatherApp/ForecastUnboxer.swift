@@ -10,25 +10,6 @@ import UIKit
 import CoreData
 import Unbox
 
-let weatherRecordsKey = "list"
-let locationKey = "city"
-let dateKey = "dt_txt"
-let temperatureKeyPath = "main.temp"
-let minTemperatureKeyPath = "main.temp_min"
-let maxTemperatureKeyPath = "main.temp_max"
-let pressureKeyPath = "main.pressure"
-let humidityKeyPath = "main.humidity"
-let conditionsKeyPath = "weather.0.main"
-let conditionsDescriptionKeyPath = "weather.0.description"
-let iconIdKeyPath = "weather.0.icon"
-let cloudinessKeyPath = "clouds.all"
-let windSpeedKeyPath = "wind.speed"
-let countryKey = "country"
-let cityKey = "name"
-let cityIdKey = "id"
-let fromKey = "list.0.dt_txt"
-
-
 public protocol ForecastUnboxerProtocol{
     func unbox(dictionary: [String: Any], managedContext: NSManagedObjectContext) throws -> ForecastMO
 }
@@ -43,10 +24,10 @@ public class ForecastUnboxer: ForecastUnboxerProtocol {
         
         let forecastMO: ForecastMO = try Unboxer.performCustomUnboxing(dictionary: dictionary, closure: {unboxer in
             let forecastMO: ForecastMO = ForecastMO(context: managedContext)
-            let list: [Any?] = try unboxer.unbox(key: "list")
+            let list: [Any?] = try unboxer.unbox(key: weatherRecordsKey)
             let elem: [String: Any?]? = list.first as? [String : Any?]
-            let date: String? = elem?["dt_txt"] as? String
-            forecastMO.from = date ?? "date unavailable"
+            let date: String? = elem?[dateKey] as? String
+            forecastMO.from = date ?? noDateError
             return forecastMO
         })
         
@@ -72,12 +53,12 @@ public class ForecastUnboxer: ForecastUnboxerProtocol {
                 weatherRecordMO.maxTemperature = try unboxer.unbox(keyPath: maxTemperatureKeyPath)
                 weatherRecordMO.pressure = try unboxer.unbox(keyPath: pressureKeyPath)
                 weatherRecordMO.humidity = try unboxer.unbox(keyPath: humidityKeyPath)
-                weatherRecordMO.conditions = unboxer.unbox(keyPath: conditionsKeyPath) ?? "invalid conditions"
-                weatherRecordMO.conditionsDescription = unboxer.unbox(keyPath: conditionsDescriptionKeyPath) ?? "invalid description"
-                weatherRecordMO.iconId = unboxer.unbox(keyPath: iconIdKeyPath) ?? "invalid icon id"
+                weatherRecordMO.conditions = unboxer.unbox(keyPath: conditionsKeyPath) ?? generalError
+                weatherRecordMO.conditionsDescription = unboxer.unbox(keyPath: conditionsDescriptionKeyPath) ?? generalError
+                weatherRecordMO.iconId = unboxer.unbox(keyPath: iconIdKeyPath) ?? noIconError
                 weatherRecordMO.cloudiness = try unboxer.unbox(keyPath: cloudinessKeyPath)
                 weatherRecordMO.windSpeed = try unboxer.unbox(keyPath: windSpeedKeyPath)
-                weatherRecordMO.date = unboxer.unbox(key: dateKey) ?? "invalid date"
+                weatherRecordMO.date = unboxer.unbox(key: dateKey) ?? noDateError
                 
                 return weatherRecordMO
             })
@@ -87,12 +68,12 @@ public class ForecastUnboxer: ForecastUnboxerProtocol {
     }
     
     private func unboxLocation(dictionary: [String: Any], managedContext: NSManagedObjectContext) throws -> LocationMO {
-        let locationMO: LocationMO = try Unboxer.performCustomUnboxing(dictionary: dictionary["city"] as! UnboxableDictionary, closure: {unboxer in
+        let locationMO: LocationMO = try Unboxer.performCustomUnboxing(dictionary: dictionary[locationKey] as! UnboxableDictionary, closure: {unboxer in
             
             let locationMO: LocationMO = LocationMO(context: managedContext)
-            locationMO.country = unboxer.unbox(key: countryKey) ?? "invalid country"
-            locationMO.city = unboxer.unbox(key: cityKey) ?? "invalid city"
-            locationMO.cityId = unboxer.unbox(key: cityIdKey) ?? "invalid city id"
+            locationMO.country = unboxer.unbox(key: countryKey) ?? noCountryError
+            locationMO.city = unboxer.unbox(key: cityKey) ?? noCityError
+            locationMO.cityId = unboxer.unbox(key: cityIdKey) ?? generalError
             
             return locationMO
         })

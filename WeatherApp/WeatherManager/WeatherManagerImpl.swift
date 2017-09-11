@@ -13,17 +13,11 @@ import AERecord
 
 enum WeatherManagerError: Error {
     case noData
-    
     case unboxingFailed
     case somethingWentWrong
 }
 
-
 class WeatherManagerImpl: WeatherManager {
-
-    let baseURL = "http://api.openweathermap.org/data/"
-
-    let lodzLocationId: String = "3093133"
 
     var httpHandler: HttpHandler?
     let forecastUnboxer: ForecastUnboxer
@@ -47,8 +41,8 @@ class WeatherManagerImpl: WeatherManager {
                 return
             }
             do {
-                let ctx = AERecord.Context.default
-                ctx.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                let coreDataContext = AERecord.Context.default
+                coreDataContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
                 
                 let from = ((result["list"] as? [Any?])?.first as? [String: Any?])?["dt_txt"] as? String
                 let pred = NSPredicate(format: "from == %@", from ?? "")
@@ -57,9 +51,9 @@ class WeatherManagerImpl: WeatherManager {
                     ForecastMO.deleteAll(with: pred)
                 }
                 
-                _ = try self.forecastUnboxer.unbox(dictionary: result, managedContext: ctx)
+                _ = try self.forecastUnboxer.unbox(dictionary: result, managedContext: coreDataContext)
 
-                AERecord.saveAndWait(context: ctx)
+                AERecord.saveAndWait(context: coreDataContext)
                 DispatchQueue.main.async {
         
                     let forecasts = ForecastMO.all()
@@ -68,6 +62,7 @@ class WeatherManagerImpl: WeatherManager {
 
             } catch {
                 print("Error occurred while unboxing: \(error)")
+                completion(nil, WeatherManagerError.unboxingFailed)
             }
         })
     }

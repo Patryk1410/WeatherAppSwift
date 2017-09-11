@@ -34,7 +34,7 @@ class HttpClient: HttpHandler {
             urlRequest.addValue(value, forHTTPHeaderField: key)
         }
         
-        if let params = request.parameters(), request.method() != "GET" {
+        if let params = request.parameters(), request.method() != httpGet {
             do {
                 let paramsData = try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions(rawValue: 0))
                 urlRequest.httpBody = paramsData
@@ -59,8 +59,6 @@ class HttpClient: HttpHandler {
                 completion(nil, HttpHandlerError.NoDataFromServer)
                 return
             }
-//            let stringData = String(data: data, encoding: .utf8)
-//            print(stringData!)
             
             guard let dict = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String : Any] else {
                 completion(nil, HttpHandlerError.ServerResponseNotParseable)

@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ This class contains data displayed in Forecast table view cell
+ */
 class WeatherRecordData : TableViewData {
     
     let temperature: String

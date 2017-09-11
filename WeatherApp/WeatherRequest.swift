@@ -10,11 +10,6 @@ import Foundation
 
 class WeatherRequest: HttpHandlerRequest {
     
-    let apiKey = "38dfeb5e38512ca3433ae28e0391b066"
-    
-    let celcius = "metric"
-    let farenheit = "imperial"
-    
     func endPoint() -> String {
         return ""
     }
@@ -24,7 +19,7 @@ class WeatherRequest: HttpHandlerRequest {
     }
     
     func method() -> String {
-        return "GET"
+        return httpGet
     }
     
     func parameters() -> Dictionary<String, Any>? {

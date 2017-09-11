@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ This class is responsible for creating strings from WeatherRecordData for labels in table view cell
+ */
 class WeatherRecordDataStringsProvider {
     
     let data: WeatherRecordData

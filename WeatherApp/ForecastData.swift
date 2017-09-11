@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /**
- This class contains data displayed in Forecast table view cell
+ This class contains data displayed in Forecasts table view cell
  */
 class ForecastData: TableViewData {
     

@@ -20,9 +20,9 @@ class WeatherByLatitudeAndLongitudeRequest: WeatherRequest {
     
     override func endPoint() -> String {
         return super.endPoint()
-            .appending("2.5/forecast?lat=").appending(latitude)
-            .appending("&lon=").appending(longitude)
-            .appending("&units=").appending(celcius)
-            .appending("&APPID=").appending(apiKey)
+            .appending(forecastByLatAndLong).appending(latitude)
+            .appending(longUrl).appending(longitude)
+            .appending(degreeUnit).appending(celcius)
+            .appending(apiKeyUrl).appending(apiKey)
     }
 }

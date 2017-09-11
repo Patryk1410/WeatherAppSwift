@@ -8,20 +8,6 @@
 
 import UIKit
 
-class ForecastProvider: ListProviderProtocol {
-    var delegate: ListProviderDelegate?
-    
-    var forecastData: ForecastData?
-    
-    func requestData() {
-        let weatherRecords = self.forecastData?.weatherRecords
-        let data = weatherRecords?.map({ (weatherRecord) in
-            return WeatherRecordData(weatherRecord: weatherRecord)
-        })
-        self.delegate?.didFinishFetching(data)
-    }
-}
-
 class ForecastTableViewController: UIViewController {
 
     @IBOutlet weak var forecastTableView: UITableView!
@@ -39,15 +25,6 @@ class ForecastTableViewController: UIViewController {
         self.tableViewManager = TableViewManager(tableView: self.forecastTableView)
         self.tableViewManager?.delegate = self
         self.dataProvider?.requestData()
-    }
-    
-    func setCellLabels(cell: ForecastTableViewCell, weatherRecord: WeatherRecordMO) {
-        cell.temperatureLabel.text = Int(weatherRecord.temperature).description + "°C"
-        cell.minTemperatureLabel.text = "Min: " + Int(weatherRecord.minTemperature).description + "°C"
-        cell.maxTemperatureLabel.text = "Max: " + Int(weatherRecord.maxTemperature).description + "°C"
-        cell.dateLabel.text = weatherRecord.date
-        cell.conditionsLabel.text = weatherRecord.conditions
-        cell.descriptionLabel.text = weatherRecord.conditionsDescription
     }
 }
 

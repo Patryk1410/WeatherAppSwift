@@ -10,12 +10,6 @@ import Foundation
 
 class WeatherHandler {
     
-    var baseURL: String = "http://api.openweathermap.org/data/"
-    
-    let apiKey = "38dfeb5e38512ca3433ae28e0391b066"
-    
-    let cityId = "524901"
-    
     var urlSession: URLSession = URLSession(configuration: URLSessionConfiguration.default)
     
     func make(request: HttpHandlerRequest, completion: @escaping ([String : Any]?, HttpHandlerError?) -> Void) {
