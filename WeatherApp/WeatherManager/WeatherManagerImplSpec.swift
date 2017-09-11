@@ -86,17 +86,29 @@ class WeatherManagerImplSpec: QuickSpec {
                 
                 describe("testing unboxing result", {
                     
+                    let fakeResponses = FakeResposes()
+                    let json: [String: Any?] = fakeResponses.fakeWeatherJson()
                     
                     beforeEach {
                         let completion = fakeHttpHandler.capturedCompletionBlock
-                        let fakeResponses = FakeResposes()
-                        let json: [String: Any?] = fakeResponses.fakeWeatherJson()
-
                         completion!(json, nil)
                     }
                     
-                    it("result should be non empty array", closure: {
+                    it("result should not be nil", closure: {
                         expect(capturedResult).toNotEventually(beNil())
+                    })
+                    
+                    it("result should be of [ForecastMO] class") {
+                        expect(capturedResult).toEventually(beAKindOf([ForecastMO].self))
+                    }
+                    
+                    it("result should have exactly one element", closure: {
+                        expect(capturedResult).toEventually(haveCount(1))
+                    })
+                    
+                    it("result's date should be the same as in json file", closure: {
+                        let expectedDate = ((json["list"] as? [Any?])?.first as? [String: Any?])?["dt_txt"] as? String
+                        expect(capturedResult?.first?.from).toEventually(equal(expectedDate))
                     })
                 })
                 

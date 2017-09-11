@@ -8,34 +8,6 @@
 
 import UIKit
 
-
-class WeatherRecordData : TableViewData {
-    
-    let temperature: String
-    let minTemperature: String
-    let maxTemperature: String
-    let conditions: String
-    let conditionsDescription: String
-    let date: String
-    
-    init(weatherRecord: WeatherRecordMO) {
-        self.temperature = weatherRecord.temperature.description 
-        self.minTemperature = weatherRecord.minTemperature.description
-        self.maxTemperature = weatherRecord.maxTemperature.description
-        self.conditions = weatherRecord.conditions ?? "-"
-        self.conditionsDescription = weatherRecord.conditionsDescription ?? "-"
-        self.date = weatherRecord.date ?? "-"
-    }
-    
-    func reuseID() -> String {
-        return "WeatherApp.ForecastTableViewCell"
-    }
-    
-    func height() -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-}
-
 class ForecastTableViewCell: UITableViewCell, UITableViewCellLoadableProtocol {
 
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -57,13 +29,14 @@ class ForecastTableViewCell: UITableViewCell, UITableViewCellLoadableProtocol {
         guard let data = data as? WeatherRecordData else {
             return
         }
+        let stringsProvider: WeatherRecordDataStringsProvider = WeatherRecordDataStringsProvider(data: data)
         
-        self.temperatureLabel.text = data.temperature + "°C"
-        self.minTemperatureLabel.text = "Min: " + data.minTemperature + "°C"
-        self.maxTemperatureLabel.text = "Max: " + data.maxTemperature + "°C"
-        self.dateLabel.text = data.date
-        self.conditionsLabel.text = data.conditions
-        self.descriptionLabel.text = data.conditionsDescription
+        self.temperatureLabel.text = stringsProvider.getTemperatureString()
+        self.minTemperatureLabel.text = stringsProvider.getMinTemperatureString()
+        self.maxTemperatureLabel.text = stringsProvider.getMaxTemperatureString()
+        self.dateLabel.text = stringsProvider.getDateString()
+        self.conditionsLabel.text = stringsProvider.getConditionsString()
+        self.descriptionLabel.text = stringsProvider.getConditionsDescriptionString()
     }
 
 }

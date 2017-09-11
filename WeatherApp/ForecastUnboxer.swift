@@ -43,8 +43,10 @@ public class ForecastUnboxer: ForecastUnboxerProtocol {
         
         let forecastMO: ForecastMO = try Unboxer.performCustomUnboxing(dictionary: dictionary, closure: {unboxer in
             let forecastMO: ForecastMO = ForecastMO(context: managedContext)
-//            let list: String? = try unboxer.unbox(keyPath: "list.0.dt_txt")
-            forecastMO.from = unboxer.unbox(keyPath: fromKey) ?? "date unavailable"
+            let list: [Any?] = try unboxer.unbox(key: "list")
+            let elem: [String: Any?]? = list.first as? [String : Any?]
+            let date: String? = elem?["dt_txt"] as? String
+            forecastMO.from = date ?? "date unavailable"
             return forecastMO
         })
         

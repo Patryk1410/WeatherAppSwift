@@ -8,10 +8,12 @@
 
 import UIKit
 
-let isRunningTests = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+//First file opened
+let testFilePath: String = "XCTestConfigurationFilePath"
 
-let appDelegateClass = isRunningTests ? NSStringFromClass(FakeAppDelegate.self) : NSStringFromClass(AppDelegate.self)
+let isRunningTests: Bool = (ProcessInfo.processInfo.environment[testFilePath] != nil)
+let appDelegateClassName: String = isRunningTests ? NSStringFromClass(FakeAppDelegate.self) : NSStringFromClass(AppDelegate.self)
+let args: UnsafeMutablePointer = UnsafeMutableRawPointer(CommandLine.unsafeArgv).bindMemory(to: UnsafeMutablePointer<Int8>.self, capacity: Int(CommandLine.argc))
 
-let args = UnsafeMutableRawPointer(CommandLine.unsafeArgv).bindMemory(to: UnsafeMutablePointer<Int8>.self, capacity: Int(CommandLine.argc))
-
-UIApplicationMain(CommandLine.argc, args, nil, appDelegateClass)
+//Application starts here
+UIApplicationMain(CommandLine.argc, args, nil, appDelegateClassName)

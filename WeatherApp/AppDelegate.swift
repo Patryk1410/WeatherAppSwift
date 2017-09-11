@@ -16,11 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //Loading view controller from storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        window = UIWindow()
+        self.window = UIWindow()
         self.window?.rootViewController = storyboard.instantiateInitialViewController()
         self.window?.makeKeyAndVisible()
         
+        //Initializing Core Data Stack with AERecord library
         do {
             try AERecord.loadCoreDataStack()
         } catch {
@@ -51,9 +53,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
     }
-
-    // MARK: - Core Data stack
-
-
 }
 

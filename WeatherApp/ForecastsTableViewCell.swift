@@ -8,28 +8,6 @@
 
 import UIKit
 
-class ForecastData: TableViewData {
-    
-    let forecastDate: String
-    let city: String
-    let country: String
-    let weatherRecords: [WeatherRecordMO]
-    
-    init(forecast: ForecastMO) {
-        self.forecastDate = forecast.from ?? "No-date"
-        self.city = forecast.location?.city ?? "No-City"
-        self.country = forecast.location?.country ?? "No-Country"
-        self.weatherRecords = forecast.weatherRecords?.array as? [WeatherRecordMO] ?? []
-    }
-    
-    func reuseID() -> String {
-        return "WeatherApp.ForecastsTableViewCell"
-    }
-    func height() -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-}
-
 class ForecastsTableViewCell: UITableViewCell, UITableViewCellLoadableProtocol {
 
     @IBOutlet weak var locationLabel: UILabel!
@@ -48,9 +26,10 @@ class ForecastsTableViewCell: UITableViewCell, UITableViewCellLoadableProtocol {
         guard let data = data as? ForecastData else {
             return
         }
-
-        self.locationLabel.text = data.city + ", " + data.country
-        self.dateLabel.text = data.forecastDate
+        let dataStringsProvider = ForecastDataStringsProvider(data: data)
+        
+        self.locationLabel.text = dataStringsProvider.getLocationString()
+        self.dateLabel.text = dataStringsProvider.getDateString()
     }
 
 }
