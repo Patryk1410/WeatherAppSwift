@@ -42,4 +42,8 @@ class WeatherRecordDataStringsProvider {
     func getConditionsDescriptionString() -> String {
         return self.data.conditionsDescription
     }
+    
+    func getWeatherIconUrl() -> String {
+        return baseURL + iconUrl + self.data.iconId + pngExtension
+    }
 }

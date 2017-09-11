@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +21,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="260" verticalCompressionResistancePriority="751" text="temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxX-9U-NAo" userLabel="temperature">
-                        <rect key="frame" x="8" y="8" width="216" height="33.5"/>
+                        <rect key="frame" x="8" y="8" width="231.5" height="33.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -37,35 +38,48 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9l-qi-nkH">
-                        <rect key="frame" x="223.5" y="10" width="111.5" height="29"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9l-qi-nkH">
+                        <rect key="frame" x="239" y="10" width="96" height="29"/>
                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRX-ae-jM3">
-                        <rect key="frame" x="223.5" y="39" width="111.5" height="18"/>
+                        <rect key="frame" x="239" y="39" width="96" height="26"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" verticalCompressionResistancePriority="734" text="maxTemperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8k-xv-Tk6">
-                        <rect key="frame" x="8" y="59.5" width="102" height="16"/>
+                        <rect key="frame" x="8" y="59.5" width="118" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="sU5-NX-Ne8">
+                        <rect key="frame" x="269" y="75" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="sU5-NX-Ne8" secondAttribute="height" multiplier="1:1" id="0ht-HW-h0N"/>
+                            <constraint firstAttribute="width" constant="36" id="K5J-OM-MZZ"/>
+                            <constraint firstAttribute="height" constant="36" id="eeU-yW-6FB"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="YRX-ae-jM3" firstAttribute="top" secondItem="X9l-qi-nkH" secondAttribute="bottom" id="56B-lT-o65"/>
                     <constraint firstItem="lDO-mf-IAq" firstAttribute="leading" secondItem="hTq-JT-PRz" secondAttribute="leadingMargin" id="6Gj-bv-Jpc"/>
                     <constraint firstItem="m8k-xv-Tk6" firstAttribute="leading" secondItem="hTq-JT-PRz" secondAttribute="leadingMargin" id="7Um-vi-Apc"/>
+                    <constraint firstItem="sU5-NX-Ne8" firstAttribute="leading" secondItem="m8k-xv-Tk6" secondAttribute="trailing" constant="143" id="A8P-du-032"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="sU5-NX-Ne8" secondAttribute="trailing" constant="30" id="FVY-vf-y1V"/>
                     <constraint firstItem="m8k-xv-Tk6" firstAttribute="top" secondItem="7nK-Sg-41w" secondAttribute="bottom" constant="1" id="GaM-qq-2O2"/>
                     <constraint firstItem="X9l-qi-nkH" firstAttribute="leading" secondItem="SxX-9U-NAo" secondAttribute="trailing" id="IMe-Gl-PFf"/>
                     <constraint firstAttribute="trailingMargin" secondItem="X9l-qi-nkH" secondAttribute="trailing" id="J5j-mR-uv1"/>
                     <constraint firstAttribute="trailingMargin" secondItem="7nK-Sg-41w" secondAttribute="trailing" constant="50" id="LPh-qn-Z62"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="sU5-NX-Ne8" secondAttribute="bottom" constant="15" id="MWR-4s-qgU"/>
+                    <constraint firstItem="sU5-NX-Ne8" firstAttribute="top" secondItem="YRX-ae-jM3" secondAttribute="bottom" constant="10" id="QoF-Zw-4Ee"/>
                     <constraint firstAttribute="trailingMargin" secondItem="YRX-ae-jM3" secondAttribute="trailing" id="SKy-qp-i7l"/>
                     <constraint firstItem="SxX-9U-NAo" firstAttribute="top" secondItem="hTq-JT-PRz" secondAttribute="topMargin" id="YJ0-cO-COM"/>
+                    <constraint firstItem="sU5-NX-Ne8" firstAttribute="centerX" secondItem="YRX-ae-jM3" secondAttribute="centerX" id="gxL-GU-8eD"/>
                     <constraint firstAttribute="bottomMargin" secondItem="lDO-mf-IAq" secondAttribute="bottom" id="mUK-se-Qmb"/>
                     <constraint firstItem="X9l-qi-nkH" firstAttribute="top" secondItem="hTq-JT-PRz" secondAttribute="topMargin" constant="2" id="qDg-8W-8HP"/>
                     <constraint firstItem="YRX-ae-jM3" firstAttribute="leading" secondItem="SxX-9U-NAo" secondAttribute="trailing" id="tFs-0m-t4n"/>
@@ -83,7 +97,12 @@
                 <outlet property="maxTemperatureLabel" destination="m8k-xv-Tk6" id="S1d-RV-7om"/>
                 <outlet property="minTemperatureLabel" destination="7nK-Sg-41w" id="VBD-qa-t5e"/>
                 <outlet property="temperatureLabel" destination="SxX-9U-NAo" id="7gN-50-b4n"/>
+                <outlet property="weatherImageView" destination="sU5-NX-Ne8" id="waW-ab-ALZ"/>
             </connections>
+            <point key="canvasLocation" x="35.5" y="54"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Image" width="1417" height="1287"/>
+    </resources>
 </document>

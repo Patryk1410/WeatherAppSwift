@@ -19,6 +19,7 @@ class WeatherRecordData : TableViewData {
     let conditions: String
     let conditionsDescription: String
     let date: String
+    let iconId: String
     
     init(weatherRecord: WeatherRecordMO) {
         self.temperature = weatherRecord.temperature.description
@@ -27,6 +28,7 @@ class WeatherRecordData : TableViewData {
         self.conditions = weatherRecord.conditions ?? generalError
         self.conditionsDescription = weatherRecord.conditionsDescription ?? generalError
         self.date = weatherRecord.date ?? generalError
+        self.iconId = weatherRecord.iconId ?? ""
     }
     
     func reuseID() -> String {

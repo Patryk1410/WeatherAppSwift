@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ForecastTableViewCell: UITableViewCell, UITableViewCellLoadableProtocol {
 
@@ -16,6 +17,7 @@ class ForecastTableViewCell: UITableViewCell, UITableViewCellLoadableProtocol {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var conditionsLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var weatherImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,6 +39,8 @@ class ForecastTableViewCell: UITableViewCell, UITableViewCellLoadableProtocol {
         self.dateLabel.text = stringsProvider.getDateString()
         self.conditionsLabel.text = stringsProvider.getConditionsString()
         self.descriptionLabel.text = stringsProvider.getConditionsDescriptionString()
+        let iconUrl: URL? = URL(string: stringsProvider.getWeatherIconUrl())
+        self.weatherImageView.sd_setImage(with: iconUrl, placeholderImage: #imageLiteral(resourceName: "Image"))
     }
 
 }

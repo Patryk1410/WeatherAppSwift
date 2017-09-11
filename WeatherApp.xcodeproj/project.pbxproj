@@ -31,6 +31,7 @@
 		5E42A6711F62AD62005FE2E9 /* FakeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E42A6701F62AD62005FE2E9 /* FakeAppDelegate.swift */; };
 		5E4A81AF1F5E7C3F00C9F14E /* WeatherByLatitudeAndLongitudeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4A81AE1F5E7C3F00C9F14E /* WeatherByLatitudeAndLongitudeRequest.swift */; };
 		5E4FC5FB1F5D80150095A124 /* WeatherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4FC5FA1F5D80150095A124 /* WeatherRequest.swift */; };
+		5ED88CEE1F66B71B0082B2FA /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88CED1F66B71B0082B2FA /* ImageDownloader.swift */; };
 		5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */; };
 		5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908391F5D46C900FD56ED /* AppDelegate.swift */; };
 		5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9083B1F5D46C900FD56ED /* ForecastsTableViewController.swift */; };
@@ -95,6 +96,7 @@
 		5E42A6701F62AD62005FE2E9 /* FakeAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAppDelegate.swift; sourceTree = "<group>"; };
 		5E4A81AE1F5E7C3F00C9F14E /* WeatherByLatitudeAndLongitudeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherByLatitudeAndLongitudeRequest.swift; sourceTree = "<group>"; };
 		5E4FC5FA1F5D80150095A124 /* WeatherRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherRequest.swift; sourceTree = "<group>"; };
+		5ED88CED1F66B71B0082B2FA /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		5EE908361F5D46C900FD56ED /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE908391F5D46C900FD56ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		5E1354821F66769A00143ABF /* ForecastsTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				5E42A6561F61508E005FE2E9 /* ForecastsTableViewCell.xib */,
 				5EF0DB3A1F600E6400946681 /* ForecastsTableViewCell.swift */,
 				5E1354831F6676B500143ABF /* ForecastData.swift */,
 				5E1354851F6676ED00143ABF /* ForecastDataStringsProvider.swift */,
@@ -167,6 +170,7 @@
 		5E1354871F66799D00143ABF /* ForecastTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				5E42A6581F6170C5005FE2E9 /* ForecastTableViewCell.xib */,
 				5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */,
 				5E1354891F667D7F00143ABF /* WeatherRecordData.swift */,
 				5E13548B1F667DC400143ABF /* WeatherRecordDataStringsProvider.swift */,
@@ -226,6 +230,7 @@
 			children = (
 				5EF0DB2F1F5FDF7300946681 /* ForecastUnboxer.swift */,
 				5E42A6541F615015005FE2E9 /* TableViewManager.swift */,
+				5ED88CED1F66B71B0082B2FA /* ImageDownloader.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -331,8 +336,6 @@
 			children = (
 				5E1354871F66799D00143ABF /* ForecastTableViewCell */,
 				5E1354821F66769A00143ABF /* ForecastsTableViewCell */,
-				5E42A6561F61508E005FE2E9 /* ForecastsTableViewCell.xib */,
-				5E42A6581F6170C5005FE2E9 /* ForecastTableViewCell.xib */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -547,16 +550,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AERecord/AERecord.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Unbox/Unbox.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AERecord.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Unbox.framework",
 			);
@@ -649,9 +648,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WeatherAppTests/Pods-WeatherAppTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -667,6 +671,7 @@
 			files = (
 				5EF0DB301F5FDF7300946681 /* ForecastUnboxer.swift in Sources */,
 				5E1354921F667F2A00143ABF /* ForecastProvider.swift in Sources */,
+				5ED88CEE1F66B71B0082B2FA /* ImageDownloader.swift in Sources */,
 				5EE9087B1F5D74AF00FD56ED /* HttpClient.swift in Sources */,
 				5EE908741F5D4EA200FD56ED /* WeatherByIdRequest.swift in Sources */,
 				5EE908421F5D46C900FD56ED /* WeatherApp.xcdatamodeld in Sources */,
