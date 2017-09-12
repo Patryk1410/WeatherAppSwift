@@ -13,7 +13,6 @@ class ForecastTableViewController: UIViewController {
     @IBOutlet weak var forecastTableView: UITableView!
     
     var forecastData: ForecastData?
-    var weatherRecords: [WeatherRecordMO]?
     var tableViewManager: TableViewManager?
     var dataProvider: ForecastProvider?
     
@@ -25,6 +24,16 @@ class ForecastTableViewController: UIViewController {
         self.tableViewManager = TableViewManager(tableView: self.forecastTableView)
         self.tableViewManager?.delegate = self
         self.dataProvider?.requestData()
+    }
+    
+    @IBAction func handleShowChart(_ sender: Any) {
+        self.pushChartViewController()
+    }
+    
+    func pushChartViewController() {
+        let forecastChartViewController = ForecastChartViewController(nibName: "ForecastChartViewController", bundle: nil)
+        forecastChartViewController.weatherRecords = self.forecastData?.weatherRecords
+        self.navigationController?.pushViewController(forecastChartViewController, animated: true)
     }
 }
 

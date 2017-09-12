@@ -57,16 +57,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="134" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YyN-Ir-SkA">
-                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                                <rect key="frame" x="16" y="20" width="343" height="597"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nz9-AF-yuM">
+                                <rect key="frame" x="16" y="627" width="343" height="30"/>
+                                <state key="normal" title="Show chart"/>
+                                <connections>
+                                    <action selector="handleShowChart:" destination="hdN-Xe-hBn" eventType="touchUpInside" id="f1c-A1-cx4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GwO-Xl-A1F" firstAttribute="top" secondItem="YyN-Ir-SkA" secondAttribute="bottom" id="9Fz-Ys-cv9"/>
+                            <constraint firstItem="nz9-AF-yuM" firstAttribute="leading" secondItem="bCr-Wb-Xvj" secondAttribute="leadingMargin" id="5rR-aP-fTk"/>
+                            <constraint firstItem="GwO-Xl-A1F" firstAttribute="top" secondItem="YyN-Ir-SkA" secondAttribute="bottom" constant="50" id="9Fz-Ys-cv9"/>
                             <constraint firstItem="YyN-Ir-SkA" firstAttribute="top" secondItem="k8S-bL-BFE" secondAttribute="bottom" id="EYg-5K-SHb"/>
                             <constraint firstItem="YyN-Ir-SkA" firstAttribute="leading" secondItem="bCr-Wb-Xvj" secondAttribute="leadingMargin" id="OE6-DC-2o9"/>
+                            <constraint firstItem="nz9-AF-yuM" firstAttribute="top" secondItem="YyN-Ir-SkA" secondAttribute="bottom" constant="10" id="Pse-mk-pod"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YyN-Ir-SkA" secondAttribute="trailing" id="Ygi-J9-MCb"/>
+                            <constraint firstItem="GwO-Xl-A1F" firstAttribute="top" secondItem="nz9-AF-yuM" secondAttribute="bottom" constant="10" id="bJy-6t-X4Q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nz9-AF-yuM" secondAttribute="trailing" id="mHV-7i-fnp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oQY-Cl-exO"/>
