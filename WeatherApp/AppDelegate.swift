@@ -16,10 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        //Loading view controller from storyboard
-        let storyboard = UIStoryboard(name: mainStoryboardName, bundle: nil)
+        //Loading initial view controller
         self.window = UIWindow()
-        self.window?.rootViewController = storyboard.instantiateInitialViewController()
+        let navigationController = UINavigationController()
+        let tabBarViewController = MainTabBarViewController()
+        navigationController.viewControllers = [tabBarViewController]
+        self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         
         //Initializing Core Data Stack with AERecord library

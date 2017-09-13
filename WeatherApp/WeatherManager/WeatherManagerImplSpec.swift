@@ -48,7 +48,7 @@ class WeatherManagerImplSpec: QuickSpec {
             }
             
             it("should have http handler correct url", closure: {
-                expect(sut.httpHandler?.baseURL).to(equal("http://api.openweathermap.org/data/"))
+                expect(sut.httpHandler?.baseURL).to(equal("http://api.openweathermap.org/"))
             })
             
             
@@ -111,8 +111,6 @@ class WeatherManagerImplSpec: QuickSpec {
                         expect(capturedResult?.first?.from).toEventually(equal(expectedDate))
                     })
                 })
-                
-                
             })
            
             

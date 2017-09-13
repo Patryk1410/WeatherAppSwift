@@ -10,7 +10,21 @@ import UIKit
 
 protocol ViewControllerDispatcher {
     
-    func pushFromStoryboard(_ parent: UIViewController, data: [String: Any?], destinationViewControllerIdentifier: String, notificationName: String)
+    func pushForecastTableViewController(navigationController: UINavigationController?, forecastData: ForecastData)
     
-    func pushFromXib<T: BaseViewController>(_ parent: UIViewController, data: [String: Any?], nibName: String, type: T.Type)
+    func pushForecastChartViewController(navigationController: UINavigationController?, weatherRecords: [WeatherRecordMO])
+    
+    func getForecastsTableViewController() -> ForecastsTableViewController
+    
+    func getForecastTableViewController() -> ForecastTableViewController
+    
+    func getForecastChartViewController() -> ForecastChartViewController
+    
+    func getMapViewController() -> MapViewController
+    
+    /*RIP [*]
+    func pushFromStoryboard(_ parent: UIViewController, data: [String: Any?], destinationViewControllerIdentifier: String)
+    
+    func pushFromXib<T: BaseViewController>(_ parent: BaseViewController, data: [String: Any?], nibName: String, type: T.Type)
+    */
 }

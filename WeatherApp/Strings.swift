@@ -29,9 +29,11 @@ let mainStoryboardName: String = "Main"
 
 //MARK: Xib names
 let forecastChartViewControllerName: String = "ForecastChartViewController"
+let mapViewControllerName: String = "MapViewController"
 
 //MARK: View controllers identifiers
 let forecastTableViewControllerIdentifier: String = "ForecastVC"
+let forecastsTableViewControllerIdentifier: String = "ForecastsVC"
 
 //MARK: Weather API
 let baseURL: String = "http://api.openweathermap.org/"

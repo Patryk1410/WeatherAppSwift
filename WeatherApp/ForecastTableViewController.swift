@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ForecastTableViewController: BaseViewController {
+class ForecastTableViewController: UIViewController {
 
     @IBOutlet weak var forecastTableView: UITableView!
     
@@ -26,24 +26,19 @@ class ForecastTableViewController: BaseViewController {
         self.dataProvider?.requestData()
     }
     
-    override func initializeData(data: [String: Any?]) {
-        self.forecastData = data[forecastDataKey] as? ForecastData
+    func initializeData(data: ForecastData) {
+        self.forecastData = data
     }
     
     @IBAction func handleShowChart(_ sender: Any) {
-        let data = [weatherRecordsDataKey: self.forecastData?.weatherRecords]
-        self.viewControllerDispatcher.pushFromXib(self, data: data, nibName: forecastChartViewControllerName, type: ForecastChartViewController.self)
+        ViewControllerDispatcherImpl.instance.pushForecastChartViewController(navigationController: self.navigationController, weatherRecords: self.forecastData?.weatherRecords ?? [])
     }
 }
 
 extension ForecastTableViewController: TableViewManagerDelegate {
-    func didSelect(_ item: TableViewData) {
-        
-    }
+    func didSelect(_ item: TableViewData) { }
     
-    func pinDelegate(_ item: TableViewData) {
-        
-    }
+    func pinDelegate(_ item: TableViewData) { }
 }
 
 extension ForecastTableViewController: ListProviderDelegate {
@@ -52,11 +47,7 @@ extension ForecastTableViewController: ListProviderDelegate {
         self.tableViewManager?.addData(data)
     }
     
-    func didStartFetching(_ data: [TableViewData]?) {
-        
-    }
+    func didStartFetching(_ data: [TableViewData]?) { }
     
-    func didFinishFetchingWithError(_ error: NSError?) {
-        
-    }
+    func didFinishFetchingWithError(_ error: NSError?) { }
 }

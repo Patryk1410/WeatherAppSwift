@@ -13,7 +13,7 @@
         <!--Forecasts Table-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Forecasts Table" customClass="ForecastsTableViewController" customModule="WeatherApp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForecastsVC" id="BYZ-38-t0r" userLabel="Forecasts Table" customClass="ForecastsTableViewController" customModule="WeatherApp" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>

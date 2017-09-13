@@ -38,7 +38,11 @@
 		5ED88CFB1F67F2F00082B2FA /* WeatherChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88CFA1F67F2F00082B2FA /* WeatherChart.swift */; };
 		5ED88CFD1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88CFC1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift */; };
 		5ED88CFF1F67FA1D0082B2FA /* ViewControllerDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88CFE1F67FA1D0082B2FA /* ViewControllerDispatcher.swift */; };
-		5ED88D011F68130D0082B2FA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D001F68130D0082B2FA /* BaseViewController.swift */; };
+		5ED88D041F6917B60082B2FA /* ViewControllerDispatcherImplSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D021F6917960082B2FA /* ViewControllerDispatcherImplSpec.swift */; };
+		5ED88D061F693C020082B2FA /* FakeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D051F693C020082B2FA /* FakeNavigationController.swift */; };
+		5ED88D0D1F69527F0082B2FA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D0B1F69527F0082B2FA /* MapViewController.swift */; };
+		5ED88D0E1F69527F0082B2FA /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED88D0C1F69527F0082B2FA /* MapViewController.xib */; };
+		5ED88D101F6952A10082B2FA /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D0F1F6952A10082B2FA /* MainTabBarViewController.swift */; };
 		5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */; };
 		5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908391F5D46C900FD56ED /* AppDelegate.swift */; };
 		5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9083B1F5D46C900FD56ED /* ForecastsTableViewController.swift */; };
@@ -110,7 +114,11 @@
 		5ED88CFA1F67F2F00082B2FA /* WeatherChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherChart.swift; sourceTree = "<group>"; };
 		5ED88CFC1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDispatcherImpl.swift; sourceTree = "<group>"; };
 		5ED88CFE1F67FA1D0082B2FA /* ViewControllerDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDispatcher.swift; sourceTree = "<group>"; };
-		5ED88D001F68130D0082B2FA /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		5ED88D021F6917960082B2FA /* ViewControllerDispatcherImplSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDispatcherImplSpec.swift; sourceTree = "<group>"; };
+		5ED88D051F693C020082B2FA /* FakeNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeNavigationController.swift; sourceTree = "<group>"; };
+		5ED88D0B1F69527F0082B2FA /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5ED88D0C1F69527F0082B2FA /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		5ED88D0F1F6952A10082B2FA /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		5EE908361F5D46C900FD56ED /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE908391F5D46C900FD56ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -207,6 +215,8 @@
 				5EE9083B1F5D46C900FD56ED /* ForecastsTableViewController.swift */,
 				5EF0DB371F600C8E00946681 /* ForecastTableViewController.swift */,
 				5ED88CEF1F66CC560082B2FA /* ForecastChartViewController.swift */,
+				5ED88D0B1F69527F0082B2FA /* MapViewController.swift */,
+				5ED88D0F1F6952A10082B2FA /* MainTabBarViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -217,6 +227,7 @@
 				5E42A6641F6287B5005FE2E9 /* FakeHttpHandler.swift */,
 				5E42A6661F628D18005FE2E9 /* FakeForecastUnboxer.swift */,
 				5E42A66B1F628EF1005FE2E9 /* FakeResponses.swift */,
+				5ED88D051F693C020082B2FA /* FakeNavigationController.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -255,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				5ED88CF01F66CC560082B2FA /* ForecastChartViewController.xib */,
+				5ED88D0C1F69527F0082B2FA /* MapViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -265,6 +277,16 @@
 				5ED88CFA1F67F2F00082B2FA /* WeatherChart.swift */,
 			);
 			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		5ED88D111F6956B70082B2FA /* ViewControllerDispatcher */ = {
+			isa = PBXGroup;
+			children = (
+				5ED88CFE1F67FA1D0082B2FA /* ViewControllerDispatcher.swift */,
+				5ED88CFC1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift */,
+				5ED88D021F6917960082B2FA /* ViewControllerDispatcherImplSpec.swift */,
+			);
+			name = ViewControllerDispatcher;
 			sourceTree = "<group>";
 		};
 		5EE9082D1F5D46C900FD56ED = {
@@ -358,9 +380,7 @@
 		5EF0DB361F600C4900946681 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5ED88D001F68130D0082B2FA /* BaseViewController.swift */,
-				5ED88CFE1F67FA1D0082B2FA /* ViewControllerDispatcher.swift */,
-				5ED88CFC1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift */,
+				5ED88D111F6956B70082B2FA /* ViewControllerDispatcher */,
 				5ED88CF31F66CC6A0082B2FA /* Views */,
 				5E13548E1F667EED00143ABF /* ViewControllers */,
 				5E13548D1F667EDC00143ABF /* DataProviders */,
@@ -521,6 +541,7 @@
 				5E42A6591F6170C5005FE2E9 /* ForecastTableViewCell.xib in Resources */,
 				5E42A6571F61508E005FE2E9 /* ForecastsTableViewCell.xib in Resources */,
 				5EE908471F5D46C900FD56ED /* LaunchScreen.storyboard in Resources */,
+				5ED88D0E1F69527F0082B2FA /* MapViewController.xib in Resources */,
 				5EE908441F5D46C900FD56ED /* Assets.xcassets in Resources */,
 				5EE9083F1F5D46C900FD56ED /* Main.storyboard in Resources */,
 			);
@@ -716,12 +737,12 @@
 				5EE908421F5D46C900FD56ED /* WeatherApp.xcdatamodeld in Sources */,
 				5E42A6711F62AD62005FE2E9 /* FakeAppDelegate.swift in Sources */,
 				5EE908721F5D4A9E00FD56ED /* HttpHandler.swift in Sources */,
-				5ED88D011F68130D0082B2FA /* BaseViewController.swift in Sources */,
 				5E1354861F6676ED00143ABF /* ForecastDataStringsProvider.swift in Sources */,
 				5EF0DB3B1F600E6400946681 /* ForecastsTableViewCell.swift in Sources */,
 				5ED88CF81F67DFF90082B2FA /* TemperatureValueFormatter.swift in Sources */,
 				5E42A66E1F62ABF4005FE2E9 /* main.swift in Sources */,
 				5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */,
+				5ED88D0D1F69527F0082B2FA /* MapViewController.swift in Sources */,
 				5EE908701F5D48A700FD56ED /* HttpHandlerError.swift in Sources */,
 				5E4FC5FB1F5D80150095A124 /* WeatherRequest.swift in Sources */,
 				5E42A6551F615015005FE2E9 /* TableViewManager.swift in Sources */,
@@ -729,6 +750,7 @@
 				5E1354811F66741400143ABF /* Strings.swift in Sources */,
 				5ED88CFF1F67FA1D0082B2FA /* ViewControllerDispatcher.swift in Sources */,
 				5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */,
+				5ED88D101F6952A10082B2FA /* MainTabBarViewController.swift in Sources */,
 				5E4A81AF1F5E7C3F00C9F14E /* WeatherByLatitudeAndLongitudeRequest.swift in Sources */,
 				5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */,
 				5EF0DB331F5FEF7B00946681 /* WeatherManager.swift in Sources */,
@@ -754,7 +776,9 @@
 				5E42A6671F628D18005FE2E9 /* FakeForecastUnboxer.swift in Sources */,
 				5E42A6621F628603005FE2E9 /* WeatherManagerImplSpec.swift in Sources */,
 				5E42A66C1F628EF1005FE2E9 /* FakeResponses.swift in Sources */,
+				5ED88D041F6917B60082B2FA /* ViewControllerDispatcherImplSpec.swift in Sources */,
 				5E42A6651F6287B5005FE2E9 /* FakeHttpHandler.swift in Sources */,
+				5ED88D061F693C020082B2FA /* FakeNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

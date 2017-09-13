@@ -12,7 +12,7 @@ import UIKit
 /**
  This class contains data displayed in Forecasts table view cell
  */
-class ForecastData: TableViewData {
+class ForecastData: NSObject, TableViewData {
     
     
     let forecastDate: String
@@ -32,5 +32,12 @@ class ForecastData: TableViewData {
     }
     func height() -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    override func isEqual(_ object: Any?) -> Bool {
+        guard let object = object as? ForecastData else {
+            return false
+        }
+        return self.forecastDate == object.forecastDate && self.city == object.city && self.country == object.country && self.weatherRecords.elementsEqual(object.weatherRecords)
     }
 }
