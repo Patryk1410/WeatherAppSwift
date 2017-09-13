@@ -36,6 +36,9 @@
 		5ED88CF61F67D26B0082B2FA /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88CF51F67D26B0082B2FA /* DateValueFormatter.swift */; };
 		5ED88CF81F67DFF90082B2FA /* TemperatureValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88CF71F67DFF90082B2FA /* TemperatureValueFormatter.swift */; };
 		5ED88CFB1F67F2F00082B2FA /* WeatherChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88CFA1F67F2F00082B2FA /* WeatherChart.swift */; };
+		5ED88CFD1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88CFC1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift */; };
+		5ED88CFF1F67FA1D0082B2FA /* ViewControllerDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88CFE1F67FA1D0082B2FA /* ViewControllerDispatcher.swift */; };
+		5ED88D011F68130D0082B2FA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D001F68130D0082B2FA /* BaseViewController.swift */; };
 		5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */; };
 		5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908391F5D46C900FD56ED /* AppDelegate.swift */; };
 		5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9083B1F5D46C900FD56ED /* ForecastsTableViewController.swift */; };
@@ -105,6 +108,9 @@
 		5ED88CF51F67D26B0082B2FA /* DateValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		5ED88CF71F67DFF90082B2FA /* TemperatureValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureValueFormatter.swift; sourceTree = "<group>"; };
 		5ED88CFA1F67F2F00082B2FA /* WeatherChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherChart.swift; sourceTree = "<group>"; };
+		5ED88CFC1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDispatcherImpl.swift; sourceTree = "<group>"; };
+		5ED88CFE1F67FA1D0082B2FA /* ViewControllerDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerDispatcher.swift; sourceTree = "<group>"; };
+		5ED88D001F68130D0082B2FA /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		5EE908361F5D46C900FD56ED /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE908391F5D46C900FD56ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -352,6 +358,9 @@
 		5EF0DB361F600C4900946681 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5ED88D001F68130D0082B2FA /* BaseViewController.swift */,
+				5ED88CFE1F67FA1D0082B2FA /* ViewControllerDispatcher.swift */,
+				5ED88CFC1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift */,
 				5ED88CF31F66CC6A0082B2FA /* Views */,
 				5E13548E1F667EED00143ABF /* ViewControllers */,
 				5E13548D1F667EDC00143ABF /* DataProviders */,
@@ -707,6 +716,7 @@
 				5EE908421F5D46C900FD56ED /* WeatherApp.xcdatamodeld in Sources */,
 				5E42A6711F62AD62005FE2E9 /* FakeAppDelegate.swift in Sources */,
 				5EE908721F5D4A9E00FD56ED /* HttpHandler.swift in Sources */,
+				5ED88D011F68130D0082B2FA /* BaseViewController.swift in Sources */,
 				5E1354861F6676ED00143ABF /* ForecastDataStringsProvider.swift in Sources */,
 				5EF0DB3B1F600E6400946681 /* ForecastsTableViewCell.swift in Sources */,
 				5ED88CF81F67DFF90082B2FA /* TemperatureValueFormatter.swift in Sources */,
@@ -717,6 +727,7 @@
 				5E42A6551F615015005FE2E9 /* TableViewManager.swift in Sources */,
 				5E1354841F6676B500143ABF /* ForecastData.swift in Sources */,
 				5E1354811F66741400143ABF /* Strings.swift in Sources */,
+				5ED88CFF1F67FA1D0082B2FA /* ViewControllerDispatcher.swift in Sources */,
 				5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */,
 				5E4A81AF1F5E7C3F00C9F14E /* WeatherByLatitudeAndLongitudeRequest.swift in Sources */,
 				5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */,
@@ -731,6 +742,7 @@
 				5ED88CFB1F67F2F00082B2FA /* WeatherChart.swift in Sources */,
 				5EE9086C1F5D47C500FD56ED /* CompletionStatus.swift in Sources */,
 				5EF0DB381F600C8E00946681 /* ForecastTableViewController.swift in Sources */,
+				5ED88CFD1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@ import CoreData
 import CoreLocation
 import AERecord
 
-class ForecastsTableViewController: UIViewController {
+class ForecastsTableViewController: BaseViewController {
   
     @IBOutlet weak var forecastsTableView: UITableView!
     
@@ -28,13 +28,6 @@ class ForecastsTableViewController: UIViewController {
         self.tableViewManager = TableViewManager(tableView: self.forecastsTableView)
         self.dataProvider?.requestData()
         self.tableViewManager?.delegate = self
-    }
-    
-    func pushForecastTableViewController(forecast: ForecastData) {
-        let storyboard: UIStoryboard = UIStoryboard.init(name: mainStoryboardName, bundle: nil)
-        let forecastTableViewController = storyboard.instantiateViewController(withIdentifier: forecastTableViewControllerIdentifier) as! ForecastTableViewController
-        forecastTableViewController.forecastData = forecast
-        self.navigationController?.pushViewController(forecastTableViewController, animated: true)
     }
 }
 
@@ -55,7 +48,12 @@ extension ForecastsTableViewController: ListProviderDelegate {
 extension ForecastsTableViewController: TableViewManagerDelegate{
 
     func didSelect(_ item: TableViewData) {
-        pushForecastTableViewController(forecast: item as! ForecastData)
+        let data = [forecastDataKey: item as! ForecastData]
+//        self.viewControllerDispatcher.pushForecastTableViewController(self, forecast: item as! ForecastData)
+        self.viewControllerDispatcher.pushFromStoryboard(self,
+                                                        data: data,
+                                                        destinationViewControllerIdentifier: forecastTableViewControllerIdentifier,
+                                                        notificationName: initializeForecastTableViewNotification)
     }
     
     func pinDelegate(_ item: TableViewData) { }

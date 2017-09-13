@@ -27,6 +27,9 @@ let maxStr: String = "Max: "
 //MARK: Storyboard
 let mainStoryboardName: String = "Main"
 
+//MARK: Xib names
+let forecastChartViewControllerName: String = "ForecastChartViewController"
+
 //MARK: View controllers identifiers
 let forecastTableViewControllerIdentifier: String = "ForecastVC"
 
@@ -65,3 +68,11 @@ let fromKey = "list.0.dt_txt"
 
 //MARK: Http methods
 let httpGet = "GET"
+
+//MARK: Notification names
+let initializeForecastTableViewNotification: String = "initializeForecastTableViewController"
+let viewControllerLoadedNotification: String = "viewControllerLoaded"
+
+//MARK: View controller data keys
+let forecastDataKey: String = "forecast_key"
+let weatherRecordsDataKey: String = "weather_records"

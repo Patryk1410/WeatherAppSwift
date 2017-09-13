@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class ForecastChartViewController: UIViewController, ChartViewDelegate {
+class ForecastChartViewController: BaseViewController {
 
     @IBOutlet weak var chartView: WeatherChart!
     var weatherRecords: [WeatherRecordMO]?
@@ -20,5 +20,12 @@ class ForecastChartViewController: UIViewController, ChartViewDelegate {
         chartView.setUpChart(self)
         chartView.update(weatherRecords)
     }
+    
+    override func initializeData(data: [String : Any?]) {
+        self.weatherRecords = data[weatherRecordsDataKey] as? [WeatherRecordMO]
+    }
+}
 
+extension ForecastChartViewController: ChartViewDelegate {
+    
 }

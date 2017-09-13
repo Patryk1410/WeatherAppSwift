@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ForecastTableViewController: UIViewController {
+class ForecastTableViewController: BaseViewController {
 
     @IBOutlet weak var forecastTableView: UITableView!
     
@@ -26,14 +26,13 @@ class ForecastTableViewController: UIViewController {
         self.dataProvider?.requestData()
     }
     
-    @IBAction func handleShowChart(_ sender: Any) {
-        self.pushChartViewController()
+    override func initializeData(data: [String: Any?]) {
+        self.forecastData = data[forecastDataKey] as? ForecastData
     }
     
-    func pushChartViewController() {
-        let forecastChartViewController = ForecastChartViewController(nibName: "ForecastChartViewController", bundle: nil)
-        forecastChartViewController.weatherRecords = self.forecastData?.weatherRecords
-        self.navigationController?.pushViewController(forecastChartViewController, animated: true)
+    @IBAction func handleShowChart(_ sender: Any) {
+        let data = [weatherRecordsDataKey: self.forecastData?.weatherRecords]
+        self.viewControllerDispatcher.pushFromXib(self, data: data, nibName: forecastChartViewControllerName, type: ForecastChartViewController.self)
     }
 }
 
