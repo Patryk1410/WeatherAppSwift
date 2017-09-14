@@ -27,43 +27,79 @@ class WeatherManagerImpl: WeatherManager {
         self.forecastUnboxer = ForecastUnboxer()
     }
 
-    func fetchWeather(location: CLLocationCoordinate2D, completion: @escaping ([ForecastMO]?, Error?) -> ()) {
+    private func performRequest(location: CLLocationCoordinate2D, completion: (HttpHandlerRequest?, HttpHandler?, Error?) -> ()) {
         let request = WeatherByLatitudeAndLongitudeRequest(latitude: location.latitude.description, longitude: location.longitude.description)
-
+        
         guard let handler = self.httpHandler else {
-            completion(nil, WeatherManagerError.somethingWentWrong)
+            completion(nil, nil, WeatherManagerError.somethingWentWrong)
             return
         }
-
-        handler.make(request: request, completion: { (result, error) in
-            guard let result = result else {
-                completion(nil, WeatherManagerError.noData)
+        
+        completion(request, handler, nil)
+    }
+    
+    func fetchWeather(location: CLLocationCoordinate2D, completion: @escaping ([ForecastMO]?, Error?) -> ()) {
+        performRequest(location: location, completion: { (request, handler, error) in
+            guard let handler = handler, let request = request else {
+                completion(nil, error)
                 return
             }
-            do {
-                let coreDataContext = AERecord.Context.default
-                coreDataContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-                
-                let from = ((result["list"] as? [Any?])?.first as? [String: Any?])?["dt_txt"] as? String
-                let pred = NSPredicate(format: "from == %@", from ?? "")
-                
-                if (ForecastMO.count(with: pred)) > 0 {
-                    ForecastMO.deleteAll(with: pred)
+            handler.make(request: request, completion: { (result, error) in
+                guard let result = result else {
+                    completion(nil, WeatherManagerError.noData)
+                    return
                 }
-                
-                _ = try self.forecastUnboxer.unbox(dictionary: result, managedContext: coreDataContext)
-
-                AERecord.saveAndWait(context: coreDataContext)
-                DispatchQueue.main.async {
-        
-                    let forecasts = ForecastMO.all()
-                    completion(forecasts as? [ForecastMO], nil)
+                do {
+                    let coreDataContext = AERecord.Context.default
+                    coreDataContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                    
+                    let from = ((result["list"] as? [Any?])?.first as? [String: Any?])?["dt_txt"] as? String
+                    let pred = NSPredicate(format: "from == %@", from ?? "")
+                    
+                    if (ForecastMO.count(with: pred)) > 0 {
+                        ForecastMO.deleteAll(with: pred)
+                    }
+                    
+                    _ = try self.forecastUnboxer.unbox(dictionary: result, managedContext: coreDataContext)
+                    
+                    AERecord.saveAndWait(context: coreDataContext)
+                    DispatchQueue.main.async {
+                        
+                        let forecasts = ForecastMO.all()
+                        completion(forecasts as? [ForecastMO], nil)
+                    }
+                    
+                } catch {
+                    print("Error occurred while unboxing: \(error)")
+                    completion(nil, WeatherManagerError.unboxingFailed)
                 }
-
-            } catch {
-                print("Error occurred while unboxing: \(error)")
-                completion(nil, WeatherManagerError.unboxingFailed)
-            }
+            })
         })
+    }
+    
+    func fetchOneForecast(location: CLLocationCoordinate2D, completion:@escaping (ForecastMO?, Error?) -> ()) {
+        performRequest(location: location, completion: { (request, handler, error) in
+            guard let handler = handler, let request = request else {
+                completion(nil, error)
+                return
+            }
+            handler.make(request: request, completion: { (result, error) in
+                guard let result = result else {
+                    completion(nil, WeatherManagerError.noData)
+                    return
+                }
+                do {
+                    let forecast = try self.forecastUnboxer.unbox(dictionary: result, managedContext: AERecord.Context.default)
+                    DispatchQueue.main.async {
+                        completion(forecast, nil)
+                    }
+                } catch {
+                    print("Error occurred while unboxing: \(error)")
+                    completion(nil, WeatherManagerError.unboxingFailed)
+                }
+            })
+        })
+        
+        
     }
 }

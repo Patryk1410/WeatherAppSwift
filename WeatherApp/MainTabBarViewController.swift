@@ -16,11 +16,11 @@ class MainTabBarViewController: UITabBarController {
         self.delegate = self
         
         let forecastTab = ViewControllerDispatcherImpl.instance.getForecastsTableViewController()
-        let forecastItem = UITabBarItem(title: "Forecast", image: nil, selectedImage: nil)
+        let forecastItem = UITabBarItem(title: forecastsTabTitle, image: nil, selectedImage: nil)
         forecastTab.tabBarItem = forecastItem
         
         let mapTab = ViewControllerDispatcherImpl.instance.getMapViewController()
-        let mapItem = UITabBarItem(title: "Map", image: nil, selectedImage: nil)
+        let mapItem = UITabBarItem(title: mapTabTitle, image: nil, selectedImage: nil)
         mapTab.tabBarItem = mapItem
         
         self.viewControllers = [forecastTab, mapTab]

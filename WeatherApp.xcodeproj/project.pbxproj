@@ -43,6 +43,9 @@
 		5ED88D0D1F69527F0082B2FA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D0B1F69527F0082B2FA /* MapViewController.swift */; };
 		5ED88D0E1F69527F0082B2FA /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED88D0C1F69527F0082B2FA /* MapViewController.xib */; };
 		5ED88D101F6952A10082B2FA /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D0F1F6952A10082B2FA /* MainTabBarViewController.swift */; };
+		5ED88D131F696B0D0082B2FA /* MapProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D121F696B0D0082B2FA /* MapProvider.swift */; };
+		5ED88D151F696B5F0082B2FA /* ListProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D141F696B5F0082B2FA /* ListProviderProtocol.swift */; };
+		5ED88D171F696B7E0082B2FA /* ListProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D161F696B7E0082B2FA /* ListProviderDelegate.swift */; };
 		5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */; };
 		5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908391F5D46C900FD56ED /* AppDelegate.swift */; };
 		5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9083B1F5D46C900FD56ED /* ForecastsTableViewController.swift */; };
@@ -119,6 +122,9 @@
 		5ED88D0B1F69527F0082B2FA /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5ED88D0C1F69527F0082B2FA /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		5ED88D0F1F6952A10082B2FA /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		5ED88D121F696B0D0082B2FA /* MapProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapProvider.swift; sourceTree = "<group>"; };
+		5ED88D141F696B5F0082B2FA /* ListProviderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProviderProtocol.swift; sourceTree = "<group>"; };
+		5ED88D161F696B7E0082B2FA /* ListProviderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProviderDelegate.swift; sourceTree = "<group>"; };
 		5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		5EE908361F5D46C900FD56ED /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE908391F5D46C900FD56ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +211,9 @@
 			children = (
 				5E13548F1F667F0100143ABF /* ForecastsProvider.swift */,
 				5E1354911F667F2A00143ABF /* ForecastProvider.swift */,
+				5ED88D121F696B0D0082B2FA /* MapProvider.swift */,
+				5ED88D141F696B5F0082B2FA /* ListProviderProtocol.swift */,
+				5ED88D161F696B7E0082B2FA /* ListProviderDelegate.swift */,
 			);
 			name = DataProviders;
 			sourceTree = "<group>";
@@ -497,7 +506,8 @@
 				TargetAttributes = {
 					5EE908351F5D46C900FD56ED = {
 						CreatedOnToolsVersion = 8.3.3;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = T87VL83V5D;
+						ProvisioningStyle = Automatic;
 					};
 					5EE9084C1F5D46CA00FD56ED = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -694,9 +704,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WeatherApp/Pods-WeatherApp-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -744,10 +757,12 @@
 				5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */,
 				5ED88D0D1F69527F0082B2FA /* MapViewController.swift in Sources */,
 				5EE908701F5D48A700FD56ED /* HttpHandlerError.swift in Sources */,
+				5ED88D151F696B5F0082B2FA /* ListProviderProtocol.swift in Sources */,
 				5E4FC5FB1F5D80150095A124 /* WeatherRequest.swift in Sources */,
 				5E42A6551F615015005FE2E9 /* TableViewManager.swift in Sources */,
 				5E1354841F6676B500143ABF /* ForecastData.swift in Sources */,
 				5E1354811F66741400143ABF /* Strings.swift in Sources */,
+				5ED88D171F696B7E0082B2FA /* ListProviderDelegate.swift in Sources */,
 				5ED88CFF1F67FA1D0082B2FA /* ViewControllerDispatcher.swift in Sources */,
 				5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */,
 				5ED88D101F6952A10082B2FA /* MainTabBarViewController.swift in Sources */,
@@ -763,6 +778,7 @@
 				5E13548C1F667DC400143ABF /* WeatherRecordDataStringsProvider.swift in Sources */,
 				5ED88CFB1F67F2F00082B2FA /* WeatherChart.swift in Sources */,
 				5EE9086C1F5D47C500FD56ED /* CompletionStatus.swift in Sources */,
+				5ED88D131F696B0D0082B2FA /* MapProvider.swift in Sources */,
 				5EF0DB381F600C8E00946681 /* ForecastTableViewController.swift in Sources */,
 				5ED88CFD1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift in Sources */,
 			);
@@ -925,9 +941,11 @@
 			baseConfigurationReference = 5AD53C4BC232C82C2734B276 /* Pods-WeatherApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = T87VL83V5D;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pk-fdt.WeatherApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -941,9 +959,11 @@
 			baseConfigurationReference = 5CD3C08510D77EE4AAF649D9 /* Pods-WeatherApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = T87VL83V5D;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pk-fdt.WeatherApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";

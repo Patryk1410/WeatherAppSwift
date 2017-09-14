@@ -49,6 +49,9 @@ let longUrl = "&lon="
 let celcius = "metric"
 let farenheit = "imperial"
 
+//MARK: Map API
+let mapApiKey = "AIzaSyCKb0IlbdpocPe3oWeb8qqWTt86AxITfdQ"
+
 //MARK: Unboxing Keys
 let weatherRecordsKey = "list"
 let locationKey = "city"
@@ -78,3 +81,7 @@ let viewControllerLoadedNotification: String = "viewControllerLoaded"
 //MARK: View controller data keys
 let forecastDataKey: String = "forecast_key"
 let weatherRecordsDataKey: String = "weather_records"
+
+//MARK: Tab titles
+let forecastsTabTitle: String = "Forecasts"
+let mapTabTitle: String = "Map"

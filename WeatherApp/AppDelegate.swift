@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import AERecord
+import GoogleMaps
 
 //@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,6 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print(error)
         }
+        
+        //Initializing Google Maps
+        GMSServices.provideAPIKey(mapApiKey)
+        
         return true
     }
 

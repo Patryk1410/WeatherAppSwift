@@ -92,25 +92,6 @@ public extension UIView {
     }
 }
 
-public protocol ListProviderDelegate: class {
-    
-    func didStartFetching(_ data: [TableViewData]?)
-    
-    func didFinishFetching(_ data: [TableViewData]?)
-    
-    func didFinishFetchingWithError(_ error: NSError?)
-    
-}
-
-public protocol ListProviderProtocol: class {
-    
-    weak var delegate: ListProviderDelegate? { get set }
-    
-    func requestData()
-    
-}
-
-
 public protocol TableViewData {
     
     func reuseID() -> String
