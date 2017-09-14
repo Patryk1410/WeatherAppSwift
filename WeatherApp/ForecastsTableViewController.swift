@@ -17,7 +17,7 @@ class ForecastsTableViewController: UIViewController {
     @IBOutlet weak var forecastsTableView: UITableView!
     
     var tableViewManager: TableViewManager?
-    var dataProvider: ListProviderProtocol?
+    var dataProvider: DataProviderProtocol?
     
     var forecasts: [ForecastMO] = []
     
@@ -31,21 +31,21 @@ class ForecastsTableViewController: UIViewController {
     }
 }
 
-extension ForecastsTableViewController: ListProviderDelegate {
-    func didFinishFetching(_ data: [TableViewData]?) {
+extension ForecastsTableViewController: DataProviderDelegate {
+    func didFinishFetching(_ data: [DataObjectProtocol]?) {
         self.tableViewManager?.addData(data)
     }
     
-    func didStartFetching(_ data: [TableViewData]?) { }
+    func didStartFetching(_ data: [DataObjectProtocol]?) { }
     
     func didFinishFetchingWithError(_ error: NSError?) { }
 }
 
 extension ForecastsTableViewController: TableViewManagerDelegate{
 
-    func didSelect(_ item: TableViewData) {
+    func didSelect(_ item: DataObjectProtocol) {
         ViewControllerDispatcherImpl.instance.pushForecastTableViewController(navigationController: self.navigationController, forecastData: item as! ForecastData)
     }
     
-    func pinDelegate(_ item: TableViewData) { }
+    func pinDelegate(_ item: DataObjectProtocol) { }
 }

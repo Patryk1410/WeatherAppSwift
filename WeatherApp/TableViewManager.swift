@@ -92,25 +92,17 @@ public extension UIView {
     }
 }
 
-public protocol TableViewData {
-    
-    func reuseID() -> String
-    
-    func height() -> CGFloat
-    
-}
-
 public protocol UITableViewCellLoadableProtocol {
     
-    func loadData(_ data: TableViewData, tableview: UITableView)
+    func loadData(_ data: DataObjectProtocol, tableview: UITableView)
     
 }
 
 public protocol TableViewManagerDelegate: class {
     
-    func didSelect(_ item: TableViewData)
+    func didSelect(_ item: DataObjectProtocol)
     
-    func pinDelegate(_ item: TableViewData)
+    func pinDelegate(_ item: DataObjectProtocol)
     
 }
 
@@ -119,7 +111,7 @@ public class TableViewManager: NSObject, UITableViewDataSource, UITableViewDeleg
     var tableView: UITableView?
     public weak var delegate: TableViewManagerDelegate?
     
-    var data: [TableViewData]! {
+    var data: [DataObjectProtocol]! {
         
         didSet {
             self.privateData = data
@@ -128,9 +120,9 @@ public class TableViewManager: NSObject, UITableViewDataSource, UITableViewDeleg
         
     }
     
-    var privateData = [TableViewData]()
+    var privateData = [DataObjectProtocol]()
     
-    public func reloadItem(item: TableViewData) {
+    public func reloadItem(item: DataObjectProtocol) {
         let array = self.privateData as NSArray
         
         let index = array.index(of: item)
@@ -140,10 +132,10 @@ public class TableViewManager: NSObject, UITableViewDataSource, UITableViewDeleg
     }
     
     public func removeAllData() {
-        self.data = [TableViewData]()
+        self.data = [DataObjectProtocol]()
     }
     
-    public func addData(_ items: [TableViewData]?) {
+    public func addData(_ items: [DataObjectProtocol]?) {
         
         guard let items = items else {
             return
@@ -196,7 +188,7 @@ public class TableViewManager: NSObject, UITableViewDataSource, UITableViewDeleg
         
     }
     
-    func registerItem(item: TableViewData) {
+    func registerItem(item: DataObjectProtocol) {
         let reuseID = item.reuseID()
         self.registerItem(reuseID: reuseID)
     }
@@ -209,7 +201,7 @@ public class TableViewManager: NSObject, UITableViewDataSource, UITableViewDeleg
         self.tableView!.estimatedRowHeight = 100
         self.tableView!.separatorColor = UIColor.clear
         self.tableView?.backgroundColor = UIColor.clear
-        self.privateData = [TableViewData]()
+        self.privateData = [DataObjectProtocol]()
     }
     
     public convenience init(tableView: UITableView, reuseIDs: [String]) {
@@ -225,7 +217,7 @@ public class TableViewManager: NSObject, UITableViewDataSource, UITableViewDeleg
     
     @objc public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var dataItem: TableViewData
+        var dataItem: DataObjectProtocol
         dataItem = self.privateData[indexPath.row]
         
         let reuseID = dataItem.reuseID()

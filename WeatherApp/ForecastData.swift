@@ -12,7 +12,7 @@ import UIKit
 /**
  This class contains data displayed in Forecasts table view cell
  */
-class ForecastData: NSObject, TableViewData {
+class ForecastData: NSObject, DataObjectProtocol {
     
     
     let forecastDate: String

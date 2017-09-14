@@ -21,7 +21,7 @@ class ForecastsTableViewCell: UITableViewCell, UITableViewCellLoadableProtocol {
         super.setSelected(selected, animated: animated)
     }
     
-    func loadData(_ data: TableViewData, tableview: UITableView) {
+    func loadData(_ data: DataObjectProtocol, tableview: UITableView) {
 
         guard let data = data as? ForecastData else {
             return

@@ -9,8 +9,8 @@
 import Foundation
 import CoreLocation
 
-class ForecastsProvider: ListProviderProtocol {
-    var delegate: ListProviderDelegate?
+class ForecastsProvider: DataProviderProtocol {
+    var delegate: DataProviderDelegate?
     var weatherManager: WeatherManager
     
     init() {

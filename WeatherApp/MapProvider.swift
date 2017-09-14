@@ -9,8 +9,8 @@
 import Foundation
 import CoreLocation
 
-class MapProvider: ListProviderProtocol {
-    var delegate: ListProviderDelegate?
+class MapProvider: DataProviderProtocol {
+    var delegate: DataProviderDelegate?
     
     let weatherManager: WeatherManager = WeatherManagerImpl()
     var location: CLLocationCoordinate2D!

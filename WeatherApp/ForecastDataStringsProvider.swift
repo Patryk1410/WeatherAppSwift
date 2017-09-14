@@ -26,4 +26,8 @@ class ForecastDataStringsProvider {
     func getDateString() -> String {
         return self.data.forecastDate
     }
+    
+    func getCurrentTemperatureString() -> String {
+        return (self.data.weatherRecords.first?.temperature.description ?? "-") + degreesCelcius
+    }
 }

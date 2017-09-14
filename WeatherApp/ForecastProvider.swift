@@ -8,8 +8,8 @@
 
 import Foundation
 
-class ForecastProvider: ListProviderProtocol {
-    var delegate: ListProviderDelegate?
+class ForecastProvider: DataProviderProtocol {
+    var delegate: DataProviderDelegate?
     
     var forecastData: ForecastData?
     

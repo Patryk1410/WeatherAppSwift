@@ -36,18 +36,18 @@ class ForecastTableViewController: UIViewController {
 }
 
 extension ForecastTableViewController: TableViewManagerDelegate {
-    func didSelect(_ item: TableViewData) { }
+    func didSelect(_ item: DataObjectProtocol) { }
     
-    func pinDelegate(_ item: TableViewData) { }
+    func pinDelegate(_ item: DataObjectProtocol) { }
 }
 
-extension ForecastTableViewController: ListProviderDelegate {
+extension ForecastTableViewController: DataProviderDelegate {
     
-    func didFinishFetching(_ data: [TableViewData]?) {
+    func didFinishFetching(_ data: [DataObjectProtocol]?) {
         self.tableViewManager?.addData(data)
     }
     
-    func didStartFetching(_ data: [TableViewData]?) { }
+    func didStartFetching(_ data: [DataObjectProtocol]?) { }
     
     func didFinishFetchingWithError(_ error: NSError?) { }
 }

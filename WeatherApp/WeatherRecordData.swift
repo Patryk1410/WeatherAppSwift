@@ -11,7 +11,7 @@ import UIKit
 /**
  This class contains data displayed in Forecast table view cell
  */
-class WeatherRecordData : TableViewData {
+class WeatherRecordData : DataObjectProtocol {
     
     let temperature: String
     let minTemperature: String
