@@ -15,14 +15,13 @@ class MapViewController: UIViewController {
     var forecastData: ForecastData?
     var dataProvider: MapProvider?
     
-    var markerTitle: String = "Warsaw"
-    var markerSnippet: String = "Poland"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.dataProvider = MapProvider()
-        dataProvider?.delegate = self
+        self.dataProvider?.delegate = self
+        let location = CLLocationCoordinate2D(latitude: 52.23, longitude: 21.01)
+        self.dataProvider?.location = location
         
         let camera = GMSCameraPosition.camera(withLatitude: 52.23, longitude: 21.01, zoom: 7.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
@@ -32,9 +31,9 @@ class MapViewController: UIViewController {
         
         // Creates a marker in the center of the map.
         self.marker = GMSMarker()
-        self.marker.position = CLLocationCoordinate2D(latitude: 52.23, longitude: 21.01)
-        self.marker.title = "Warsaw, PL"
+        self.marker.position = location
         self.marker.map = mapView
+        self.dataProvider?.requestData()
     }
 
 }
@@ -45,6 +44,13 @@ extension MapViewController: GMSMapViewDelegate {
         self.marker.position = coordinate
         dataProvider?.location = coordinate
         dataProvider?.requestData()
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        guard let data = self.forecastData else {
+            return
+        }
+        ViewControllerDispatcherImpl.instance.pushForecastTableViewController(navigationController: self.navigationController, forecastData: data)
     }
 }
 
