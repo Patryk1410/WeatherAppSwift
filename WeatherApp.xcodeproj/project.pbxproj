@@ -47,6 +47,8 @@
 		5ED88D1A1F6A67920082B2FA /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D191F6A67920082B2FA /* DataObject.swift */; };
 		5ED88D1C1F6A67BD0082B2FA /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D1B1F6A67BD0082B2FA /* DataProvider.swift */; };
 		5ED88D1E1F6A6A4E0082B2FA /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D1D1F6A6A4E0082B2FA /* MapManager.swift */; };
+		5ED88D201F6A843B0082B2FA /* CustomMarkerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED88D1F1F6A843B0082B2FA /* CustomMarkerWindow.xib */; };
+		5ED88D221F6A84CE0082B2FA /* CustomMarkerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D211F6A84CE0082B2FA /* CustomMarkerWindow.swift */; };
 		5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */; };
 		5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908391F5D46C900FD56ED /* AppDelegate.swift */; };
 		5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9083B1F5D46C900FD56ED /* ForecastsTableViewController.swift */; };
@@ -127,6 +129,8 @@
 		5ED88D191F6A67920082B2FA /* DataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
 		5ED88D1B1F6A67BD0082B2FA /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		5ED88D1D1F6A6A4E0082B2FA /* MapManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
+		5ED88D1F1F6A843B0082B2FA /* CustomMarkerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomMarkerWindow.xib; sourceTree = "<group>"; };
+		5ED88D211F6A84CE0082B2FA /* CustomMarkerWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMarkerWindow.swift; sourceTree = "<group>"; };
 		5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		5EE908361F5D46C900FD56ED /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE908391F5D46C900FD56ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 			isa = PBXGroup;
 			children = (
 				5ED88CFA1F67F2F00082B2FA /* WeatherChart.swift */,
+				5ED88D1F1F6A843B0082B2FA /* CustomMarkerWindow.xib */,
+				5ED88D211F6A84CE0082B2FA /* CustomMarkerWindow.swift */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -564,6 +570,7 @@
 				5E42A6591F6170C5005FE2E9 /* ForecastTableViewCell.xib in Resources */,
 				5E42A6571F61508E005FE2E9 /* ForecastsTableViewCell.xib in Resources */,
 				5EE908471F5D46C900FD56ED /* LaunchScreen.storyboard in Resources */,
+				5ED88D201F6A843B0082B2FA /* CustomMarkerWindow.xib in Resources */,
 				5ED88D0E1F69527F0082B2FA /* MapViewController.xib in Resources */,
 				5EE908441F5D46C900FD56ED /* Assets.xcassets in Resources */,
 				5EE9083F1F5D46C900FD56ED /* Main.storyboard in Resources */,
@@ -764,6 +771,7 @@
 				5EE908421F5D46C900FD56ED /* WeatherApp.xcdatamodeld in Sources */,
 				5E42A6711F62AD62005FE2E9 /* FakeAppDelegate.swift in Sources */,
 				5EE908721F5D4A9E00FD56ED /* HttpHandler.swift in Sources */,
+				5ED88D221F6A84CE0082B2FA /* CustomMarkerWindow.swift in Sources */,
 				5E1354861F6676ED00143ABF /* ForecastDataStringsProvider.swift in Sources */,
 				5EF0DB3B1F600E6400946681 /* ForecastsTableViewCell.swift in Sources */,
 				5ED88D1E1F6A6A4E0082B2FA /* MapManager.swift in Sources */,

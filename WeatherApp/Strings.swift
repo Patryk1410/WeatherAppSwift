@@ -30,6 +30,7 @@ let mainStoryboardName: String = "Main"
 //MARK: Xib names
 let forecastChartViewControllerName: String = "ForecastChartViewController"
 let mapViewControllerName: String = "MapViewController"
+let customMarkerWindowName: String = "CustomMarkerWindow"
 
 //MARK: View controllers identifiers
 let forecastTableViewControllerIdentifier: String = "ForecastVC"
