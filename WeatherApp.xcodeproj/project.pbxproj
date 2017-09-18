@@ -51,6 +51,8 @@
 		5ED88D221F6A84CE0082B2FA /* CustomMarkerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D211F6A84CE0082B2FA /* CustomMarkerWindow.swift */; };
 		5ED88D251F6AAA250082B2FA /* MapManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D231F6AA9DC0082B2FA /* MapManagerSpec.swift */; };
 		5ED88D271F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D261F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift */; };
+		5ED88D2B1F6FB8D90082B2FA /* MarkerInfoWindowBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D2A1F6FB8D90082B2FA /* MarkerInfoWindowBuilder.swift */; };
+		5ED88D2E1F6FB9D40082B2FA /* CustomMarkerWindowTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D2D1F6FB9D40082B2FA /* CustomMarkerWindowTemplate.swift */; };
 		5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */; };
 		5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908391F5D46C900FD56ED /* AppDelegate.swift */; };
 		5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9083B1F5D46C900FD56ED /* ForecastsTableViewController.swift */; };
@@ -135,6 +137,8 @@
 		5ED88D211F6A84CE0082B2FA /* CustomMarkerWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMarkerWindow.swift; sourceTree = "<group>"; };
 		5ED88D231F6AA9DC0082B2FA /* MapManagerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapManagerSpec.swift; sourceTree = "<group>"; };
 		5ED88D261F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeMapManagerDelegate.swift; sourceTree = "<group>"; };
+		5ED88D2A1F6FB8D90082B2FA /* MarkerInfoWindowBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerInfoWindowBuilder.swift; sourceTree = "<group>"; };
+		5ED88D2D1F6FB9D40082B2FA /* CustomMarkerWindowTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMarkerWindowTemplate.swift; sourceTree = "<group>"; };
 		5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		5EE908361F5D46C900FD56ED /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE908391F5D46C900FD56ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 				5ED88D231F6AA9DC0082B2FA /* MapManagerSpec.swift */,
 				5ED88CF51F67D26B0082B2FA /* DateValueFormatter.swift */,
 				5ED88CF71F67DFF90082B2FA /* TemperatureValueFormatter.swift */,
+				5ED88D2A1F6FB8D90082B2FA /* MarkerInfoWindowBuilder.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -290,9 +295,8 @@
 		5ED88CF91F67F2D50082B2FA /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				5ED88D2C1F6FB9810082B2FA /* CustomMarkerInfoWindows */,
 				5ED88CFA1F67F2F00082B2FA /* WeatherChart.swift */,
-				5ED88D1F1F6A843B0082B2FA /* CustomMarkerWindow.xib */,
-				5ED88D211F6A84CE0082B2FA /* CustomMarkerWindow.swift */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -318,6 +322,16 @@
 				5E1354851F6676ED00143ABF /* ForecastDataStringsProvider.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		5ED88D2C1F6FB9810082B2FA /* CustomMarkerInfoWindows */ = {
+			isa = PBXGroup;
+			children = (
+				5ED88D1F1F6A843B0082B2FA /* CustomMarkerWindow.xib */,
+				5ED88D211F6A84CE0082B2FA /* CustomMarkerWindow.swift */,
+				5ED88D2D1F6FB9D40082B2FA /* CustomMarkerWindowTemplate.swift */,
+			);
+			name = CustomMarkerInfoWindows;
 			sourceTree = "<group>";
 		};
 		5EE9082D1F5D46C900FD56ED = {
@@ -786,6 +800,7 @@
 				5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */,
 				5ED88D0D1F69527F0082B2FA /* MapViewController.swift in Sources */,
 				5ED88D1A1F6A67920082B2FA /* DataObject.swift in Sources */,
+				5ED88D2B1F6FB8D90082B2FA /* MarkerInfoWindowBuilder.swift in Sources */,
 				5EE908701F5D48A700FD56ED /* HttpHandlerError.swift in Sources */,
 				5E4FC5FB1F5D80150095A124 /* WeatherRequest.swift in Sources */,
 				5E42A6551F615015005FE2E9 /* TableViewManager.swift in Sources */,
@@ -808,6 +823,7 @@
 				5EE9086C1F5D47C500FD56ED /* CompletionStatus.swift in Sources */,
 				5ED88D131F696B0D0082B2FA /* MapProvider.swift in Sources */,
 				5EF0DB381F600C8E00946681 /* ForecastTableViewController.swift in Sources */,
+				5ED88D2E1F6FB9D40082B2FA /* CustomMarkerWindowTemplate.swift in Sources */,
 				5ED88CFD1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,14 +9,12 @@
 import UIKit
 import GoogleMaps
 
-class CustomMarkerWindow: UIView {
+class CustomMarkerWindow: CustomMarkerWindowTemplate {
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     
     var selectedMarker: GMSMarker?
-    
-    weak var mapDelegate: MapManagerDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,7 +32,7 @@ class CustomMarkerWindow: UIView {
         return customInfoWindow
     }
     
-    func loadData(marker: GMSMarker) {
+    override func loadData(marker: GMSMarker) {
         self.selectedMarker = marker
         guard let forecastData = marker.userData as? ForecastData else {
             return

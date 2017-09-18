@@ -40,18 +40,6 @@ class MapManagerSpec: QuickSpec {
                     expect(sut.mapView).toNot(beNil())
                 })
                 
-                it("should have customMarkerWindow that is not nil", closure: {
-                    expect(sut.customMarkerWindow).toNot(beNil())
-                })
-                
-                it("should have customMarkerWindow with not nil delegate", closure: {
-                    expect(sut.customMarkerWindow?.mapDelegate).toNot(beNil())
-                })
-                
-                it("should have the same delegate object as customMarkerWindow", closure: {
-                    expect(sut.delegate === sut.customMarkerWindow?.mapDelegate).to(beTrue())
-                })
-                
                 it("should have currentMarker that is not nil", closure: {
                     expect(sut.currentMarker).toNot(beNil())
                 })
@@ -82,14 +70,18 @@ class MapManagerSpec: QuickSpec {
                 
                 describe("Tapping at a location while marker window is displayed", {
                     
+                    var view: CustomMarkerWindowTemplate!
+                    
                     beforeEach {
-                        sut.mapView!.addSubview(sut.customMarkerWindow!)
                         let location = CLLocationCoordinate2D(latitude: 48.85, longitude: 2.35)
+                        let marker = GMSMarker(position: location)
+                        view = MarkerInfoWindowBuilder.instance.build(marker: marker)
+                        sut.mapView!.addSubview(view)
                         sut.mapView(sut.mapView!, didTapAt: location)
                     }
                     
                     it("should dismiss marker window", closure: {
-                        expect(sut.mapView?.subviews).toNot(contain(sut.customMarkerWindow!))
+                        expect(sut.mapView?.subviews).toNot(contain(view))
                     })
                 })
                 

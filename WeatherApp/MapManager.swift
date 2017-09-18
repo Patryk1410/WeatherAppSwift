@@ -27,7 +27,6 @@ class MapManager: NSObject, GMSMapViewDelegate {
     var markers: [GMSMarker] = []
     var currentMarker: GMSMarker?
     var mapView: GMSMapView?
-    var customMarkerWindow: CustomMarkerWindow?
     
     func initializeMap() {
         let location = CLLocationCoordinate2D(latitude: 52.23, longitude: 21.01)
@@ -35,8 +34,7 @@ class MapManager: NSObject, GMSMapViewDelegate {
         self.mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         self.mapView?.delegate = self
         self.mapView?.isMyLocationEnabled = true
-        self.customMarkerWindow = CustomMarkerWindow.loadView()
-        self.customMarkerWindow?.mapDelegate = delegate
+//        self.customMarkerWindow = CustomMarkerWindow.loadView()
         
         // Creates a marker in the center of the map.
         self.currentMarker = GMSMarker()
@@ -48,8 +46,8 @@ class MapManager: NSObject, GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        if let customMarkerWindow = self.customMarkerWindow, let cond = self.mapView?.subviews.contains(customMarkerWindow), cond  {
-            customMarkerWindow.removeFromSuperview()
+        if self.isInfoWindowBeingDisplayed()  {
+            self.hideInfoWindow()
         } else {
             let marker = GMSMarker()
             marker.position = coordinate
@@ -61,6 +59,10 @@ class MapManager: NSObject, GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        if self.isInfoWindowBeingDisplayed() {
+            self.hideInfoWindow()
+        }
+        
         self.currentMarker = marker
         
         let position = marker.position
@@ -73,14 +75,13 @@ class MapManager: NSObject, GMSMapViewDelegate {
         let camera = GMSCameraUpdate.setTarget(newPoint)
         self.mapView?.animate(with: camera)
         
-        guard let marker = self.currentMarker else {
+        guard let marker = self.currentMarker,
+        let window = MarkerInfoWindowBuilder.instance.build(marker: marker) else {
             return false
         }
-        self.customMarkerWindow?.loadData(marker: marker)
-        self.customMarkerWindow?.center = mapView.projection.point(for: position)
-        if let customMarkerWindow = self.customMarkerWindow {
-            self.mapView?.addSubview(customMarkerWindow)
-        }
+        window.mapDelegate = delegate
+        window.center = mapView.projection.point(for: position)
+        self.mapView?.addSubview(window)
         
         return false
     }
@@ -94,8 +95,9 @@ class MapManager: NSObject, GMSMapViewDelegate {
             return
         }
         let position = currentMarker.position
-        self.customMarkerWindow?.center = mapView.projection.point(for: position)
-        self.customMarkerWindow?.center.y -= 88
+        let window = self.getCurrentMarkerWindow()
+        window?.center = mapView.projection.point(for: position)
+        window?.center.y -= 90
     }
     
     func removeMarker(marker: GMSMarker) {
@@ -103,12 +105,35 @@ class MapManager: NSObject, GMSMapViewDelegate {
         markers = markers.filter() {
             $0 != marker
         }
-        if let customMarkerWindow = self.customMarkerWindow, let cond = self.mapView?.subviews.contains(customMarkerWindow), cond  {
-            customMarkerWindow.removeFromSuperview()
+        if self.isInfoWindowBeingDisplayed()  {
+            self.hideInfoWindow()
         }
+        self.currentMarker = nil
     }
     
     func addMarker(marker: GMSMarker) {
         self.markers.append(marker)
+    }
+    
+    func isInfoWindowBeingDisplayed() -> Bool {
+        guard let cond = self.mapView?.subviews.contains(where: { (view) -> Bool in
+            return view.isKind(of: CustomMarkerWindowTemplate.self)
+        }) else {
+            return false
+        }
+        return cond
+    }
+    
+    func hideInfoWindow() {
+        let view = self.mapView?.subviews.filter({ (view) -> Bool in
+            return view.isKind(of: CustomMarkerWindowTemplate.self)
+        }).first
+        view?.removeFromSuperview()
+    }
+    
+    func getCurrentMarkerWindow() -> CustomMarkerWindowTemplate? {
+        return self.mapView?.subviews.filter({ (view) -> Bool in
+            return view.isKind(of: CustomMarkerWindowTemplate.self)
+        }).first as? CustomMarkerWindowTemplate
     }
 }
