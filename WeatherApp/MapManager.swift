@@ -13,7 +13,9 @@ protocol MapManagerDelegate: class {
     
     func didInitializeMap(mapView: GMSMapView?, marker: GMSMarker?)
     
-    func didTapInfoWindow(marker: GMSMarker)
+    func didPressShowDetail(marker: GMSMarker)
+    
+    func didPressDelete(marker: GMSMarker)
     
     func didTapAt(location: CLLocationCoordinate2D)
 }
@@ -34,6 +36,7 @@ class MapManager: NSObject, GMSMapViewDelegate {
         self.mapView?.delegate = self
         self.mapView?.isMyLocationEnabled = true
         self.customMarkerWindow = CustomMarkerWindow.loadView()
+        self.customMarkerWindow?.mapDelegate = delegate
         
         // Creates a marker in the center of the map.
         self.currentMarker = GMSMarker()
@@ -57,10 +60,6 @@ class MapManager: NSObject, GMSMapViewDelegate {
         }
     }
     
-//    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-////        self.delegate?.didTapInfoWindow(marker: marker)
-//    }
-    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         self.currentMarker = marker
         
@@ -74,9 +73,10 @@ class MapManager: NSObject, GMSMapViewDelegate {
         let camera = GMSCameraUpdate.setTarget(newPoint)
         self.mapView?.animate(with: camera)
         
-        let opaqueWhite = UIColor(white: 1, alpha: 0.85)
-        self.customMarkerWindow?.layer.backgroundColor = opaqueWhite.cgColor
-        self.customMarkerWindow?.layer.cornerRadius = 8
+        guard let marker = self.currentMarker else {
+            return false
+        }
+        self.customMarkerWindow?.loadData(marker: marker)
         self.customMarkerWindow?.center = mapView.projection.point(for: position)
         if let customMarkerWindow = self.customMarkerWindow {
             self.mapView?.addSubview(customMarkerWindow)
@@ -95,13 +95,16 @@ class MapManager: NSObject, GMSMapViewDelegate {
         }
         let position = currentMarker.position
         self.customMarkerWindow?.center = mapView.projection.point(for: position)
-        self.customMarkerWindow?.center.y -= 140
+        self.customMarkerWindow?.center.y -= 88
     }
     
     func removeMarker(marker: GMSMarker) {
         marker.map = nil
         markers = markers.filter() {
             $0 != marker
+        }
+        if let customMarkerWindow = self.customMarkerWindow, let cond = self.mapView?.subviews.contains(customMarkerWindow), cond  {
+            customMarkerWindow.removeFromSuperview()
         }
     }
     

@@ -33,12 +33,17 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MapManagerDelegate {
     
+    func didPressDelete(marker: GMSMarker) {
+        self.mapManager?.removeMarker(marker: marker)
+    }
+
+    
     func didTapAt(location: CLLocationCoordinate2D) {
         dataProvider?.location = location
         dataProvider?.requestData()
     }
     
-    func didTapInfoWindow(marker: GMSMarker) {
+    func didPressShowDetail(marker: GMSMarker) {
         guard let data = marker.userData as? ForecastData else {
             return
         }
@@ -60,10 +65,7 @@ extension MapViewController: DataProviderDelegate {
             return
         }
         self.forecastData = data
-        let stringsProvider = ForecastDataStringsProvider(data: data)
         let marker = mapManager?.currentMarker
-        marker?.title = stringsProvider.getLocationString()
-        marker?.snippet = stringsProvider.getCurrentTemperatureString()
         marker?.userData = data
     }
     

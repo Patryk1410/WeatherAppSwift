@@ -112,13 +112,6 @@ class WeatherManagerImplSpec: QuickSpec {
                     })
                 })
             })
-           
-            
-            
-            
-           
-            
-            
         }
     }
 }

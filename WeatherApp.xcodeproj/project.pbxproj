@@ -49,6 +49,8 @@
 		5ED88D1E1F6A6A4E0082B2FA /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D1D1F6A6A4E0082B2FA /* MapManager.swift */; };
 		5ED88D201F6A843B0082B2FA /* CustomMarkerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED88D1F1F6A843B0082B2FA /* CustomMarkerWindow.xib */; };
 		5ED88D221F6A84CE0082B2FA /* CustomMarkerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D211F6A84CE0082B2FA /* CustomMarkerWindow.swift */; };
+		5ED88D251F6AAA250082B2FA /* MapManagerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D231F6AA9DC0082B2FA /* MapManagerSpec.swift */; };
+		5ED88D271F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D261F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift */; };
 		5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */; };
 		5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908391F5D46C900FD56ED /* AppDelegate.swift */; };
 		5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9083B1F5D46C900FD56ED /* ForecastsTableViewController.swift */; };
@@ -131,6 +133,8 @@
 		5ED88D1D1F6A6A4E0082B2FA /* MapManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		5ED88D1F1F6A843B0082B2FA /* CustomMarkerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomMarkerWindow.xib; sourceTree = "<group>"; };
 		5ED88D211F6A84CE0082B2FA /* CustomMarkerWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMarkerWindow.swift; sourceTree = "<group>"; };
+		5ED88D231F6AA9DC0082B2FA /* MapManagerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapManagerSpec.swift; sourceTree = "<group>"; };
+		5ED88D261F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeMapManagerDelegate.swift; sourceTree = "<group>"; };
 		5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		5EE908361F5D46C900FD56ED /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE908391F5D46C900FD56ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 				5E42A6661F628D18005FE2E9 /* FakeForecastUnboxer.swift */,
 				5E42A66B1F628EF1005FE2E9 /* FakeResponses.swift */,
 				5ED88D051F693C020082B2FA /* FakeNavigationController.swift */,
+				5ED88D261F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift */,
 			);
 			path = Fakes;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				5EF0DB2F1F5FDF7300946681 /* ForecastUnboxer.swift */,
 				5E42A6541F615015005FE2E9 /* TableViewManager.swift */,
 				5ED88D1D1F6A6A4E0082B2FA /* MapManager.swift */,
+				5ED88D231F6AA9DC0082B2FA /* MapManagerSpec.swift */,
 				5ED88CF51F67D26B0082B2FA /* DateValueFormatter.swift */,
 				5ED88CF71F67DFF90082B2FA /* TemperatureValueFormatter.swift */,
 			);
@@ -813,10 +819,12 @@
 				5E42A65C1F6280E2005FE2E9 /* FirstSpec.swift in Sources */,
 				5E42A6671F628D18005FE2E9 /* FakeForecastUnboxer.swift in Sources */,
 				5E42A6621F628603005FE2E9 /* WeatherManagerImplSpec.swift in Sources */,
+				5ED88D251F6AAA250082B2FA /* MapManagerSpec.swift in Sources */,
 				5E42A66C1F628EF1005FE2E9 /* FakeResponses.swift in Sources */,
 				5ED88D041F6917B60082B2FA /* ViewControllerDispatcherImplSpec.swift in Sources */,
 				5E42A6651F6287B5005FE2E9 /* FakeHttpHandler.swift in Sources */,
 				5ED88D061F693C020082B2FA /* FakeNavigationController.swift in Sources */,
+				5ED88D271F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
