@@ -16,7 +16,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let beaconManager = BeaconManager()
+    var beaconManager: BeaconManager!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         print("App did finish launching")
@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Initializing Estimoto
         ESTConfig.setupAppID(locationApiId, andAppToken: locationApiToken)
+        self.beaconManager = BeaconManager()
         
         //Requesting permission for notifications
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {(accepted, error) in
@@ -58,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        print("App did enter backgroung")
+        print("App did enter background")
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
