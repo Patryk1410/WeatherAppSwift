@@ -29,8 +29,10 @@ let mainStoryboardName: String = "Main"
 
 //MARK: Xib names
 let forecastChartViewControllerName: String = "ForecastChartViewController"
+let beaconViewControllerName: String = "BeaconViewController"
 let mapViewControllerName: String = "MapViewController"
 let customMarkerWindowName: String = "CustomMarkerWindow"
+let lodzCustomMarkerWindowName: String = "LodzCustomMarkerWindow"
 
 //MARK: View controllers identifiers
 let forecastTableViewControllerIdentifier: String = "ForecastVC"
@@ -52,6 +54,10 @@ let farenheit = "imperial"
 
 //MARK: Map API
 let mapApiKey = "AIzaSyCKb0IlbdpocPe3oWeb8qqWTt86AxITfdQ"
+
+//MARK: Location API
+let locationApiId: String = "weatherapp-5aq"
+let locationApiToken: String = "0b0bb3dc9486fa357325eea42378b19c"
 
 //MARK: Unboxing Keys
 let weatherRecordsKey = "list"
@@ -86,3 +92,4 @@ let weatherRecordsDataKey: String = "weather_records"
 //MARK: Tab titles
 let forecastsTabTitle: String = "Forecasts"
 let mapTabTitle: String = "Map"
+let beaconTabTitle: String = "Beacon"

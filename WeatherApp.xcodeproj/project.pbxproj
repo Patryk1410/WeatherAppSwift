@@ -53,6 +53,11 @@
 		5ED88D271F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D261F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift */; };
 		5ED88D2B1F6FB8D90082B2FA /* MarkerInfoWindowBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D2A1F6FB8D90082B2FA /* MarkerInfoWindowBuilder.swift */; };
 		5ED88D2E1F6FB9D40082B2FA /* CustomMarkerWindowTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D2D1F6FB9D40082B2FA /* CustomMarkerWindowTemplate.swift */; };
+		5ED88D321F6FCBEC0082B2FA /* LodzCustomMarkerWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D311F6FCBEC0082B2FA /* LodzCustomMarkerWindow.swift */; };
+		5ED88D341F6FCBFF0082B2FA /* LodzCustomMarkerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED88D331F6FCBFF0082B2FA /* LodzCustomMarkerWindow.xib */; };
+		5ED88D371F6FD4AF0082B2FA /* MarkerInfoWindowBuilderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D351F6FD4A30082B2FA /* MarkerInfoWindowBuilderSpec.swift */; };
+		5ED88D3A1F6FDC4A0082B2FA /* BeaconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D381F6FDC4A0082B2FA /* BeaconViewController.swift */; };
+		5ED88D3B1F6FDC4A0082B2FA /* BeaconViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ED88D391F6FDC4A0082B2FA /* BeaconViewController.xib */; };
 		5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */; };
 		5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908391F5D46C900FD56ED /* AppDelegate.swift */; };
 		5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9083B1F5D46C900FD56ED /* ForecastsTableViewController.swift */; };
@@ -139,6 +144,12 @@
 		5ED88D261F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeMapManagerDelegate.swift; sourceTree = "<group>"; };
 		5ED88D2A1F6FB8D90082B2FA /* MarkerInfoWindowBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerInfoWindowBuilder.swift; sourceTree = "<group>"; };
 		5ED88D2D1F6FB9D40082B2FA /* CustomMarkerWindowTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMarkerWindowTemplate.swift; sourceTree = "<group>"; };
+		5ED88D311F6FCBEC0082B2FA /* LodzCustomMarkerWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LodzCustomMarkerWindow.swift; sourceTree = "<group>"; };
+		5ED88D331F6FCBFF0082B2FA /* LodzCustomMarkerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LodzCustomMarkerWindow.xib; sourceTree = "<group>"; };
+		5ED88D351F6FD4A30082B2FA /* MarkerInfoWindowBuilderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerInfoWindowBuilderSpec.swift; sourceTree = "<group>"; };
+		5ED88D381F6FDC4A0082B2FA /* BeaconViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconViewController.swift; sourceTree = "<group>"; };
+		5ED88D391F6FDC4A0082B2FA /* BeaconViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeaconViewController.xib; sourceTree = "<group>"; };
+		5ED88D3D1F6FEC470082B2FA /* WeatherApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		5EE908361F5D46C900FD56ED /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE908391F5D46C900FD56ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -234,6 +245,7 @@
 				5ED88CEF1F66CC560082B2FA /* ForecastChartViewController.swift */,
 				5ED88D0B1F69527F0082B2FA /* MapViewController.swift */,
 				5ED88D0F1F6952A10082B2FA /* MainTabBarViewController.swift */,
+				5ED88D381F6FDC4A0082B2FA /* BeaconViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -279,6 +291,7 @@
 				5ED88CF51F67D26B0082B2FA /* DateValueFormatter.swift */,
 				5ED88CF71F67DFF90082B2FA /* TemperatureValueFormatter.swift */,
 				5ED88D2A1F6FB8D90082B2FA /* MarkerInfoWindowBuilder.swift */,
+				5ED88D351F6FD4A30082B2FA /* MarkerInfoWindowBuilderSpec.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -286,6 +299,7 @@
 		5ED88CF31F66CC6A0082B2FA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5ED88D391F6FDC4A0082B2FA /* BeaconViewController.xib */,
 				5ED88CF01F66CC560082B2FA /* ForecastChartViewController.xib */,
 				5ED88D0C1F69527F0082B2FA /* MapViewController.xib */,
 			);
@@ -330,6 +344,8 @@
 				5ED88D1F1F6A843B0082B2FA /* CustomMarkerWindow.xib */,
 				5ED88D211F6A84CE0082B2FA /* CustomMarkerWindow.swift */,
 				5ED88D2D1F6FB9D40082B2FA /* CustomMarkerWindowTemplate.swift */,
+				5ED88D331F6FCBFF0082B2FA /* LodzCustomMarkerWindow.xib */,
+				5ED88D311F6FCBEC0082B2FA /* LodzCustomMarkerWindow.swift */,
 			);
 			name = CustomMarkerInfoWindows;
 			sourceTree = "<group>";
@@ -373,6 +389,7 @@
 				5EE908481F5D46C900FD56ED /* Info.plist */,
 				5EE908401F5D46C900FD56ED /* WeatherApp.xcdatamodeld */,
 				5E1354801F66741400143ABF /* Strings.swift */,
+				5ED88D3D1F6FEC470082B2FA /* WeatherApp-Bridging-Header.h */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -544,7 +561,13 @@
 					5EE908351F5D46C900FD56ED = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = T87VL83V5D;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					5EE9084C1F5D46CA00FD56ED = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -586,7 +609,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ED88D341F6FCBFF0082B2FA /* LodzCustomMarkerWindow.xib in Resources */,
 				5ED88CF21F66CC560082B2FA /* ForecastChartViewController.xib in Resources */,
+				5ED88D3B1F6FDC4A0082B2FA /* BeaconViewController.xib in Resources */,
 				5E42A6591F6170C5005FE2E9 /* ForecastTableViewCell.xib in Resources */,
 				5E42A6571F61508E005FE2E9 /* ForecastsTableViewCell.xib in Resources */,
 				5EE908471F5D46C900FD56ED /* LaunchScreen.storyboard in Resources */,
@@ -815,12 +840,14 @@
 				5E42A6601F6285E5005FE2E9 /* WeatherManagerImpl.swift in Sources */,
 				5E13548A1F667D7F00143ABF /* WeatherRecordData.swift in Sources */,
 				5EE9086E1F5D480100FD56ED /* HttpHandlerRequest.swift in Sources */,
+				5ED88D3A1F6FDC4A0082B2FA /* BeaconViewController.swift in Sources */,
 				5E1354901F667F0100143ABF /* ForecastsProvider.swift in Sources */,
 				5ED88CF61F67D26B0082B2FA /* DateValueFormatter.swift in Sources */,
 				5ED88CF11F66CC560082B2FA /* ForecastChartViewController.swift in Sources */,
 				5E13548C1F667DC400143ABF /* WeatherRecordDataStringsProvider.swift in Sources */,
 				5ED88CFB1F67F2F00082B2FA /* WeatherChart.swift in Sources */,
 				5EE9086C1F5D47C500FD56ED /* CompletionStatus.swift in Sources */,
+				5ED88D321F6FCBEC0082B2FA /* LodzCustomMarkerWindow.swift in Sources */,
 				5ED88D131F696B0D0082B2FA /* MapProvider.swift in Sources */,
 				5EF0DB381F600C8E00946681 /* ForecastTableViewController.swift in Sources */,
 				5ED88D2E1F6FB9D40082B2FA /* CustomMarkerWindowTemplate.swift in Sources */,
@@ -840,6 +867,7 @@
 				5ED88D041F6917B60082B2FA /* ViewControllerDispatcherImplSpec.swift in Sources */,
 				5E42A6651F6287B5005FE2E9 /* FakeHttpHandler.swift in Sources */,
 				5ED88D061F693C020082B2FA /* FakeNavigationController.swift in Sources */,
+				5ED88D371F6FD4AF0082B2FA /* MarkerInfoWindowBuilderSpec.swift in Sources */,
 				5ED88D271F6AAA9A0082B2FA /* FakeMapManagerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -987,6 +1015,7 @@
 			baseConfigurationReference = 5AD53C4BC232C82C2734B276 /* Pods-WeatherApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T87VL83V5D;
@@ -996,6 +1025,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pk-fdt.WeatherApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "WeatherApp/WeatherApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1005,6 +1036,7 @@
 			baseConfigurationReference = 5CD3C08510D77EE4AAF649D9 /* Pods-WeatherApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T87VL83V5D;
@@ -1014,6 +1046,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pk-fdt.WeatherApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "WeatherApp/WeatherApp-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -1065,6 +1098,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pk-fdt.WeatherAppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = WeatherApp;
 			};
@@ -1080,6 +1114,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pk-fdt.WeatherAppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = WeatherApp;
 			};

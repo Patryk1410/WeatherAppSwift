@@ -12,6 +12,7 @@ import GoogleMaps
 class CustomMarkerWindowTemplate: UIView {
     
     weak var mapDelegate: MapManagerDelegate?
+    var selectedMarker: GMSMarker?
     
     func loadData(marker: GMSMarker) {
         fatalError("Error: invoked function loadData from abstract class CustomMarkerWindowTemplate")

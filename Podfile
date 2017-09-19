@@ -11,6 +11,7 @@ target 'WeatherApp' do
     pod 'SDWebImage', '~> 3.8'
     pod 'Charts'
     pod 'GoogleMaps'
+    pod 'EstimoteSDK'
 
   target 'WeatherAppTests' do
     inherit! :search_paths

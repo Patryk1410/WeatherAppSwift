@@ -23,7 +23,11 @@ class MainTabBarViewController: UITabBarController {
         let mapItem = UITabBarItem(title: mapTabTitle, image: nil, selectedImage: nil)
         mapTab.tabBarItem = mapItem
         
-        self.viewControllers = [forecastTab, mapTab]
+        let beaconTab = ViewControllerDispatcherImpl.instance.getBeaconViewController()
+        let beaconItem = UITabBarItem(title: beaconTabTitle, image: nil, selectedImage: nil)
+        beaconTab.tabBarItem = beaconItem
+        
+        self.viewControllers = [forecastTab, mapTab, beaconTab]
     }
 }
 

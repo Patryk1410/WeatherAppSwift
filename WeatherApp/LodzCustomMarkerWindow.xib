@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view alpha="0.84999999999999998" contentMode="scaleToFill" id="DSX-15-gQC" customClass="LodzCustomMarkerWindow" customModule="WeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMe-PY-Xfc">
+                    <rect key="frame" x="0.0" y="50" width="250" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSJ-ld-7yH">
+                    <rect key="frame" x="0.0" y="76" width="250" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uop-xm-pmc">
+                    <rect key="frame" x="20" y="110" width="87" height="30"/>
+                    <state key="normal" title="Show details"/>
+                    <connections>
+                        <action selector="didPressShowDetails:" destination="DSX-15-gQC" eventType="touchUpInside" id="1YM-7e-4Xb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaN-JF-jQI">
+                    <rect key="frame" x="175" y="110" width="45" height="30"/>
+                    <state key="normal" title="Delete">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didPressDelete:" destination="DSX-15-gQC" eventType="touchUpInside" id="FX6-Hp-nzY"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special Lodz Window" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBE-mi-HwW">
+                    <rect key="frame" x="0.0" y="11" width="250" height="25.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <color key="textColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.8676244405987017" green="1" blue="0.97797382234061081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="OSJ-ld-7yH" firstAttribute="top" secondItem="iMe-PY-Xfc" secondAttribute="bottom" constant="2" id="5gi-XP-EYb"/>
+                <constraint firstAttribute="bottom" secondItem="Uop-xm-pmc" secondAttribute="bottom" constant="10" id="5x9-bN-Do6"/>
+                <constraint firstAttribute="trailing" secondItem="iMe-PY-Xfc" secondAttribute="trailing" id="8a2-Uf-UP4"/>
+                <constraint firstItem="OSJ-ld-7yH" firstAttribute="leading" secondItem="DSX-15-gQC" secondAttribute="leading" id="8hd-Fg-B8y"/>
+                <constraint firstAttribute="trailing" secondItem="PBE-mi-HwW" secondAttribute="trailing" id="MtU-fC-Dbg"/>
+                <constraint firstItem="iMe-PY-Xfc" firstAttribute="leading" secondItem="DSX-15-gQC" secondAttribute="leading" id="PrE-cb-1HM"/>
+                <constraint firstItem="PBE-mi-HwW" firstAttribute="leading" secondItem="DSX-15-gQC" secondAttribute="leading" id="QbG-98-evL"/>
+                <constraint firstItem="Uop-xm-pmc" firstAttribute="leading" secondItem="DSX-15-gQC" secondAttribute="leading" constant="20" id="VWm-mQ-LLj"/>
+                <constraint firstAttribute="trailing" secondItem="OSJ-ld-7yH" secondAttribute="trailing" id="XUR-NG-gkV"/>
+                <constraint firstAttribute="bottom" secondItem="KaN-JF-jQI" secondAttribute="bottom" constant="10" id="d6m-Gy-hxt"/>
+                <constraint firstItem="PBE-mi-HwW" firstAttribute="top" secondItem="DSX-15-gQC" secondAttribute="top" constant="11" id="r03-qD-QaM"/>
+                <constraint firstItem="iMe-PY-Xfc" firstAttribute="top" secondItem="DSX-15-gQC" secondAttribute="top" constant="50" id="u40-RS-xJs"/>
+                <constraint firstAttribute="trailing" secondItem="KaN-JF-jQI" secondAttribute="trailing" constant="30" id="xND-64-P0k"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="locationLabel" destination="iMe-PY-Xfc" id="fTq-q9-3ou"/>
+                <outlet property="temperatureLabel" destination="OSJ-ld-7yH" id="Xua-Lg-teJ"/>
+            </connections>
+            <point key="canvasLocation" x="-11" y="-5"/>
+        </view>
+    </objects>
+</document>

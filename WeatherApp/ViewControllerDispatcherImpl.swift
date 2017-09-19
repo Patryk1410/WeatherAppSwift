@@ -46,6 +46,10 @@ class ViewControllerDispatcherImpl: NSObject, ViewControllerDispatcher {
         return MapViewController(nibName: mapViewControllerName, bundle: nil)
     }
     
+    func getBeaconViewController() -> BeaconViewController {
+        return BeaconViewController(nibName: beaconViewControllerName, bundle: nil)
+    }
+    
     /* Never forgetti
     func pushFromStoryboard(_ parent: UIViewController, data: [String: Any?], destinationViewControllerIdentifier: String) {
         let storyboard: UIStoryboard = UIStoryboard.init(name: mainStoryboardName, bundle: nil)
