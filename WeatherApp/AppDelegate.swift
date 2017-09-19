@@ -13,11 +13,10 @@ import GoogleMaps
 import UserNotifications
 
 //@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    let beaconManager = ESTBeaconManager()
+    let beaconManager = BeaconManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         print("App did finish launching")
@@ -41,10 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
         
         //Initializing Estimoto
         ESTConfig.setupAppID(locationApiId, andAppToken: locationApiToken)
-        self.beaconManager.delegate = self
-        self.beaconManager.requestAlwaysAuthorization()
-//        self.beaconManager.startMonitoring(for: CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, identifier: "monitored region"))
-        self.beaconManager.startMonitoring(for: CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, major: 51815, minor: 7365, identifier: "monitored region"))
         
         //Requesting permission for notifications
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {(accepted, error) in
@@ -82,20 +77,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate 
         print("App will terminate")
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-    }
-    
-    func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
-        print("Entered region") //works, continue on
-        let content = UNMutableNotificationContent()
-        content.title = "test"
-        content.body = "test"
-        let notification = UNNotificationRequest(identifier: "notificationIdentifier", content: content, trigger: nil)
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        UNUserNotificationCenter.current().add(notification, withCompletionHandler: nil)
-    }
-    
-    func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
-        print("Left region: \(region.major ?? 0)")
     }
 }
 
