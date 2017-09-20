@@ -25,15 +25,13 @@ class BeaconManager: NSObject, ESTBeaconManagerDelegate {
         self.estBeaconManager.requestAlwaysAuthorization()
         self.estBeaconManager.startMonitoring(for: CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, major: 51815, minor: 7365, identifier: "monitored region"))
         NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
-        //delete later
-        self.currentRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, major: 111, minor: 222, identifier: "testid")
     }
     
     func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
         print("Entered region")
-//        self.registerBackgroundTask()
-//        self.currentRegion = region
-//        LocationManager.instance.fetchLocation(delegate: self)
+        self.registerBackgroundTask()
+        self.currentRegion = region
+        LocationManager.instance.fetchLocation(delegate: self)
     }
     
     func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
