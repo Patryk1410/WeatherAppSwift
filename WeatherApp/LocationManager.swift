@@ -23,7 +23,8 @@ class LocationManager: CLLocationManager {
         self.delegate = delegate
         if CLLocationManager.locationServicesEnabled() {
             self.desiredAccuracy = kCLLocationAccuracyBest
-            self.startUpdatingLocation()
+//            self.startUpdatingLocation()
+            self.requestLocation()
         }
     }
 }

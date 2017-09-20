@@ -104,11 +104,15 @@ extension BeaconManager: CLLocationManagerDelegate {
         if !manager.isKind(of: LocationManager.self) {
             return
         }
-        guard let location: CLLocationCoordinate2D = manager.location?.coordinate else {
+        guard let location: CLLocationCoordinate2D = locations.last?.coordinate else {
             self.endBackgroundTask()
             return
         }
         print("locations = \(location.latitude) \(location.longitude)")
         self.fetchWeather(location: location)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error occurred while fetching location")
     }
 }
