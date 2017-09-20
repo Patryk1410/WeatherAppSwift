@@ -26,7 +26,10 @@ class ForecastsProvider: DataProviderProtocol {
                 self.delegate?.didFinishFetchingWithError(nil)
                 return
             }
-            let data = forecasts.map({ (forecast) -> ForecastData in
+            let filteredForecasts = forecasts.filter() { (forecast) in
+                return forecast.beaconRecords?.count == 0
+            }
+            let data = filteredForecasts.map({ (forecast) -> ForecastData in
                 return ForecastData(forecast: forecast)
             })
             
