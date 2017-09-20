@@ -10,9 +10,11 @@ import UIKit
 
 class BeaconViewController: UIViewController {
 
+    @IBOutlet weak var forecastsTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 
 }

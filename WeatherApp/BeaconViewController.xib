@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeaconViewController" customModule="WeatherApp" customModuleProvider="target">
             <connections>
+                <outlet property="forecastsTableView" destination="zYj-hQ-8ed" id="mGY-RG-JsO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,13 +20,18 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zYj-hQ-8ed">
-                    <rect key="frame" x="67" y="280" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zYj-hQ-8ed">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="zYj-hQ-8ed" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Lwc-g2-nTB"/>
+                <constraint firstAttribute="bottom" secondItem="zYj-hQ-8ed" secondAttribute="bottom" id="RsX-uT-aao"/>
+                <constraint firstAttribute="trailing" secondItem="zYj-hQ-8ed" secondAttribute="trailing" id="WWn-Ea-HNd"/>
+                <constraint firstItem="zYj-hQ-8ed" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hfV-ea-Mjh"/>
+            </constraints>
         </view>
     </objects>
 </document>

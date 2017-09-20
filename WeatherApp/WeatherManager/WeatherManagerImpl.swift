@@ -89,10 +89,21 @@ class WeatherManagerImpl: WeatherManager {
                     return
                 }
                 do {
-                    let forecast = try self.forecastUnboxer.unbox(dictionary: result, managedContext: AERecord.Context.default)
-                    DispatchQueue.main.async {
-                        completion(forecast, nil)
+                    let coreDataContext = AERecord.Context.background
+                    coreDataContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                    
+                    let from = ((result["list"] as? [Any?])?.first as? [String: Any?])?["dt_txt"] as? String
+                    let pred = NSPredicate(format: "from == %@", from ?? "")
+                    
+                    if (ForecastMO.count(with: pred)) > 0 {
+                        ForecastMO.deleteAll(with: pred)
                     }
+                    
+                    let forecast = try self.forecastUnboxer.unbox(dictionary: result, managedContext: coreDataContext)
+                    AERecord.saveAndWait(context: coreDataContext)
+//                    DispatchQueue.main.async {
+                        completion(forecast, nil)
+//                    }
                 } catch {
                     print("Error occurred while unboxing: \(error)")
                     completion(nil, WeatherManagerError.unboxingFailed)
