@@ -13,5 +13,5 @@ import CoreLocation
 protocol WeatherManager {
     func fetchWeather(location: CLLocationCoordinate2D, completion:@escaping (_ forecast: [ForecastMO]?, _ error: Error?)->())
     
-    func fetchOneForecast(location: CLLocationCoordinate2D, completion:@escaping (_ forecast: ForecastMO?, _ error: Error?) -> ())
+    func fetchOneForecast(location: CLLocationCoordinate2D, shouldUpdateForecast: Bool, completion:@escaping (_ forecast: ForecastMO?, _ error: Error?) -> ())
 }

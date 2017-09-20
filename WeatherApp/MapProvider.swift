@@ -16,7 +16,7 @@ class MapProvider: DataProviderProtocol {
     var location: CLLocationCoordinate2D!
     
     func requestData() {
-        self.weatherManager.fetchOneForecast(location:location, completion: { [unowned self] (forecast, error) in
+        self.weatherManager.fetchOneForecast(location:location, shouldUpdateForecast: true, completion: { [unowned self] (forecast, error) in
             
             guard let forecast = forecast else {
                 self.delegate?.didFinishFetchingWithError(nil)

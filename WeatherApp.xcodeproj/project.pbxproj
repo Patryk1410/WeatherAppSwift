@@ -61,6 +61,7 @@
 		5ED88D421F7103B70082B2FA /* BeaconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D411F7103B70082B2FA /* BeaconManager.swift */; };
 		5ED88D441F71180F0082B2FA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D431F71180F0082B2FA /* LocationManager.swift */; };
 		5ED88D461F7135100082B2FA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D451F7135100082B2FA /* NotificationManager.swift */; };
+		5ED88D491F725F360082B2FA /* ManagedObjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED88D481F725F360082B2FA /* ManagedObjectBuilder.swift */; };
 		5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */; };
 		5EE9083A1F5D46C900FD56ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE908391F5D46C900FD56ED /* AppDelegate.swift */; };
 		5EE9083C1F5D46C900FD56ED /* ForecastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE9083B1F5D46C900FD56ED /* ForecastsTableViewController.swift */; };
@@ -157,6 +158,7 @@
 		5ED88D431F71180F0082B2FA /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5ED88D451F7135100082B2FA /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		5ED88D471F7142F70082B2FA /* WeatherApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WeatherApp 2.xcdatamodel"; sourceTree = "<group>"; };
+		5ED88D481F725F360082B2FA /* ManagedObjectBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectBuilder.swift; sourceTree = "<group>"; };
 		5EDDCD141F602C02007B7236 /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 		5EE908361F5D46C900FD56ED /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EE908391F5D46C900FD56ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				5EF0DB2F1F5FDF7300946681 /* ForecastUnboxer.swift */,
+				5ED88D481F725F360082B2FA /* ManagedObjectBuilder.swift */,
 				5E42A6541F615015005FE2E9 /* TableViewManager.swift */,
 				5ED88D1D1F6A6A4E0082B2FA /* MapManager.swift */,
 				5ED88D231F6AA9DC0082B2FA /* MapManagerSpec.swift */,
@@ -850,6 +853,7 @@
 				5EF0DB331F5FEF7B00946681 /* WeatherManager.swift in Sources */,
 				5ED88D441F71180F0082B2FA /* LocationManager.swift in Sources */,
 				5E42A6601F6285E5005FE2E9 /* WeatherManagerImpl.swift in Sources */,
+				5ED88D491F725F360082B2FA /* ManagedObjectBuilder.swift in Sources */,
 				5E13548A1F667D7F00143ABF /* WeatherRecordData.swift in Sources */,
 				5EE9086E1F5D480100FD56ED /* HttpHandlerRequest.swift in Sources */,
 				5ED88D3A1F6FDC4A0082B2FA /* BeaconViewController.swift in Sources */,

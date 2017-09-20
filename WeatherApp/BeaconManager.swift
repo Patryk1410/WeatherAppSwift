@@ -41,7 +41,7 @@ class BeaconManager: NSObject, ESTBeaconManagerDelegate {
     }
     
     func fetchWeather(location: CLLocationCoordinate2D) {
-        self.weatherManager.fetchOneForecast(location: location, completion: { [weak self] (forecast, error) in
+        self.weatherManager.fetchOneForecast(location: location, shouldUpdateForecast: false, completion: { [weak self] (forecast, error) in
             guard let region = self?.currentRegion, let forecast = forecast else {
                 self?.endBackgroundTask()
                 return
@@ -53,20 +53,15 @@ class BeaconManager: NSObject, ESTBeaconManagerDelegate {
     }
     
     func createBeaconRecordMO(forecast: ForecastMO) {
-//        guard let context: NSManagedObjectContext = forecast.managedObjectContext else {
-//            self.endBackgroundTask()
-//            return
-//        }
-        let context = AERecord.Context.background
-        let beaconRecord = BeaconRecordMO(context: context)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM hh:mm"
+        let date = Date()
+        _ = ManagedObjectBuilder.instance.buildBeaconRecord(shouldUpdate: false, shouldSave: true, date: formatter.string(from: date), uuid: self.currentRegion?.proximityUUID.description, major: self.currentRegion?.major?.int32Value, minor: self.currentRegion?.minor?.int32Value, forecast: forecast)
         
-        beaconRecord.forecast = context.object(with: forecast.objectID) as! ForecastMO
-        BeaconRecordMO.deleteAll()
-        AERecord.saveAndWait(context: context)
-        beaconRecord.uuid = self.currentRegion?.proximityUUID.description
-        beaconRecord.major = self.currentRegion?.major as! Int32
-        beaconRecord.minor = self.currentRegion?.minor as! Int32
-        AERecord.saveAndWait(context: context)
+//        beaconRecord.forecast = context.object(with: forecast.objectID) as! ForecastMO
+//        BeaconRecordMO.deleteAll()
+//        AERecord.saveAndWait(context: AERecord.Context.background)
+//        AERecord.saveAndWait(context: context)
         print("count of records: \(BeaconRecordMO.count())")
     }
     
@@ -80,6 +75,7 @@ extension BeaconManager {
     
     func registerBackgroundTask() {
         print("Background task started")
+        ManagedObjectBuilder.instance.context = AERecord.Context.background
         self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: { [weak self] in
             print("Error - terminating task")
             self?.endBackgroundTask()
@@ -88,6 +84,7 @@ extension BeaconManager {
     
     func endBackgroundTask() {
         print("Background task ended")
+        ManagedObjectBuilder.instance.context = AERecord.Context.default
         UIApplication.shared.endBackgroundTask(backgroundTask)
         self.backgroundTask = UIBackgroundTaskInvalid
     }
@@ -104,6 +101,9 @@ extension BeaconManager {
 extension BeaconManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if !manager.isKind(of: LocationManager.self) {
+            return
+        }
         guard let location: CLLocationCoordinate2D = manager.location?.coordinate else {
             self.endBackgroundTask()
             return

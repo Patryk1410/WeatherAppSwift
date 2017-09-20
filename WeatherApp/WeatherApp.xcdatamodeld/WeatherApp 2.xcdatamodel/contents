@@ -5,17 +5,14 @@
         <attribute name="major" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="minor" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ForecastMO" syncable="YES"/>
+        <relationship name="forecast" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ForecastMO" inverseName="beaconRecords" inverseEntity="ForecastMO" syncable="YES"/>
     </entity>
     <entity name="ForecastMO" representedClassName="ForecastMO" syncable="YES" codeGenerationType="class">
+        <attribute name="cityId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="from" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="beaconRecords" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BeaconRecordMO" inverseName="forecast" inverseEntity="BeaconRecordMO" syncable="YES"/>
         <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="LocationMO" inverseName="forecasts" inverseEntity="LocationMO" syncable="YES"/>
         <relationship name="weatherRecords" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="WeatherRecordMO" inverseName="forecast" inverseEntity="WeatherRecordMO" syncable="YES"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="from"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="LocationMO" representedClassName="LocationMO" syncable="YES" codeGenerationType="class">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,7 +36,7 @@
     </entity>
     <elements>
         <element name="BeaconRecordMO" positionX="-324" positionY="-189" width="128" height="120"/>
-        <element name="ForecastMO" positionX="-533" positionY="-180" width="128" height="90"/>
+        <element name="ForecastMO" positionX="-533" positionY="-180" width="128" height="120"/>
         <element name="LocationMO" positionX="-110" positionY="-339" width="128" height="105"/>
         <element name="WeatherRecordMO" positionX="-54" positionY="-9" width="128" height="225"/>
     </elements>

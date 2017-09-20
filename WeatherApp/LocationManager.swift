@@ -8,22 +8,22 @@
 
 import Foundation
 
-class LocationManager: NSObject {
+class LocationManager: CLLocationManager {
     
     static let instance = LocationManager()
-    var clLocationManager: CLLocationManager?
+//    var clLocationManager: CLLocationManager?
     
     override init() {
         super.init()
-        self.clLocationManager = CLLocationManager()
-        self.clLocationManager?.allowsBackgroundLocationUpdates = true
+//        self.clLocationManager = CLLocationManager()
+        self.allowsBackgroundLocationUpdates = true
     }
     
     func fetchLocation(delegate: CLLocationManagerDelegate) {
-        self.clLocationManager?.delegate = delegate
+        self.delegate = delegate
         if CLLocationManager.locationServicesEnabled() {
-            clLocationManager?.desiredAccuracy = kCLLocationAccuracyBest
-            clLocationManager?.startUpdatingLocation()
+            self.desiredAccuracy = kCLLocationAccuracyBest
+            self.startUpdatingLocation()
         }
     }
 }

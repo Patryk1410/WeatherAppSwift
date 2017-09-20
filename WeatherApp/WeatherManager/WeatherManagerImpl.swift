@@ -50,21 +50,8 @@ class WeatherManagerImpl: WeatherManager {
                     return
                 }
                 do {
-                    let coreDataContext = AERecord.Context.default
-                    coreDataContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-                    
-                    let from = ((result["list"] as? [Any?])?.first as? [String: Any?])?["dt_txt"] as? String
-                    let pred = NSPredicate(format: "from == %@", from ?? "")
-                    
-                    if (ForecastMO.count(with: pred)) > 0 {
-                        ForecastMO.deleteAll(with: pred)
-                    }
-                    
-                    _ = try self.forecastUnboxer.unbox(dictionary: result, managedContext: coreDataContext)
-                    
-                    AERecord.saveAndWait(context: coreDataContext)
+                    _ = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: true, shouldUpdateForecast: true)
                     DispatchQueue.main.async {
-                        
                         let forecasts = ForecastMO.all()
                         completion(forecasts as? [ForecastMO], nil)
                     }
@@ -77,7 +64,7 @@ class WeatherManagerImpl: WeatherManager {
         })
     }
     
-    func fetchOneForecast(location: CLLocationCoordinate2D, completion:@escaping (ForecastMO?, Error?) -> ()) {
+    func fetchOneForecast(location: CLLocationCoordinate2D, shouldUpdateForecast: Bool, completion:@escaping (ForecastMO?, Error?) -> ()) {
         performRequest(location: location, completion: { (request, handler, error) in
             guard let handler = handler, let request = request else {
                 completion(nil, error)
@@ -89,21 +76,8 @@ class WeatherManagerImpl: WeatherManager {
                     return
                 }
                 do {
-                    let coreDataContext = AERecord.Context.background
-                    coreDataContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-                    
-                    let from = ((result["list"] as? [Any?])?.first as? [String: Any?])?["dt_txt"] as? String
-                    let pred = NSPredicate(format: "from == %@", from ?? "")
-                    
-                    if (ForecastMO.count(with: pred)) > 0 {
-                        ForecastMO.deleteAll(with: pred)
-                    }
-                    
-                    let forecast = try self.forecastUnboxer.unbox(dictionary: result, managedContext: coreDataContext)
-                    AERecord.saveAndWait(context: coreDataContext)
-//                    DispatchQueue.main.async {
-                        completion(forecast, nil)
-//                    }
+                    let forecast = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: false, shouldUpdateForecast: shouldUpdateForecast)
+                    completion(forecast, nil)
                 } catch {
                     print("Error occurred while unboxing: \(error)")
                     completion(nil, WeatherManagerError.unboxingFailed)
