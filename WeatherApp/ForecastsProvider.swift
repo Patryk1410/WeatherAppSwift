@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import AERecord
 
 class ForecastsProvider: DataProviderProtocol {
     var delegate: DataProviderDelegate?
@@ -19,8 +20,8 @@ class ForecastsProvider: DataProviderProtocol {
     
     func requestData() {
         let locationWarsaw = CLLocationCoordinate2D(latitude: 52.21, longitude: 21.01)
-        
-        self.weatherManager.fetchWeather(location:locationWarsaw, completion: { [unowned self] (forecasts, error) in
+        let context = AERecord.Context.default
+        self.weatherManager.fetchWeather(location:locationWarsaw, context: context, completion: { [unowned self] (forecasts, error) in
             
             guard let forecasts = forecasts else {
                 self.delegate?.didFinishFetchingWithError(nil)

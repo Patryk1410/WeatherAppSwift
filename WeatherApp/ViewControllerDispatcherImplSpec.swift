@@ -62,7 +62,7 @@ class ViewControllerDispatcherImplSpec: QuickSpec {
                     let json: [String: Any?] = fakeResponses.fakeWeatherJson()
                     let unboxer: ForecastUnboxer = ForecastUnboxer()
                     do {
-                        let forecast: ForecastMO = try unboxer.unbox(dictionary: json, managedContext: context!)
+                        let forecast: ForecastMO = try unboxer.unbox(dictionary: json, shouldSaveForecast: true, shouldUpdateForecast: true, context: AERecord.Context.default)
                         forecastData = ForecastData(forecast: forecast)
                         sut.pushForecastTableViewController(navigationController: fakeNavigationController, forecastData: forecastData!)
                     } catch {
@@ -104,7 +104,7 @@ class ViewControllerDispatcherImplSpec: QuickSpec {
                     let json: [String: Any?] = fakeResponses.fakeWeatherJson()
                     let unboxer: ForecastUnboxer = ForecastUnboxer()
                     do {
-                        let forecast: ForecastMO = try unboxer.unbox(dictionary: json, managedContext: context!)
+                        let forecast: ForecastMO = try unboxer.unbox(dictionary: json, shouldSaveForecast: true, shouldUpdateForecast: true, context: AERecord.Context.default)
                         let forecastData: ForecastData = ForecastData(forecast: forecast)
                         weatherRecords = forecastData.weatherRecords
                         sut.pushForecastChartViewController(navigationController: fakeNavigationController, weatherRecords: weatherRecords!)

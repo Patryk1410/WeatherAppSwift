@@ -12,12 +12,10 @@ import AERecord
 
 class ManagedObjectBuilder: NSObject {
     
-    static let instance = ManagedObjectBuilder()
+    let context: NSManagedObjectContext
     
-    var context: NSManagedObjectContext = AERecord.Context.default {
-        didSet {
-            context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        }
+    init(context: NSManagedObjectContext) {
+        self.context = context
     }
     
     func buildLocation(shouldUpdate: Bool, country: String?, city: String?, cityId: String?) -> LocationMO {
@@ -50,6 +48,7 @@ class ManagedObjectBuilder: NSObject {
     }
     
     func buildForecast(shouldUpdate: Bool, shouldSave: Bool, from: String?, cityId: String?, weatherRecords: [WeatherRecordMO], location: LocationMO) -> ForecastMO {
+//        beaconRecord.forecast = context.object(with: forecast.objectID) as! ForecastMO
         let pred = NSPredicate(format: "from == %@ AND cityId == %@", from ?? "", cityId ?? "")
         if let res = self.checkIfShoulUpdate(type: ForecastMO.self, pred: pred, shouldUpdate: shouldUpdate) {
             return res as! ForecastMO
@@ -81,17 +80,17 @@ class ManagedObjectBuilder: NSObject {
         beaconRecordMO.minor = minor ?? 0
         beaconRecordMO.forecast = forecast
         if shouldSave {
-            AERecord.saveAndWait(context: context)
+            AERecord.saveAndWait(context: self.context)
         }
         return beaconRecordMO
     }
     
     func checkIfShoulUpdate<T: NSManagedObject>(type: T.Type, pred: NSPredicate, shouldUpdate: Bool) -> NSManagedObject? {
-        if (T.count(with: pred)) > 0 {
+        if (T.count(with: pred, in: self.context)) > 0 {
             if shouldUpdate {
-                T.deleteAll(with: pred)
+                T.deleteAll(with: pred, from: self.context)
             } else {
-                return T.first(with: pred)!
+                return T.first(with: pred, in: self.context)!
             }
         }
         return nil

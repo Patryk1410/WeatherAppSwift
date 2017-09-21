@@ -20,17 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         print("App did finish launching")
-        //Loading initial view controller
-        self.window = UIWindow()
-        let navigationController = UINavigationController()
-        let tabBarViewController = MainTabBarViewController()
-        navigationController.viewControllers = [tabBarViewController]
-        self.window?.rootViewController = navigationController
-        self.window?.makeKeyAndVisible()
+        
         
         //Initializing Core Data Stack with AERecord library
         do {
             try AERecord.loadCoreDataStack()
+//            let pred = NSPredicate(format: "from == %@ AND cityId == %@", "2017-09-21 12:00:00", "756135")
+//            ForecastMO.deleteAll(with: pred)
+//            AERecord.saveAndWait()
         } catch {
             print(error)
         }
@@ -48,6 +45,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Notification access denied.")
             }
         }
+        
+        //Loading initial view controller
+        self.window = UIWindow()
+        let navigationController = UINavigationController()
+        let tabBarViewController = MainTabBarViewController()
+        navigationController.viewControllers = [tabBarViewController]
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
         
         return true
     }

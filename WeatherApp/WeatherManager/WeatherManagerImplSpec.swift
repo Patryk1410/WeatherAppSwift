@@ -63,7 +63,7 @@ class WeatherManagerImplSpec: QuickSpec {
                     
                     sut.httpHandler = fakeHttpHandler
                     
-                    sut.fetchWeather(location: mockedLocation, completion: { (result, error) in
+                    sut.fetchWeather(location: mockedLocation, context: AERecord.Context.default, completion: { (result, error) in
                         capturedResult = result
                         capturedError = error
                     })

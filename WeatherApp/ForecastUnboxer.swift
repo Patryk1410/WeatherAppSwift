@@ -11,16 +11,18 @@ import CoreData
 import Unbox
 
 public protocol ForecastUnboxerProtocol{
-    func unbox(dictionary: [String: Any], shouldSaveForecast: Bool, shouldUpdateForecast: Bool) throws -> ForecastMO
+    func unbox(dictionary: [String: Any], shouldSaveForecast: Bool, shouldUpdateForecast: Bool, context: NSManagedObjectContext) throws -> ForecastMO
 }
 
 public class ForecastUnboxer: ForecastUnboxerProtocol {
     
-    public func unbox(dictionary: [String: Any], shouldSaveForecast: Bool, shouldUpdateForecast: Bool) throws -> ForecastMO{
+    public func unbox(dictionary: [String: Any], shouldSaveForecast: Bool, shouldUpdateForecast: Bool, context: NSManagedObjectContext) throws -> ForecastMO {
         
-        let weatherRecordsMO = try self.unboxWeatherRecords(dictionary: dictionary)
+        let builder: ManagedObjectBuilder = ManagedObjectBuilder(context: context)
         
-        let locationMO: LocationMO = try self.unboxLocation(dictionary: dictionary)
+        let weatherRecordsMO = try self.unboxWeatherRecords(dictionary: dictionary, builder: builder)
+        
+        let locationMO: LocationMO = try self.unboxLocation(dictionary: dictionary, builder: builder)
         
         let forecastMO: ForecastMO = try Unboxer.performCustomUnboxing(dictionary: dictionary, closure: {unboxer in
             let list: [Any?] = try unboxer.unbox(key: weatherRecordsKey)
@@ -28,12 +30,17 @@ public class ForecastUnboxer: ForecastUnboxerProtocol {
             let date: String? = elem?[dateKey] as? String
             let from = date
             let cityId = locationMO.cityId
-            return ManagedObjectBuilder.instance.buildForecast(shouldUpdate: shouldUpdateForecast, shouldSave: shouldSaveForecast, from: from, cityId: cityId, weatherRecords: weatherRecordsMO, location: locationMO)
+            return builder.buildForecast(shouldUpdate: shouldUpdateForecast,
+                                                               shouldSave: shouldSaveForecast,
+                                                               from: from,
+                                                               cityId: cityId,
+                                                               weatherRecords: weatherRecordsMO,
+                                                               location: locationMO)
         })
         return forecastMO
     }
     
-    private func unboxWeatherRecords(dictionary: [String: Any]) throws -> [WeatherRecordMO] {
+    private func unboxWeatherRecords(dictionary: [String: Any], builder: ManagedObjectBuilder) throws -> [WeatherRecordMO] {
         var weatherRecordsMO = [WeatherRecordMO]()
         for weatherRecord in (dictionary["list"] as! Array<Any>) {
             let weatherRecordMO: WeatherRecordMO = try Unboxer.performCustomUnboxing(dictionary: weatherRecord as! UnboxableDictionary, closure: {unboxer in
@@ -48,19 +55,31 @@ public class ForecastUnboxer: ForecastUnboxerProtocol {
                 let cloudiness: Int32? = unboxer.unbox(keyPath: cloudinessKeyPath)
                 let windSpeed: Double? = unboxer.unbox(keyPath: windSpeedKeyPath)
                 let date = unboxer.unbox(key: dateKey) ?? noDateError
-                return ManagedObjectBuilder.instance.buildWeatherRecord(temperature: temperature, minTemperature: minTemperature, maxTemperature: maxTemperature, pressure: pressure, humidity: humidity, conditions: conditions, conditionsDescription: conditionsDescription, iconId: iconId, cloudiness: cloudiness, windSpeed: windSpeed, date: date)
+                return builder.buildWeatherRecord(temperature: temperature,
+                                                                        minTemperature: minTemperature,
+                                                                        maxTemperature: maxTemperature,
+                                                                        pressure: pressure,
+                                                                        humidity: humidity,
+                                                                        conditions: conditions,
+                                                                        conditionsDescription: conditionsDescription,
+                                                                        iconId: iconId,
+                                                                        cloudiness: cloudiness,
+                                                                        windSpeed: windSpeed, date: date)
             })
             weatherRecordsMO.append(weatherRecordMO)
         }
         return weatherRecordsMO
     }
     
-    private func unboxLocation(dictionary: [String: Any]) throws -> LocationMO {
+    private func unboxLocation(dictionary: [String: Any], builder: ManagedObjectBuilder) throws -> LocationMO {
         let locationMO: LocationMO = try Unboxer.performCustomUnboxing(dictionary: dictionary[locationKey] as! UnboxableDictionary, closure: {unboxer in
             let country: String? = unboxer.unbox(key: countryKey)
             let city: String? = unboxer.unbox(key: cityKey)
             let cityId: String? = unboxer.unbox(key: cityIdKey)
-            return ManagedObjectBuilder.instance.buildLocation(shouldUpdate: false, country: country, city: city, cityId: cityId)
+            return builder.buildLocation(shouldUpdate: false,
+                                                               country: country,
+                                                               city: city,
+                                                               cityId: cityId)
         })
         return locationMO
     }

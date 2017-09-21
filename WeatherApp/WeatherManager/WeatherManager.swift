@@ -8,10 +8,10 @@
 
 import Foundation
 import CoreLocation
-
+import CoreData
 
 protocol WeatherManager {
-    func fetchWeather(location: CLLocationCoordinate2D, completion:@escaping (_ forecast: [ForecastMO]?, _ error: Error?)->())
+    func fetchWeather(location: CLLocationCoordinate2D, context: NSManagedObjectContext, completion:@escaping (_ forecast: [ForecastMO]?, _ error: Error?)->())
     
-    func fetchOneForecast(location: CLLocationCoordinate2D, shouldUpdateForecast: Bool, completion:@escaping (_ forecast: ForecastMO?, _ error: Error?) -> ())
+    func fetchOneForecast(location: CLLocationCoordinate2D, context: NSManagedObjectContext, shouldUpdateForecast: Bool, completion:@escaping (_ forecast: ForecastMO?, _ error: Error?) -> ())
 }

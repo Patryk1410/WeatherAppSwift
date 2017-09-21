@@ -18,7 +18,7 @@ enum WeatherManagerError: Error {
 }
 
 class WeatherManagerImpl: WeatherManager {
-
+    
     var httpHandler: HttpHandler?
     let forecastUnboxer: ForecastUnboxer
 
@@ -38,7 +38,7 @@ class WeatherManagerImpl: WeatherManager {
         completion(request, handler, nil)
     }
     
-    func fetchWeather(location: CLLocationCoordinate2D, completion: @escaping ([ForecastMO]?, Error?) -> ()) {
+    func fetchWeather(location: CLLocationCoordinate2D, context: NSManagedObjectContext, completion: @escaping ([ForecastMO]?, Error?) -> ()) {
         performRequest(location: location, completion: { (request, handler, error) in
             guard let handler = handler, let request = request else {
                 completion(nil, error)
@@ -50,7 +50,7 @@ class WeatherManagerImpl: WeatherManager {
                     return
                 }
                 do {
-                    _ = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: true, shouldUpdateForecast: true)
+                    _ = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: true, shouldUpdateForecast: true, context: context)
                     DispatchQueue.main.async {
                         let forecasts = ForecastMO.all()
                         completion(forecasts as? [ForecastMO], nil)
@@ -64,7 +64,7 @@ class WeatherManagerImpl: WeatherManager {
         })
     }
     
-    func fetchOneForecast(location: CLLocationCoordinate2D, shouldUpdateForecast: Bool, completion:@escaping (ForecastMO?, Error?) -> ()) {
+    func fetchOneForecast(location: CLLocationCoordinate2D, context: NSManagedObjectContext, shouldUpdateForecast: Bool, completion:@escaping (ForecastMO?, Error?) -> ()) {
         performRequest(location: location, completion: { (request, handler, error) in
             guard let handler = handler, let request = request else {
                 completion(nil, error)
@@ -76,7 +76,7 @@ class WeatherManagerImpl: WeatherManager {
                     return
                 }
                 do {
-                    let forecast = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: false, shouldUpdateForecast: shouldUpdateForecast)
+                    let forecast = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: false, shouldUpdateForecast: shouldUpdateForecast, context: context)
                     completion(forecast, nil)
                 } catch {
                     print("Error occurred while unboxing: \(error)")

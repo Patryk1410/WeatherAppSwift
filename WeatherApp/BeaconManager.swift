@@ -18,6 +18,7 @@ class BeaconManager: NSObject, ESTBeaconManagerDelegate {
     let weatherManager: WeatherManager = WeatherManagerImpl()
     var currentRegion: CLBeaconRegion?
     var testRegion: CLBeaconRegion?
+    let builder: ManagedObjectBuilder = ManagedObjectBuilder(context: AERecord.Context.background)
     
     override init() {
         super.init()
@@ -39,7 +40,7 @@ class BeaconManager: NSObject, ESTBeaconManagerDelegate {
     }
     
     func fetchWeather(location: CLLocationCoordinate2D) {
-        self.weatherManager.fetchOneForecast(location: location, shouldUpdateForecast: false, completion: { [weak self] (forecast, error) in
+        self.weatherManager.fetchOneForecast(location: location, context: AERecord.Context.background, shouldUpdateForecast: false, completion: { [weak self] (forecast, error) in
             guard let region = self?.currentRegion, let forecast = forecast else {
                 self?.endBackgroundTask()
                 return
@@ -54,7 +55,7 @@ class BeaconManager: NSObject, ESTBeaconManagerDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM hh:mm"
         let date = Date()
-        _ = ManagedObjectBuilder.instance.buildBeaconRecord(shouldUpdate: false, shouldSave: true, date: formatter.string(from: date), uuid: self.currentRegion?.proximityUUID.description, major: self.currentRegion?.major?.int32Value, minor: self.currentRegion?.minor?.int32Value, forecast: forecast)
+        _ = self.builder.buildBeaconRecord(shouldUpdate: false, shouldSave: true, date: formatter.string(from: date), uuid: self.currentRegion?.proximityUUID.description, major: self.currentRegion?.major?.int32Value, minor: self.currentRegion?.minor?.int32Value, forecast: forecast)
     }
     
     deinit {
@@ -67,7 +68,6 @@ extension BeaconManager {
     
     func registerBackgroundTask() {
         print("Background task started")
-        ManagedObjectBuilder.instance.context = AERecord.Context.background
         self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: { [weak self] in
             print("Error - terminating task")
             self?.endBackgroundTask()
@@ -76,7 +76,6 @@ extension BeaconManager {
     
     func endBackgroundTask() {
         print("Background task ended")
-        ManagedObjectBuilder.instance.context = AERecord.Context.default
         UIApplication.shared.endBackgroundTask(backgroundTask)
         self.backgroundTask = UIBackgroundTaskInvalid
     }
