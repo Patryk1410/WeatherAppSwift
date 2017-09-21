@@ -55,12 +55,6 @@ class BeaconManager: NSObject, ESTBeaconManagerDelegate {
         formatter.dateFormat = "dd.MM hh:mm"
         let date = Date()
         _ = ManagedObjectBuilder.instance.buildBeaconRecord(shouldUpdate: false, shouldSave: true, date: formatter.string(from: date), uuid: self.currentRegion?.proximityUUID.description, major: self.currentRegion?.major?.int32Value, minor: self.currentRegion?.minor?.int32Value, forecast: forecast)
-        
-//        beaconRecord.forecast = context.object(with: forecast.objectID) as! ForecastMO
-//        BeaconRecordMO.deleteAll()
-//        AERecord.saveAndWait(context: AERecord.Context.background)
-//        AERecord.saveAndWait(context: context)
-        print("count of records: \(BeaconRecordMO.count())")
     }
     
     deinit {

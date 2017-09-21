@@ -11,6 +11,7 @@ import Foundation
 //MARK: Reuse identifiers
 let forecastTableViewCellReuseIdentifier: String = "WeatherApp.ForecastTableViewCell"
 let forecastsTableViewCellReuseIdentifier: String = "WeatherApp.ForecastsTableViewCell"
+let beaconRecordsTableViewCellReuseIdentifier: String = "WeatherApp.BeaconRecordTableViewCell"
 
 //MARK: Errors
 let noDateError: String = "date unavailable"

@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeaconViewController" customModule="WeatherApp" customModuleProvider="target">
             <connections>
-                <outlet property="forecastsTableView" destination="zYj-hQ-8ed" id="mGY-RG-JsO"/>
+                <outlet property="beaconRecordsTableView" destination="zYj-hQ-8ed" id="Er2-Td-TIl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
