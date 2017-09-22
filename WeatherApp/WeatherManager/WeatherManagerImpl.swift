@@ -49,7 +49,6 @@ class WeatherManagerImpl: WeatherManager {
                     completion(nil, WeatherManagerError.noData)
                     return
                 }
-//              _ = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: true, shouldUpdateForecast: true, context: context)
                 self.performUnboxingOperation(result: result, context: context, shouldUpdateForecast: true, shouldSaveForecast: true, completion: { (forecast) in
                     let forecasts = ForecastMO.all()
                     completion(forecasts as? [ForecastMO], nil)
@@ -69,7 +68,6 @@ class WeatherManagerImpl: WeatherManager {
                     completion(nil, WeatherManagerError.noData)
                     return
                 }
-//              let forecast = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: false, shouldUpdateForecast: shouldUpdateForecast, context: context)
                 self.performUnboxingOperation(result: result, context: context, shouldUpdateForecast: shouldUpdateForecast, shouldSaveForecast: false, completion: { (forecast) in
                     completion(forecast, nil)
                 })

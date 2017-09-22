@@ -55,7 +55,8 @@ class BeaconManager: NSObject, ESTBeaconManagerDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM hh:mm"
         let date = Date()
-        _ = self.builder.buildBeaconRecord(shouldUpdate: false, shouldSave: true, date: formatter.string(from: date), uuid: self.currentRegion?.proximityUUID.description, major: self.currentRegion?.major?.int32Value, minor: self.currentRegion?.minor?.int32Value, forecast: forecast)
+        _ = self.builder.buildBeaconRecord(shouldUpdate: false, date: formatter.string(from: date), uuid: self.currentRegion?.proximityUUID.description, major: self.currentRegion?.major?.int32Value, minor: self.currentRegion?.minor?.int32Value, forecast: forecast)
+        self.builder.saveChanges()
     }
     
     deinit {

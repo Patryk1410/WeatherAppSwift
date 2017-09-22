@@ -31,12 +31,14 @@ public class ForecastUnboxer: ForecastUnboxerProtocol {
             let from = date
             let cityId = locationMO.cityId
             return builder.buildForecast(shouldUpdate: shouldUpdateForecast,
-                                         shouldSave: shouldSaveForecast,
                                          from: from,
                                          cityId: cityId,
                                          weatherRecords: weatherRecordsMO,
                                          location: locationMO)
         })
+        if shouldSaveForecast {
+            builder.saveChangesAndWait()
+        }
         return forecastMO
     }
     

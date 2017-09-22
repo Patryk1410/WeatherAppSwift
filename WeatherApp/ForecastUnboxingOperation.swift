@@ -32,7 +32,7 @@ class ForecastUnboxingOperation: Operation {
             return
         }
         do {
-        self.forecast = try self.unboxer.unbox(dictionary: self.result, shouldSaveForecast: self.shouldSaveForecast, shouldUpdateForecast: self.shouldUpdateForecast, context: self.context)
+            self.forecast = try self.unboxer.unbox(dictionary: self.result, shouldSaveForecast: self.shouldSaveForecast, shouldUpdateForecast: self.shouldUpdateForecast, context: self.context)
         } catch {
             print("Unboxing error")
         }

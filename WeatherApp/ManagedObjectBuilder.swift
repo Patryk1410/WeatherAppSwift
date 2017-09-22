@@ -47,7 +47,7 @@ class ManagedObjectBuilder: NSObject {
         return weatherRecordMO
     }
     
-    func buildForecast(shouldUpdate: Bool, shouldSave: Bool, from: String?, cityId: String?, weatherRecords: [WeatherRecordMO], location: LocationMO) -> ForecastMO {
+    func buildForecast(shouldUpdate: Bool, from: String?, cityId: String?, weatherRecords: [WeatherRecordMO], location: LocationMO) -> ForecastMO {
 //        beaconRecord.forecast = context.object(with: forecast.objectID) as! ForecastMO
         let pred = NSPredicate(format: "from == %@ AND cityId == %@", from ?? "", cityId ?? "")
         if let res = self.checkIfShoulUpdate(type: ForecastMO.self, pred: pred, shouldUpdate: shouldUpdate) {
@@ -61,13 +61,13 @@ class ManagedObjectBuilder: NSObject {
         for weatherRecord in weatherRecords {
             forecastMO.addToWeatherRecords(weatherRecord)
         }
-        if shouldSave {
-            AERecord.saveAndWait(context: context)
-        }
+//        if shouldSave {
+//            AERecord.saveAndWait(context: context)
+//        }
         return forecastMO
     }
     
-    func buildBeaconRecord(shouldUpdate: Bool, shouldSave: Bool, date: String?, uuid: String?, major: Int32?, minor: Int32?, forecast: ForecastMO?) -> BeaconRecordMO {
+    func buildBeaconRecord(shouldUpdate: Bool, date: String?, uuid: String?, major: Int32?, minor: Int32?, forecast: ForecastMO?) -> BeaconRecordMO {
         let pred = NSPredicate(format: "date == %@ AND uuid == %@ AND major == %@ AND minor == %@", date ?? "", uuid ?? "", NSNumber(value: major ?? 0), NSNumber(value: minor ?? 0))
         if let res = self.checkIfShoulUpdate(type: BeaconRecordMO.self, pred: pred, shouldUpdate: shouldUpdate) {
             return res as! BeaconRecordMO
@@ -79,9 +79,9 @@ class ManagedObjectBuilder: NSObject {
         beaconRecordMO.major = major ?? 0
         beaconRecordMO.minor = minor ?? 0
         beaconRecordMO.forecast = forecast
-        if shouldSave {
-            AERecord.saveAndWait(context: self.context)
-        }
+//        if shouldSave {
+//            AERecord.saveAndWait(context: self.context)
+//        }
         return beaconRecordMO
     }
     
@@ -94,5 +94,13 @@ class ManagedObjectBuilder: NSObject {
             }
         }
         return nil
+    }
+    
+    func saveChanges() {
+        AERecord.save(context: self.context)
+    }
+    
+    func saveChangesAndWait() {
+        AERecord.saveAndWait(context: self.context)
     }
 }
