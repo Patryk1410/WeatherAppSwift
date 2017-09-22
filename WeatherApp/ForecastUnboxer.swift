@@ -31,11 +31,11 @@ public class ForecastUnboxer: ForecastUnboxerProtocol {
             let from = date
             let cityId = locationMO.cityId
             return builder.buildForecast(shouldUpdate: shouldUpdateForecast,
-                                                               shouldSave: shouldSaveForecast,
-                                                               from: from,
-                                                               cityId: cityId,
-                                                               weatherRecords: weatherRecordsMO,
-                                                               location: locationMO)
+                                         shouldSave: shouldSaveForecast,
+                                         from: from,
+                                         cityId: cityId,
+                                         weatherRecords: weatherRecordsMO,
+                                         location: locationMO)
         })
         return forecastMO
     }
@@ -56,15 +56,15 @@ public class ForecastUnboxer: ForecastUnboxerProtocol {
                 let windSpeed: Double? = unboxer.unbox(keyPath: windSpeedKeyPath)
                 let date = unboxer.unbox(key: dateKey) ?? noDateError
                 return builder.buildWeatherRecord(temperature: temperature,
-                                                                        minTemperature: minTemperature,
-                                                                        maxTemperature: maxTemperature,
-                                                                        pressure: pressure,
-                                                                        humidity: humidity,
-                                                                        conditions: conditions,
-                                                                        conditionsDescription: conditionsDescription,
-                                                                        iconId: iconId,
-                                                                        cloudiness: cloudiness,
-                                                                        windSpeed: windSpeed, date: date)
+                                                  minTemperature: minTemperature,
+                                                  maxTemperature: maxTemperature,
+                                                  pressure: pressure,
+                                                  humidity: humidity,
+                                                  conditions: conditions,
+                                                  conditionsDescription: conditionsDescription,
+                                                  iconId: iconId,
+                                                  cloudiness: cloudiness,
+                                                  windSpeed: windSpeed, date: date)
             })
             weatherRecordsMO.append(weatherRecordMO)
         }
@@ -77,9 +77,9 @@ public class ForecastUnboxer: ForecastUnboxerProtocol {
             let city: String? = unboxer.unbox(key: cityKey)
             let cityId: String? = unboxer.unbox(key: cityIdKey)
             return builder.buildLocation(shouldUpdate: false,
-                                                               country: country,
-                                                               city: city,
-                                                               cityId: cityId)
+                                         country: country,
+                                         city: city,
+                                         cityId: cityId)
         })
         return locationMO
     }

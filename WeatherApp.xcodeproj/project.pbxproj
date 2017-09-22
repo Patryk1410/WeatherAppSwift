@@ -17,6 +17,8 @@
 		5E13548C1F667DC400143ABF /* WeatherRecordDataStringsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E13548B1F667DC400143ABF /* WeatherRecordDataStringsProvider.swift */; };
 		5E1354901F667F0100143ABF /* ForecastsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E13548F1F667F0100143ABF /* ForecastsProvider.swift */; };
 		5E1354921F667F2A00143ABF /* ForecastProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1354911F667F2A00143ABF /* ForecastProvider.swift */; };
+		5E36A6181F73D93F005304BF /* OperationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36A6171F73D93F005304BF /* OperationsManager.swift */; };
+		5E36A61A1F73DC91005304BF /* ForecastUnboxingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E36A6191F73DC91005304BF /* ForecastUnboxingOperation.swift */; };
 		5E42A6551F615015005FE2E9 /* TableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E42A6541F615015005FE2E9 /* TableViewManager.swift */; };
 		5E42A6571F61508E005FE2E9 /* ForecastsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E42A6561F61508E005FE2E9 /* ForecastsTableViewCell.xib */; };
 		5E42A6591F6170C5005FE2E9 /* ForecastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E42A6581F6170C5005FE2E9 /* ForecastTableViewCell.xib */; };
@@ -116,6 +118,8 @@
 		5E13548B1F667DC400143ABF /* WeatherRecordDataStringsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherRecordDataStringsProvider.swift; sourceTree = "<group>"; };
 		5E13548F1F667F0100143ABF /* ForecastsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastsProvider.swift; sourceTree = "<group>"; };
 		5E1354911F667F2A00143ABF /* ForecastProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastProvider.swift; sourceTree = "<group>"; };
+		5E36A6171F73D93F005304BF /* OperationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsManager.swift; sourceTree = "<group>"; };
+		5E36A6191F73DC91005304BF /* ForecastUnboxingOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastUnboxingOperation.swift; sourceTree = "<group>"; };
 		5E42A6541F615015005FE2E9 /* TableViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewManager.swift; sourceTree = "<group>"; };
 		5E42A6561F61508E005FE2E9 /* ForecastsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForecastsTableViewCell.xib; sourceTree = "<group>"; };
 		5E42A6581F6170C5005FE2E9 /* ForecastTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForecastTableViewCell.xib; sourceTree = "<group>"; };
@@ -316,6 +320,8 @@
 				5ED88D411F7103B70082B2FA /* BeaconManager.swift */,
 				5ED88D431F71180F0082B2FA /* LocationManager.swift */,
 				5ED88D451F7135100082B2FA /* NotificationManager.swift */,
+				5E36A6171F73D93F005304BF /* OperationsManager.swift */,
+				5E36A6191F73DC91005304BF /* ForecastUnboxingOperation.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -861,6 +867,7 @@
 				5ED88D1E1F6A6A4E0082B2FA /* MapManager.swift in Sources */,
 				5ED88CF81F67DFF90082B2FA /* TemperatureValueFormatter.swift in Sources */,
 				5E42A66E1F62ABF4005FE2E9 /* main.swift in Sources */,
+				5E36A6181F73D93F005304BF /* OperationsManager.swift in Sources */,
 				5EDDCD151F602C02007B7236 /* ForecastTableViewCell.swift in Sources */,
 				5ED88D0D1F69527F0082B2FA /* MapViewController.swift in Sources */,
 				5ED88D1A1F6A67920082B2FA /* DataObject.swift in Sources */,
@@ -895,6 +902,7 @@
 				5ED88D461F7135100082B2FA /* NotificationManager.swift in Sources */,
 				5ED88D131F696B0D0082B2FA /* MapProvider.swift in Sources */,
 				5EF0DB381F600C8E00946681 /* ForecastTableViewController.swift in Sources */,
+				5E36A61A1F73DC91005304BF /* ForecastUnboxingOperation.swift in Sources */,
 				5ED88D2E1F6FB9D40082B2FA /* CustomMarkerWindowTemplate.swift in Sources */,
 				5ED88CFD1F67F6F60082B2FA /* ViewControllerDispatcherImpl.swift in Sources */,
 			);

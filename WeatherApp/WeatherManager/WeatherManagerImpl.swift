@@ -49,17 +49,11 @@ class WeatherManagerImpl: WeatherManager {
                     completion(nil, WeatherManagerError.noData)
                     return
                 }
-                do {
-                    _ = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: true, shouldUpdateForecast: true, context: context)
-                    DispatchQueue.main.async {
-                        let forecasts = ForecastMO.all()
-                        completion(forecasts as? [ForecastMO], nil)
-                    }
-                    
-                } catch {
-                    print("Error occurred while unboxing: \(error)")
-                    completion(nil, WeatherManagerError.unboxingFailed)
-                }
+//              _ = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: true, shouldUpdateForecast: true, context: context)
+                self.performUnboxingOperation(result: result, context: context, shouldUpdateForecast: true, shouldSaveForecast: true, completion: { (forecast) in
+                    let forecasts = ForecastMO.all()
+                    completion(forecasts as? [ForecastMO], nil)
+                })
             })
         })
     }
@@ -75,16 +69,28 @@ class WeatherManagerImpl: WeatherManager {
                     completion(nil, WeatherManagerError.noData)
                     return
                 }
-                do {
-                    let forecast = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: false, shouldUpdateForecast: shouldUpdateForecast, context: context)
+//              let forecast = try self.forecastUnboxer.unbox(dictionary: result, shouldSaveForecast: false, shouldUpdateForecast: shouldUpdateForecast, context: context)
+                self.performUnboxingOperation(result: result, context: context, shouldUpdateForecast: shouldUpdateForecast, shouldSaveForecast: false, completion: { (forecast) in
                     completion(forecast, nil)
-                } catch {
-                    print("Error occurred while unboxing: \(error)")
-                    completion(nil, WeatherManagerError.unboxingFailed)
-                }
+                })
             })
         })
-        
-        
+    }
+    
+    func performUnboxingOperation(result: [String: Any?], context: NSManagedObjectContext, shouldUpdateForecast: Bool, shouldSaveForecast: Bool, completion: @escaping (ForecastMO)->()) {
+        let unboxingOperation = ForecastUnboxingOperation(result: result, context: context, shouldUpdateForecast: shouldUpdateForecast, shouldSaveForecast: shouldSaveForecast)
+        let operationManager = OperationManager()
+        unboxingOperation.completionBlock = {
+            if unboxingOperation.isCancelled {
+                return
+            }
+            guard let forecast = unboxingOperation.forecast else {
+                return
+            }
+            DispatchQueue.main.async {
+                completion(forecast)
+            }
+        }
+        operationManager.downloadQueue.addOperation(unboxingOperation)
     }
 }

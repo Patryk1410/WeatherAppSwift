@@ -18,13 +18,13 @@ class MapProvider: DataProviderProtocol {
     
     func requestData() {
         self.weatherManager.fetchOneForecast(location:location, context: AERecord.Context.default, shouldUpdateForecast: true, completion: { [unowned self] (forecast, error) in
-            
+
             guard let forecast = forecast else {
                 self.delegate?.didFinishFetchingWithError(nil)
                 return
             }
             let data = ForecastData(forecast: forecast)
-            
+
             self.delegate?.didFinishFetching([data])
         })
     }
