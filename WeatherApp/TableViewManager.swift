@@ -199,8 +199,8 @@ public class TableViewManager: NSObject, UITableViewDataSource, UITableViewDeleg
         self.tableView!.dataSource = self
         self.tableView?.delegate = self
         self.tableView!.estimatedRowHeight = 100
-        self.tableView!.separatorColor = UIColor.clear
-        self.tableView?.backgroundColor = UIColor.clear
+//        self.tableView!.separatorColor = UIColor.clear
+//        self.tableView?.backgroundColor = UIColor.clear
         self.privateData = [DataObjectProtocol]()
     }
     
@@ -241,7 +241,6 @@ public class TableViewManager: NSObject, UITableViewDataSource, UITableViewDeleg
         
         let dataItem = self.privateData[indexPath.row]
         return dataItem.height()
-        
     }
     
 }

@@ -68,6 +68,7 @@ class WeatherManagerImpl: WeatherManager {
                     completion(nil, WeatherManagerError.noData)
                     return
                 }
+                
                 self.performUnboxingOperation(result: result, context: context, shouldUpdateForecast: shouldUpdateForecast, shouldSaveForecast: false, completion: { (forecast) in
                     completion(forecast, nil)
                 })
@@ -76,6 +77,7 @@ class WeatherManagerImpl: WeatherManager {
     }
     
     func performUnboxingOperation(result: [String: Any?], context: NSManagedObjectContext, shouldUpdateForecast: Bool, shouldSaveForecast: Bool, completion: @escaping (ForecastMO)->()) {
+        
         let unboxingOperation = ForecastUnboxingOperation(result: result, context: context, shouldUpdateForecast: shouldUpdateForecast, shouldSaveForecast: shouldSaveForecast)
         let operationManager = OperationManager()
         unboxingOperation.completionBlock = {
