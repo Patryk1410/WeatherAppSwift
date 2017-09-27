@@ -9,9 +9,10 @@
 import Foundation
 import CoreLocation
 import CoreData
+import PromiseKit
 
 protocol WeatherManager {
-    func fetchWeather(location: CLLocationCoordinate2D, context: NSManagedObjectContext, completion:@escaping (_ forecast: [ForecastMO]?, _ error: Error?)->())
+    func fetchWeather(location: CLLocationCoordinate2D, context: NSManagedObjectContext) -> Promise<[ForecastMO]>
     
-    func fetchOneForecast(location: CLLocationCoordinate2D, context: NSManagedObjectContext, shouldUpdateForecast: Bool, completion:@escaping (_ forecast: ForecastMO?, _ error: Error?) -> ())
+    func fetchOneForecast(location: CLLocationCoordinate2D, context: NSManagedObjectContext, shouldUpdateForecast: Bool) -> Promise<ForecastMO>
 }

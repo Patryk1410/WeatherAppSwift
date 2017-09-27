@@ -12,6 +12,7 @@ target 'WeatherApp' do
     pod 'Charts'
     pod 'GoogleMaps'
     pod 'EstimoteSDK'
+    pod 'PromiseKit'
 
   target 'WeatherAppTests' do
     inherit! :search_paths

@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import AERecord
+import PromiseKit
 
 class MapProvider: DataProviderProtocol {
     var delegate: DataProviderDelegate?
@@ -17,15 +18,13 @@ class MapProvider: DataProviderProtocol {
     var location: CLLocationCoordinate2D!
     
     func requestData() {
-        self.weatherManager.fetchOneForecast(location:location, context: AERecord.Context.background, shouldUpdateForecast: true, completion: { [unowned self] (forecast, error) in
-
-            guard let forecast = forecast else {
-                self.delegate?.didFinishFetchingWithError(nil)
-                return
-            }
+        firstly {
+            self.weatherManager.fetchOneForecast(location: location, context: AERecord.Context.background, shouldUpdateForecast: true)
+        }.then { [unowned self] forecast -> () in
             let data = ForecastData(forecast: forecast)
-
             self.delegate?.didFinishFetching([data])
-        })
+        }.catch { _ in
+            self.delegate?.didFinishFetchingWithError(nil)
+        }
     }
 }

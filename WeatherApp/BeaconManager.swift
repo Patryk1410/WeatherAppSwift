@@ -10,6 +10,7 @@ import UIKit
 import UserNotifications
 import AERecord
 import CoreData
+import PromiseKit
 
 class BeaconManager: NSObject, ESTBeaconManagerDelegate {
     
@@ -40,15 +41,18 @@ class BeaconManager: NSObject, ESTBeaconManagerDelegate {
     }
     
     func fetchWeather(location: CLLocationCoordinate2D) {
-        self.weatherManager.fetchOneForecast(location: location, context: AERecord.Context.background, shouldUpdateForecast: false, completion: { [weak self] (forecast, error) in
-            guard let region = self?.currentRegion, let forecast = forecast else {
-                self?.endBackgroundTask()
+        firstly {
+            self.weatherManager.fetchOneForecast(location: location, context: AERecord.Context.background, shouldUpdateForecast: false)
+        }.then { [unowned self] forecast -> () in
+            guard let region = self.currentRegion else {
                 return
             }
             NotificationManager.instance.sendBeaconNotification(region: region, forecast: forecast)
-            self?.createBeaconRecordMO(forecast: forecast)
-            self?.endBackgroundTask()
-        })
+            self.createBeaconRecordMO(forecast: forecast)
+            self.endBackgroundTask()
+        }.catch { (_) in
+            //handle errors
+        }
     }
     
     func createBeaconRecordMO(forecast: ForecastMO) {

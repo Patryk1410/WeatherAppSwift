@@ -10,6 +10,7 @@ import Foundation
 import CoreLocation
 import CoreData
 import AERecord
+import PromiseKit
 
 enum WeatherManagerError: Error {
     case noData
@@ -27,70 +28,67 @@ class WeatherManagerImpl: WeatherManager {
         self.forecastUnboxer = ForecastUnboxer()
     }
 
-    private func performRequest(location: CLLocationCoordinate2D, completion: (HttpHandlerRequest?, HttpHandler?, Error?) -> ()) {
-        let request = WeatherByLatitudeAndLongitudeRequest(latitude: location.latitude.description, longitude: location.longitude.description)
-        
-        guard let handler = self.httpHandler else {
-            completion(nil, nil, WeatherManagerError.somethingWentWrong)
-            return
-        }
-        
-        completion(request, handler, nil)
-    }
-    
-    func fetchWeather(location: CLLocationCoordinate2D, context: NSManagedObjectContext, completion: @escaping ([ForecastMO]?, Error?) -> ()) {
-        performRequest(location: location, completion: { (request, handler, error) in
-            guard let handler = handler, let request = request else {
-                completion(nil, error)
+    private func performRequest(location: CLLocationCoordinate2D) -> Promise<(HttpHandlerRequest, HttpHandler)> {
+        return Promise { fullfil, reject in
+            let request = WeatherByLatitudeAndLongitudeRequest(latitude: location.latitude.description, longitude: location.longitude.description)
+            guard let handler = self.httpHandler else {
+                reject(WeatherManagerError.somethingWentWrong)
                 return
             }
-            handler.make(request: request, completion: { (result, error) in
-                guard let result = result else {
-                    completion(nil, WeatherManagerError.noData)
-                    return
-                }
-                self.performUnboxingOperation(result: result, context: context, shouldUpdateForecast: true, shouldSaveForecast: true, completion: { (forecast) in
+            fullfil((request, handler))
+        }
+    }
+    
+    func fetchWeather(location: CLLocationCoordinate2D, context: NSManagedObjectContext) -> Promise<[ForecastMO]> {
+        return Promise { fulfill, reject in
+            firstly {
+                self.performRequest(location: location)
+            }.then { (request, handler) in
+                handler.make(request: request)
+            }.then { result in
+                self.performUnboxingOperation(result: result, context: context, shouldUpdateForecast: true, shouldSaveForecast: true)
+            }.then { _ in
+                DispatchQueue.main.async {
                     let forecasts = ForecastMO.all()
-                    completion(forecasts as? [ForecastMO], nil)
-                })
-            })
-        })
-    }
-    
-    func fetchOneForecast(location: CLLocationCoordinate2D, context: NSManagedObjectContext, shouldUpdateForecast: Bool, completion:@escaping (ForecastMO?, Error?) -> ()) {
-        performRequest(location: location, completion: { (request, handler, error) in
-            guard let handler = handler, let request = request else {
-                completion(nil, error)
-                return
-            }
-            handler.make(request: request, completion: { (result, error) in
-                guard let result = result else {
-                    completion(nil, WeatherManagerError.noData)
-                    return
+                    fulfill(forecasts as? [ForecastMO] ?? [])
                 }
-                
-                self.performUnboxingOperation(result: result, context: context, shouldUpdateForecast: shouldUpdateForecast, shouldSaveForecast: false, completion: { (forecast) in
-                    completion(forecast, nil)
-                })
-            })
-        })
-    }
-    
-    func performUnboxingOperation(result: [String: Any?], context: NSManagedObjectContext, shouldUpdateForecast: Bool, shouldSaveForecast: Bool, completion: @escaping (ForecastMO)->()) {
-        
-        let unboxingOperation = ForecastUnboxingOperation(result: result, context: context, shouldUpdateForecast: shouldUpdateForecast, shouldSaveForecast: shouldSaveForecast)
-        let operationManager = OperationManager()
-        unboxingOperation.completionBlock = {
-            if unboxingOperation.isCancelled {
-                return
-            }
-            guard let forecast = unboxingOperation.forecast else {
-                return
-            }
-            DispatchQueue.main.async {
-                completion(forecast)
+            }.catch {_ in
+                // handle errors
             }
         }
-        operationManager.downloadQueue.addOperation(unboxingOperation)
+    }
+    
+    func fetchOneForecast(location: CLLocationCoordinate2D, context: NSManagedObjectContext, shouldUpdateForecast: Bool) -> Promise<ForecastMO> {
+        return Promise { fulfill, reject in
+            firstly {
+                self.performRequest(location: location)
+            }.then { (request, handler) in
+                handler.make(request: request)
+            }.then { result in
+                self.performUnboxingOperation(result: result, context: context, shouldUpdateForecast: shouldUpdateForecast, shouldSaveForecast: false)
+            }.then { forecast in
+                fulfill(forecast)
+            }.catch { _ in
+                // handle errors
+            }
+        }
+    }
+    
+    func performUnboxingOperation(result: [String: Any], context: NSManagedObjectContext, shouldUpdateForecast: Bool, shouldSaveForecast: Bool) -> Promise<ForecastMO> {
+        return Promise { fulfill, reject in
+            let unboxingOperation = ForecastUnboxingOperation(result: result, context: context, shouldUpdateForecast: shouldUpdateForecast, shouldSaveForecast: shouldSaveForecast)
+            let operationManager = OperationManager()
+            unboxingOperation.completionBlock = {
+                if unboxingOperation.isCancelled {
+                    reject(WeatherManagerError.unboxingFailed)
+                }
+                guard let forecast = unboxingOperation.forecast else {
+                    reject(WeatherManagerError.unboxingFailed)
+                    return
+                }
+                fulfill(forecast)
+            }
+            operationManager.downloadQueue.addOperation(unboxingOperation)
+        }
     }
 }

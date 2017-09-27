@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 public protocol HttpHandler {
     
@@ -14,5 +15,5 @@ public protocol HttpHandler {
     
     var urlSession: URLSession { get }
     
-    func make(request: HttpHandlerRequest, completion: @escaping (_ dictionaryData: [String: Any]?, _ errorError: HttpHandlerError?) -> Void)
+    func make(request: HttpHandlerRequest) -> Promise<[String: Any]>
 }
